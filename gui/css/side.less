@@ -1,0 +1,41 @@
+.body {
+	.side {	
+		.box {
+			border:2px solid @colorMain;
+			clear:both;
+			margin:5px 7px 15px 5px;
+			
+			.title {
+				background-color: @colorMain;
+				color: @colorReversed;
+				font-weight:bold;
+				font-size:130%;
+			}
+			
+			.content {
+				padding:5px;
+				
+				.caption {
+					text-align:center;
+					font-size:120%;
+				}
+				
+				.value {
+					text-align:center;
+					font-size:160%;
+				}
+			}
+		}
+		
+		.bar {
+			margin-bottom:7px;
+			border:1px solid gray;
+			min-height:7px;
+			.full {
+				background-color:gray;
+				min-height: 7px;
+			}
+			
+		}
+	}
+}
