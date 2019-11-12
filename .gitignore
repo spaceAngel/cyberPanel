@@ -1,0 +1,15 @@
+vendor
+node_modules
+build
+
+#IDE specifics
+.buildpath
+.project
+.settings
+
+#added by PDT (-> add composer support)
+composer.phar 
+
+ 
+yarn.lock
+yarn-error.log

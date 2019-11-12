@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<link rel="StyleSheet" href="app.min.css"/>
+
+ 		<meta charset="utf-8">
+ 		 
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
+	</head>
+	<body>
+		<div class="header"> <!--(bake snippets/header.html)--></div>
+		<div class="body">
+			<div class="main">
+				
+			</div>
+			<div class="side">
+				
+			</div>
+		</div>
+		<script>
+			var conn = new WebSocket('ws://192.168.0.2:8080');
+			conn.onopen = function(e) {
+			console.log("Connection established!");
+		};
+
+		conn.onmessage = function(e) {
+			console.log(e.data);
+		};
+
+		</script>
+		<button onclick="conn.send('Hello Worlda!')"></button>
+		<script src="libs.min.js" type="text/javascript"></script>
+		<script src="app.min.js" type="text/javascript"></script>
+
+		<script src="http://192.168.0.2:35729/livereload.js"></script>
+	</body>
+	
+</html>
