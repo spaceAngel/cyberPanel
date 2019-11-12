@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-concat-css');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	
 	var pkg = grunt.file.readJSON('package.json');
 	grunt.log.write(pkg.libs);
@@ -44,6 +45,15 @@ module.exports = function(grunt) {
 			},
 		},
 		
+		copy: {
+			images: {
+				expand: true,
+				cwd: 'gui/images',
+				src: "*",
+				dest: 'build/images'
+			},
+		},
+			
 		watch: {
 			scripts: {
 				files: ['gui/**/*'],
@@ -58,8 +68,9 @@ module.exports = function(grunt) {
 				}
 			},
 		},
+		
 	});
 	
-	grunt.registerTask('default', ['uglify', 'concat_css', 'less', 'bake']);
+	grunt.registerTask('default', ['uglify', 'concat_css', 'less', 'bake', 'copy']);
 	
 }
