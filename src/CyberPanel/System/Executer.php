@@ -8,16 +8,15 @@ class Executer {
 		switch ($pid) {
 			// fork errror
 			case - 1 :
-				return false;
+				return FALSE;
 
 			case 0 :
 				popen( "nohup $cmd &", 'r' );
 				exit();
-				break;
 
 			// return the child pid in father
 			default :
-				pcntl_wait($status) ;
+				pcntl_wait($status);
 				return $pid;
 		}
 	}
