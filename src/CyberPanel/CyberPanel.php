@@ -4,7 +4,7 @@ namespace CyberPanel;
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-use CyberPanel\System\Executer;
+use CyberPanel\Commands\CommandParser;
 
 class CyberPanel implements MessageComponentInterface {
 	protected $clients;
@@ -19,14 +19,23 @@ class CyberPanel implements MessageComponentInterface {
 		echo "New connection! ({$conn->resourceId})\n";
 	}
 
-	public function onMessage(ConnectionInterface $from, $msg) {
-		echo $msg . "\n";
-		Executer::exec('krusader');
+	/**
+	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+	 */
+	public function onMessage(ConnectionInterface $conn, $msg) {
+		$command = CommandParser::getInstance()->parse(
+			json_decode($msg)
+		);
+
+		$this->sendMessage(
+			$command->buildResponse()
+		);
+
 	}
 
 	public function onClose(ConnectionInterface $conn) {
 		// The connection is closed, remove it, as we can no longer send it messages
-		$this->clients->detach ( $conn );
+		$this->clients->detach($conn);
 
 		echo "Connection {$conn->resourceId} has disconnected\n";
 	}
@@ -34,5 +43,11 @@ class CyberPanel implements MessageComponentInterface {
 	public function onError(ConnectionInterface $conn, \Exception $e) {
 		echo "An error has occurred: {$e->getMessage()}\n";
 		$conn->close ();
+	}
+
+	public function sendMessage(string $message) {
+		foreach ($this->clients as $client) {
+			$client->send($message);
+		}
 	}
 }
