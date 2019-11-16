@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 				dest: 'build/libs.min.js'
 			},
 			js: {
-				src: 'gui/js/*',
+				src: 'gui/js/**/*.js',
 				dest: 'build/app.min.js'
 			}
 		},
