@@ -11,7 +11,8 @@ class SystemInfoCommand extends BaseCommand {
 			'temperatures' => [
 				'gpu' => SystemInfo::getInstance()->getTempGpu(),
 				'cpu' => SystemInfo::getInstance()->getTempCpu()
-			]
+			],
+			'storages' => SystemInfo::getInstance()->getStorages()
 		];
 	}
 }

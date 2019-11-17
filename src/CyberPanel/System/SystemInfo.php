@@ -9,6 +9,9 @@ class SystemInfo {
 	// phpcs:enable
 	const CMD_TEMP_GPU = 'nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader';
 
+	const CMD_STORAGES = 'df --output=source,target,size,avail,used';
+
+	private $skipStorageFormats = ['tmpfs', 'udev'];
 
 	private static $instance;
 
@@ -28,5 +31,22 @@ class SystemInfo {
 
 	public function getTempCpu() {
 		return Executer::execAndGetResponse(self::CMD_TEMP_CPU);
+	}
+
+	public function getStorages() : array {
+		$disks = explode("\n", Executer::execAndGetResponse(self::CMD_STORAGES));
+		$rslt = [];
+		array_shift($disks);
+		foreach ($disks as $diskRaw) {
+			$disk = preg_split("/[\s,]+/", $diskRaw);
+			if (empty($disk[0]) || in_array($disk[0], $this->skipStorageFormats)) continue;
+			$rslt[] = [
+				'caption' => $disk[1],
+				'size' => $disk[2],
+				'available' => $disk[3],
+				'used' => $disk[4],
+			];
+		}
+		return $rslt;
 	}
 }
