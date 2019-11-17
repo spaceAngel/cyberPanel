@@ -2,7 +2,7 @@
 
 namespace CyberPanel\Commands;
 
-use CyberPanel\Commands\Commands\DateTime;
+use CyberPanel\Commands\Commands\DateTimeCommand;
 
 class CommandParser {
 
@@ -11,8 +11,7 @@ class CommandParser {
 	private $commands = [];
 
 	private function __construct() {
-		$this->registerCommand('datetime', DateTime::class);
-
+		$this->registerCommand('datetime', DateTimeCommand::class);
 	}
 
 	public static function getInstance() : CommandParser {
