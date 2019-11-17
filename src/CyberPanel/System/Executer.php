@@ -20,4 +20,8 @@ class Executer {
 				return $pid;
 		}
 	}
+
+	public static function execAndGetResponse(string $cmd) : string {
+		return shell_exec($cmd);
+	}
 }
