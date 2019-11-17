@@ -4,5 +4,6 @@ $(document).ready(function() {
 	socket.open();
 
 	intervalCommandRunner.registerRunner(1000, 'datetime', dateTimeWidget.handle);
+	intervalCommandRunner.registerRunner(1000, 'systeminfo', systemInfoWidget.handle);
 
 });
