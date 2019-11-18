@@ -12,7 +12,8 @@ class SystemInfoCommand extends BaseCommand {
 				'gpu' => SystemInfo::getInstance()->getTempGpu(),
 				'cpu' => SystemInfo::getInstance()->getTempCpu()
 			],
-			'storages' => SystemInfo::getInstance()->getStorages()
+			'storages' => SystemInfo::getInstance()->getStorages(),
+			'cpuload' => SystemInfo::getInstance()->getCpuLoad()
 		];
 	}
 }
