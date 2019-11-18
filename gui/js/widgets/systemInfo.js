@@ -14,6 +14,9 @@ var systemInfoWidget = {
 
 			$('.js-storages').append(template);
 		}
+
+		$('.js-cpu-bar').css('width', data.cpuload + '0%');
+
 		systemInfoWidget.humanizeBytes();
 		
 	},
