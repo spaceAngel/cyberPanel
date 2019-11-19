@@ -17,6 +17,9 @@ var systemInfoWidget = {
 
 		$('.js-cpu-bar').css('width', data.cpuload + '0%');
 
+		templates.display('.js-template-memory', data.memory);
+		$('.js-memory-bar').css('width', data.memory.used  * 100/ data.memory.total + '%');
+
 		systemInfoWidget.humanizeBytes();
 		
 	},
