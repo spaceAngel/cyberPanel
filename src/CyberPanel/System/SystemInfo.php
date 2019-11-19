@@ -12,6 +12,8 @@ class SystemInfo {
 	const CMD_STORAGES = 'df --output=source,target,size,avail,used';
 
 	const CMD_CPU_LOAD = "awk -v a=\"$(awk '/cpu /{print $2+$4,$2+$4+$5}' /proc/stat; sleep 0.2)\" '/cpu /{split(a,b,\" \"); print 100*($2+$4-b[1])/($2+$4+$5-b[2])}'  /proc/stat";
+
+	const CMD_MEMORY = "free | awk '/Mem:/ { print sprintf(\"%u %u\",$2, $3+$5) }' ";
 	// phpcs:enable
 
 	private $skipStorageFormats = ['tmpfs', 'udev'];
@@ -56,6 +58,14 @@ class SystemInfo {
 	public function getCpuLoad() {
 		return round(Executer::execAndGetResponse(self::CMD_CPU_LOAD), 2);
 
+	}
+
+	public function getMemory() {
+		$memory = explode(' ', Executer::execAndGetResponse(self::CMD_MEMORY));
+		return [
+			'total' => $memory[0],
+			'used' => $memory[1],
+		];
 	}
 
 

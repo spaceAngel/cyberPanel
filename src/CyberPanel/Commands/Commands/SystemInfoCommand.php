@@ -13,7 +13,8 @@ class SystemInfoCommand extends BaseCommand {
 				'cpu' => SystemInfo::getInstance()->getTempCpu()
 			],
 			'storages' => SystemInfo::getInstance()->getStorages(),
-			'cpuload' => SystemInfo::getInstance()->getCpuLoad()
+			'cpuload' => SystemInfo::getInstance()->getCpuLoad(),
+			'memory' => SystemInfo::getInstance()->getMemory(),
 		];
 	}
 }
