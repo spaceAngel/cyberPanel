@@ -4,6 +4,7 @@
   "description": "webapp remote (specially over wifi from tablets) control panel for linux",
   "main": "index.js",
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "jquery-mobile": "^1.5.0-alpha.1",
     "nosleep.js": "^0.9.0"
   },
@@ -26,6 +27,9 @@
     "js": [
       "node_modules/jquery/dist/jquery.js",
       "node_modules/nosleep.js/dist/NoSleep.js"
+    ],
+    "css": [
+      "node_modules/font-awesome/css/font-awesome.css"
     ]
   }
 }

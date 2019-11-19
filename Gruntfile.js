@@ -14,11 +14,11 @@ module.exports = function(grunt) {
 		uglify: {
 			jsLib: {
 				src: pkg.libs.js,
-				dest: 'build/libs.min.js'
+				dest: 'build/js/libs.min.js'
 			},
 			js: {
 				src: 'gui/js/**/*.js',
-				dest: 'build/app.min.js'
+				dest: 'build/js/app.min.js'
 			}
 		},
 		concat_css: {
@@ -26,7 +26,12 @@ module.exports = function(grunt) {
 			},
 			all: {
 				src: ["gui/css/*"],
-				dest: "build/app.min.less"
+				dest: "build/css/app.min.less"
+			},
+
+			libs: {
+				src: pkg.libs.css,
+				dest: "build/css/libs.min.css"
 			},
 		},
 	
@@ -40,7 +45,7 @@ module.exports = function(grunt) {
 		less: {
 			app: {
 				files: {
-					'build/app.min.css': 'build/app.min.less'
+					'build/css/app.min.css': 'build/css/app.min.less'
 				}
 			},
 		},
@@ -51,6 +56,12 @@ module.exports = function(grunt) {
 				cwd: 'gui/images',
 				src: "*",
 				dest: 'build/images'
+			},
+			fa: {
+				expand: true,
+				cwd: 'node_modules/font-awesome/fonts',
+				src: "*",
+				dest: 'build/fonts'
 			},
 		},
 			
