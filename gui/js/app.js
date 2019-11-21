@@ -6,4 +6,7 @@ $(document).ready(function() {
 	intervalCommandRunner.registerRunner(1000, 'datetime', dateTimeWidget.handle);
 	intervalCommandRunner.registerRunner(1000, 'systeminfo', systemInfoWidget.handle);
 
+	socket.registerHandler('loadmacros', MacrosWidget.handle);
+	setTimeout( function() {socket.send('loadmacros', 123)},1000);
+
 });
