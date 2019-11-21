@@ -4,6 +4,7 @@ namespace CyberPanel\Commands;
 
 use CyberPanel\Commands\Commands\DateTimeCommand;
 use CyberPanel\Commands\Commands\SystemInfoCommand;
+use CyberPanel\Commands\Commands\LoadMacrosCommand;
 
 class CommandParser {
 
@@ -14,6 +15,7 @@ class CommandParser {
 	private function __construct() {
 		$this->registerCommand('datetime', DateTimeCommand::class);
 		$this->registerCommand('systeminfo', SystemInfoCommand::class);
+		$this->registerCommand('loadmacros', LoadMacrosCommand::class);
 	}
 
 	public static function getInstance() : CommandParser {
