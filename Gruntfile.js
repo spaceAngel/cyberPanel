@@ -5,6 +5,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-phpmd');
 	
 	var pkg = grunt.file.readJSON('package.json');
 	grunt.log.write(pkg.libs);
@@ -79,6 +80,17 @@ module.exports = function(grunt) {
 				}
 			},
 		},
+		
+		phpmd: {
+			application: {
+				dir: 'src'
+			},
+			options: {
+				bin: 'vendor/bin/phpmd',
+				reportFormat: 'text',
+				rulesets: 'phpmd.xml'
+			}
+		}
 		
 	});
 	
