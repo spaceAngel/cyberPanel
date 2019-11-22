@@ -30,12 +30,13 @@ class SystemInfo {
 		return self::$instance;
 	}
 
-	public function getTempGpu() {
-		return Executer::execAndGetResponse(self::CMD_TEMP_GPU);
+	public function getTempGpu() : int {
+		$temp = Executer::execAndGetResponse(self::CMD_TEMP_GPU);
+		return is_int($temp) ? $temp : 0;
 	}
 
 	public function getTempCpu() {
-		return Executer::execAndGetResponse(self::CMD_TEMP_CPU);
+		return explode("\n", Executer::execAndGetResponse(self::CMD_TEMP_CPU))[0];
 	}
 
 	public function getStorages() : array {
