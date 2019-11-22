@@ -18,7 +18,8 @@
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-phpcs": "^0.4.0",
-    "grunt-phpmd": "^0.1.1"
+    "grunt-phpmd": "^0.1.1",
+    "grunt-phpstan": "^0.2.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

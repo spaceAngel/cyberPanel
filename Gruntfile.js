@@ -7,6 +7,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-phpmd');
 	grunt.loadNpmTasks('grunt-phpcs');
+	grunt.loadNpmTasks('grunt-phpstan');
+
 
 	
 	var pkg = grunt.file.readJSON('package.json');
@@ -94,17 +96,26 @@ module.exports = function(grunt) {
 			}
 		},
 		phpcs: {
-		    application: {
-		        src: ['src/**/*.php']
-		    },
-		    options: {
-		        bin: 'vendor/bin/phpcs',
-		        standard: 'phpcs.xml'
-		    }
+			application: {
+				src: ['src/**/*.php']
+			},
+			options: {
+				bin: 'vendor/bin/phpcs',
+				standard: 'phpcs.xml'
+			}
+		},
+		phpstan: {
+			options: {
+				level: "max",
+				bin: "vendor/bin/phpstan"
+			},
+			php: {
+				src: ["src/**/*.php"]
+			}
 		}
-		
 	});
 	
 	grunt.registerTask('default', ['uglify', 'concat_css', 'less', 'bake', 'copy']);
+	grunt.registerTask('codecheck', [ 'phpcs', 'phpmd', 'phpstan']);
 	
 }
