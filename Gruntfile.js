@@ -6,6 +6,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-phpmd');
+	grunt.loadNpmTasks('grunt-phpcs');
+
 	
 	var pkg = grunt.file.readJSON('package.json');
 	grunt.log.write(pkg.libs);
@@ -90,6 +92,15 @@ module.exports = function(grunt) {
 				reportFormat: 'text',
 				rulesets: 'phpmd.xml'
 			}
+		},
+		phpcs: {
+		    application: {
+		        src: ['src/**/*.php']
+		    },
+		    options: {
+		        bin: 'vendor/bin/phpcs',
+		        standard: 'phpcs.xml'
+		    }
 		}
 		
 	});
