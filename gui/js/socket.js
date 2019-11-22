@@ -5,7 +5,7 @@ socket = {
 	handlers: {},
 
 	open: function() {
-		this.conn = new WebSocket('ws://192.168.0.2:8080');
+		this.conn = new WebSocket('ws://' + window.location.hostname + ':8080');
 		this.conn.onmessage = this.onMessage;
 	},
 
