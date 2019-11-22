@@ -11,7 +11,8 @@ class LoadMacrosCommand extends BaseCommand {
 		foreach (Configuration::getInstance()->getMacroList()->getMacros() as $macro) {
 			$macros[] = [
 				'caption' => $macro->getCaption(),
-				'icon' => $macro->getIcon()
+				'icon' => $macro->getIcon(),
+				'hash' => $macro->getHash(),
 			];
 		}
 		return [ 'macros' => $macros];
