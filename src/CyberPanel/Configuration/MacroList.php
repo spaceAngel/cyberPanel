@@ -7,7 +7,7 @@ class MacroList {
 	private $macros = [];
 
 	public function addMacro(Macro $macro) {
-		$this->macros[] = $macro;
+		$this->macros[$macro->getHash()] = $macro;
 		return $this;
 	}
 

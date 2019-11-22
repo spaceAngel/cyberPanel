@@ -8,6 +8,8 @@ class Macro {
 
 	private $caption;
 
+	private $command;
+
 	public function getIcon() {
 		return $this->icon;
 	}
@@ -26,6 +28,17 @@ class Macro {
 		return $this;
 	}
 
+	public function getHash() : string {
+		return spl_object_hash($this);
+	}
 
+	public function getCommand() {
+		return $this->command;
+	}
+
+	public function setCommand(string $command) {
+		$this->command = $command;
+		return $this;
+	}
 
 }

@@ -8,26 +8,31 @@ $this->addMacrolist(
 		(new Macro())
 		->setCaption('firefox')
 		->setIcon('fa-firefox')
+		->setCommand('firefox')
 	)
 	->addMacro(
 		(new Macro())
 		->setCaption('chrome')
 		->setIcon('fa-chrome')
+		->setCommand('chromium')
 	)
 	->addMacro(
 		(new Macro())
 		->setCaption('files')
 		->setIcon('fa-folder')
+		->setCommand('krusader')
 	)
 	->addMacro(
 		(new Macro())
 		->setCaption('music')
 		->setIcon('fa-music')
+		->setCommand('audacious')
 	)
 	->addMacro(
 		(new Macro())
 		->setCaption('calculator')
 		->setIcon('fa-calculator')
+		->setCommand('kcalc')
 	)
 	->addMacro(
 		(new Macro())
