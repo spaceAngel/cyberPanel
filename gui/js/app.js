@@ -7,6 +7,7 @@ $(document).ready(function() {
 	intervalCommandRunner.registerRunner(1000, 'systeminfo', systemInfoWidget.handle);
 
 	socket.registerHandler('loadmacros', MacrosWidget.handle);
+	MacrosWidget.activateMacroIcons()
 	setTimeout( function() {socket.send('loadmacros', 123)},1000);
 
 });
