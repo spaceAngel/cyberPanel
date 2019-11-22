@@ -60,7 +60,6 @@
 	</rule>
 	<rule ref="Squiz.PHP.NonExecutableCode"/>
 	<rule ref="Generic.PHP.UpperCaseConstant"/>
-	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>	
 	<rule ref="PEAR.ControlStructures.ControlSignature"/>
 
 	<rule ref="Generic.NamingConventions.CamelCapsFunctionName"/>
