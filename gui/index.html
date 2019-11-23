@@ -6,15 +6,21 @@
  		<meta charset="utf-8">
  		 
 		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="viewport" content="initial-scale=1,user-scalable=no,viewport-fit=cover">
 	</head>
 	<body>
 		<div class="header"> 	<!--(bake snippets/header.html)-->	</div>
 		<div class="body">		<!--(bake snippets/body.html)-->	</div>
+		<button class="js-nosleep">fuulscreen</button>
 		<script src="js/libs.min.js" type="text/javascript"></script>
 		<script src="js/app.min.js" type="text/javascript"></script>
 
-		<script src="http://192.168.0.2:35729/livereload.js"></script>
+
+		<script>
+			document.write('<sc' + 'ript src="http://' + window.location.hostname + ':35729/livereload.js"></sc' + 'ript>');
+		</script>
 	</body>
 	
 </html>
