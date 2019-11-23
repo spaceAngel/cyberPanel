@@ -1,0 +1,17 @@
+macros:
+   - caption: firefox
+     icon: fa-firefox
+     command: firefox
+   - caption: chrome
+     icon: fa-chrome
+     command: chromium
+   - caption: files
+     icon: fa-folder
+     command: krusader
+   - caption: music
+     icon: fa-music
+     command: audacious
+   - caption: email
+     icon: fa-envelope
+   - caption: eclipse
+     icon: fa-code

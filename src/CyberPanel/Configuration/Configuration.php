@@ -11,12 +11,12 @@ class Configuration {
 	private $macroList;
 
 	private function __construct() {
-		$this->configuration = require 'config.php';
 	}
 
 	public static function getInstance(): self {
-		if (empty ( self::$instance )) {
-			self::$instance = new Self ();
+		if (empty(self::$instance)) {
+			self::$instance = new self();
+			ConfigurationLoader::load(self::$instance);
 		}
 		return self::$instance;
 	}
