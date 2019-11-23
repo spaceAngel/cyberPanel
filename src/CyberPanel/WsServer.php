@@ -6,7 +6,7 @@ use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use CyberPanel\Commands\CommandParser;
 
-class CyberPanel implements MessageComponentInterface {
+class WsServer implements MessageComponentInterface {
 	protected $clients;
 	public function __construct() {
 		$this->clients = new \SplObjectStorage ();
