@@ -8,6 +8,7 @@ var MacrosWidget = {
 			$(template).find('i').addClass(data.macros[i].icon);
 			$(template).attr('data-hash', data.macros[i].hash);
 			$('.js-macros').append(template);
+			
 		}
 	},
 
