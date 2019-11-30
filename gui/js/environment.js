@@ -1,14 +1,16 @@
 environment = {
 
-	enableNoSleep : function() {
-		try {
-			var noSleep = new NoSleep();
-			noSleep.enable();
-		} catch (e) {
-		}
+	noSleep: new NoSleep(),
+	
+	noSleepEnable: function() {
+		environment.noSleep.enable();
+	},	
+
+	noSleepDisable: function() {
+		environment.noSleep.disable();
 	},
 
-	fullscreenDisable: function {
+	fullscreenDisable: function() {
 		if (document.exitFullscreen) {
 			 document.exitFullscreen();
 		} else if (document.webkitExitFullscreen) {
@@ -17,7 +19,7 @@ environment = {
 			document.mozCancelFullScreen();
 		} else if (document.msExitFullscreen) {
 			document.msExitFullscreen();
-		}	
+		}
 	},
 
 	fullscreenEnable: function() {
