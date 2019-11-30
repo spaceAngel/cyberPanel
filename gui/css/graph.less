@@ -1,0 +1,15 @@
+@height: 12px;
+@radius: 10px;
+
+.bar {
+	margin-bottom:7px;
+	border:1px solid @colorGraph;
+	min-height:@height;
+	.borderRadius(@radius);
+
+	.full {
+		.borderRadius(@radius);
+		background-color:@colorGraph;
+		min-height: @height;
+	}
+}
