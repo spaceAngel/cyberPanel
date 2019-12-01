@@ -8,5 +8,6 @@ $(document).ready(function() {
 	MacrosWidget.activateMacroIcons()
 	setTimeout( function() {socket.send('loadmacros', 123)},1000);
 	IconBar.activateIcons();
-
+	
+	$('.js-nosleep').click();
 });
