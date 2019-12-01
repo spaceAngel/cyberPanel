@@ -9,17 +9,23 @@ use CyberPanel\WsServer as CyberpanelSocketServer;
 
 class CyberPanel {
 
+	const DEFAULT_PORT = 8080;
+
 	private static $instance;
 
 	private $socketServer;
 
+	private $options;
+
 	private function __construct() {
+		$this->init();
 	}
 
 	public static function run() {
 		if (empty(self::$instance)) {
 			self::$instance = new self();
 			self::$instance->runSocketServer();
+
 		}
 		return self::$instance;
 	}
@@ -31,10 +37,26 @@ class CyberPanel {
 					new CyberpanelSocketServer()
 				)
 			),
-			8080
+			$this->getPort()
 		);
 
 		$this->socketServer->run();
+	}
+
+	private function getPort() : int {
+		if (array_key_exists('p', $this->options)) {
+			return (int)$this->options['p'];
+		} elseif (array_key_exists('port', $this->options)) {
+			return (int)$this->options['port'];
+		}
+		return self::DEFAULT_PORT;
+	}
+
+	private function init() {
+		$this->options = getopt(
+			'p::',
+			['port::']
+		);
 	}
 
 }
