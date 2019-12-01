@@ -9,7 +9,7 @@ use CyberPanel\WsServer as CyberpanelSocketServer;
 
 class CyberPanel {
 
-	const DEFAULT_PORT = 8080;
+	const DEFAULT_PORT = 8081;
 
 	private static $instance;
 
