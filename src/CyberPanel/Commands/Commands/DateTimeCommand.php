@@ -12,8 +12,8 @@ class DateTimeCommand extends BaseCommand{
 			'time' => date('H:i:s'),
 			'date' => date('l d.m.Y'),
 			'holiday' => DateTime::getHoliday(
-				date('m'),
-				date('d')
+				(int)date('m'),
+				(int)date('d')
 			),
 		];
 	}
