@@ -19,9 +19,12 @@ class CyberPanel {
 
 	private function __construct() {
 		$this->init();
+		if ($this->isRunningAsDaemon()) {
+			$this->daemonize();
+		}
 	}
 
-	public static function run() {
+	public static function run() : self {
 		if (empty(self::$instance)) {
 			self::$instance = new self();
 			self::$instance->runSocketServer();
@@ -52,11 +55,22 @@ class CyberPanel {
 		return self::DEFAULT_PORT;
 	}
 
-	private function init() {
+	private function isRunningAsDaemon() : bool {
+		return array_key_exists('d', $this->options)
+		|| array_key_exists('daemonized', $this->options);
+	}
+
+	private function init() : void {
 		$this->options = getopt(
-			'p::',
-			['port::']
+			'p::d::',
+			['port::', 'daemonise']
 		);
+	}
+
+	private function daemonize() {
+		if (0 !== pcntl_fork()) {
+			exit;
+		}
 	}
 
 }
