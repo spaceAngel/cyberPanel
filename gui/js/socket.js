@@ -7,6 +7,7 @@ socket = {
 	open: function() {
 		this.conn = new WebSocket('ws://' + window.location.hostname + ':8081');
 		this.conn.onmessage = this.onMessage;
+		this.conn.onclose = this.handleDisconnect;
 	},
 
 	send: function(command, parameters) {
@@ -20,6 +21,12 @@ socket = {
 				parameters: parameters
 			})
 		);
+	},
+
+	handleDisconnect: function() {
+		setTimeout(function() {
+			socket.open();
+		}, 700)
 	},
 
 	onMessage: function(data) {
