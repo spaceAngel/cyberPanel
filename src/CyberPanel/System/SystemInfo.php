@@ -16,7 +16,7 @@ class SystemInfo {
 	const CMD_MEMORY = "free | awk '/Mem:/ { print sprintf(\"%u %u\",$2, $3+$5) }' ";
 	// phpcs:enable
 
-	private $skipStorageFormats = ['tmpfs', 'udev', 'devtmpfs', 'squashfs'];
+	private $skipStorageFormats = ['tmpfs', 'udev', 'devtmpfs', 'squashfs', 'iso9660'];
 
 	private static $instance;
 
