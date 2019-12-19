@@ -2,19 +2,9 @@
 
 namespace CyberPanel\System;
 
+use CyberPanel\System\ShellCommands\SystemInfo as SystemInfoCommands;
+
 class SystemInfo {
-
-	// phpcs:disable Generic.Files.LineLength
-	const CMD_TEMP_CPU = "sensors|sed -E -n '/[0-9]:.*\+[0-9]+\.[0-9]°[CF]/!b;s:\.[0-9]*°[CF].*$::;s:^.*\+::;p'";
-
-	const CMD_TEMP_GPU = 'nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader';
-
-	const CMD_STORAGES = 'df --output=fstype,target,size,avail,used';
-
-	const CMD_CPU_LOAD = "awk -v a=\"$(awk '/cpu /{print $2+$4,$2+$4+$5}' /proc/stat; sleep 0.2)\" '/cpu /{split(a,b,\" \"); print 100*($2+$4-b[1])/($2+$4+$5-b[2])}'  /proc/stat";
-
-	const CMD_MEMORY = "free | awk '/Mem:/ { print sprintf(\"%u %u\",$2, $3+$5) }' ";
-	// phpcs:enable
 
 	private $skipStorageFormats = ['tmpfs', 'udev', 'devtmpfs', 'squashfs', 'iso9660'];
 
@@ -31,17 +21,17 @@ class SystemInfo {
 	}
 
 	public function getTempGpu() : int {
-		$temp = Executer::execAndGetResponse(self::CMD_TEMP_GPU);
+		$temp = Executer::execAndGetResponse(SystemInfoCommands::CMD_TEMP_GPU);
 		return (int)$temp == $temp ? (int)$temp : 0;
 	}
 
 	public function getTempCpu() {
-		$temps = explode("\n", Executer::execAndGetResponse(self::CMD_TEMP_CPU));
+		$temps = explode("\n", Executer::execAndGetResponse(SystemInfoCommands::CMD_TEMP_CPU));
 		return $temps[count($temps) - 2];
 	}
 
 	public function getStorages() : array {
-		$disks = explode("\n", Executer::execAndGetResponse(self::CMD_STORAGES));
+		$disks = explode("\n", Executer::execAndGetResponse(SystemInfoCommands::CMD_STORAGES));
 		$rslt = [];
 		array_shift($disks);
 		foreach ($disks as $diskRaw) {
@@ -58,12 +48,12 @@ class SystemInfo {
 	}
 
 	public function getCpuLoad() {
-		return round(Executer::execAndGetResponse(self::CMD_CPU_LOAD), 2);
+		return round(Executer::execAndGetResponse(SystemInfoCommands::CMD_CPU_LOAD), 2);
 
 	}
 
 	public function getMemory() {
-		$memory = explode(' ', Executer::execAndGetResponse(self::CMD_MEMORY));
+		$memory = explode(' ', Executer::execAndGetResponse(SystemInfoCommands::CMD_MEMORY));
 		return [
 			'total' => $memory[0],
 			'used' => $memory[1],
