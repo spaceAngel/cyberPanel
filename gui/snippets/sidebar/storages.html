@@ -1,13 +1,12 @@
 <div class="box">
 	<div class="title">Storages</div>
-	<div class="js-template-storage template">
-		<span data-templatePlaceholder="caption">/asdf</span>
-		<span class="ta-right js-bytes" data-templatePlaceholder="available"> 120 GB</span>
-		/ <span class="ta-right js-bytes" data-templatePlaceholder="size"> 120 GB</span>
-		<div class="bar"><div class="full js-bar"></div></div>
-	</div>
-	<div class="content js-storages">
-		
+	<div class="content">
+		<div v-for="storage in systemInfo.storages">
+			<span><% storage.caption %></span>
+			<span class="ta-right" > <% storage.available | bytesToHuman %></span>
+			/ <span class="ta-right"> <% storage.size | bytesToHuman %> </span>
+			<div class="bar"><div class="full" v-bind:style="{width: storage.used  * 100/ storage.size + '%'}"></div></div>
+		</div>
 		
 		
 	</div>

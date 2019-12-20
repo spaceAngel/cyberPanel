@@ -1,13 +1,5 @@
 IconBar = {
 		
-	activateIcons: function() {
-		$(document).on('click', '.js-icon', function(e) {
-			$(e.currentTarget).toggleClass('icon-off');
-		});
-		IconBar.activateFullscreenIcon();
-		IconBar.activateNoSleepIcon();
-	},
-
 	activateFullscreenIcon: function() {
 		$(document).on('click', '.js-fullscreen', function(e) {
 			if ($(e.currentTarget).data('fullscreen') == 'on') {
@@ -19,16 +11,26 @@ IconBar = {
 			}
 		});
 	},
-
-	activateNoSleepIcon: function() {
-		$(document).on('click', '.js-nosleep', function(e) {
-			if ($(e.currentTarget).data('nosleep') == 'on') {
-				environment.noSleepDisable();
-				$(e.currentTarget).data('nosleep', 'off');
-			} else {
-				environment.noSleepEnable();
-				$(e.currentTarget).data('nosleep', 'on');
-			}
-		});
-	}
 }
+
+mixins.push({
+	methods: {
+		toggleNoSleep: function() {
+			cyberPanel.noSleep = !cyberPanel.noSleep;
+			if (cyberPanel.noSleep) {
+				environment.noSleepEnable();
+			} else {
+				environment.noSleepDisable();
+			}
+		},
+		
+		toggleFullScreen: function() {
+			cyberPanel.fullScreen = !cyberPanel.fullScreen;
+			if (cyberPanel.fullScreen) {
+				environment.fullscreenEnable();
+			} else {
+				environment.fullscreenDisable();
+			}
+		}
+	}
+});

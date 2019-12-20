@@ -1,14 +1,14 @@
-<div class="js-datetime datetime">
-	<div class="time" data-templatePlaceholder="time">
-		14:05:12
+<div class="datetime">
+	<div class="time">
+		<% datetime.time %>
 	</div>
 
 	<div class="date">
-		<span data-templatePlaceholder="date">Pátek 14. března 2017</span><br/>
-		Svátek má <span data-templatePlaceholder="holiday"></span>
+		<span><% datetime.date %></span><br/>
+		Svátek má <span><% datetime.holiday %></span>
 	</div>
 </div>
 <div class="statusbar">
-	<i class="fa fa-2x icon js-icon icon-off fa-unlock js-nosleep "></i>
-	<i class="fa fa-2x icon js-icon icon-off fa-arrows-alt js-fullscreen fullscreen"></i>
+	<i class="fa fa-2x icon fa-unlock" v-bind:class="{'icon-off' : noSleep == false}" v-on:click="toggleNoSleep()"></i>
+	<i class="fa fa-2x icon fa-arrows-alt" v-bind:class="{'icon-off' : fullScreen == false}" v-on:click="toggleFullScreen()"></i>
 </div>

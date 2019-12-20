@@ -1,10 +1,10 @@
 <div class="box">
 	<div class="title">Memory</div>
-	<div class="content js-template-memory">
-			<span class="js-bytes" data-templatePlaceholder="used"">4.5 GB</span> 
-			/ <span class="js-bytes"  data-templatePlaceholder="total">4.5 GB</span>
+	<div class="content">
+			<span><% systemInfo.memory.used  | bytesToHuman %></span> 
+			/ <span><% systemInfo.memory.total | bytesToHuman %></span>
 		<div class="bar">
-			<div class="full js-memory-bar" style="width:23.5%"></div>
+			<div class="full" v-bind:style="{width: systemInfo.memory.used  * 100/ systemInfo.memory.total + '%'}"></div>
 		</div>
 	</div>
 </div>
