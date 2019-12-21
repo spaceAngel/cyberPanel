@@ -1,4 +1,4 @@
-/* global Vue, socket, dateTimeWidget, keyboardWidget, systemInfoWidget, intervalCommandRunner, macrosWidget */
+/* global Vue, socket, dateTimeWidget, keyboardWidget, systemInfoWidget, intervalCommandRunner, macrosWidget, defaultDataStruct */
 var cyberPanel;
 var mixins = [];
 
@@ -7,33 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	cyberPanel = new Vue({
 		el: '#cyberPanel',
 		mixins: mixins,
-		data: {
-			datetime: {
-				date: '',
-				time: '',
-				holiday: ''
-			},
-			systemInfo: {
-				cpuLoad: 40,
-				memory: {
-					used: 100,
-					total: 1000
-				},
-				temperatures: {
-					cpu: 100,
-					gpu: 100
-				},
-				storages: []
-			},
-			keyboard: {
-				numlock: 'off',
-				capslock: 'off',
-				scrolllock:'off'
-			},
-			macros: [],
-			noSleep: false,
-			fullScreen: false
-		},
+		data: defaultDataStruct,
 		delimiters: ['<%', '%>']
 	});
 
