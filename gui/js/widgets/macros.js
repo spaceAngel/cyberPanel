@@ -1,8 +1,9 @@
-var MacrosWidget = {
+/* global cyberPanel, mixins, socket */
+var macrosWidget = {
 	handle: function(data) {
 		cyberPanel.macros = data.macros;
 	}
-}
+};
 
 mixins.push({
 	methods: {

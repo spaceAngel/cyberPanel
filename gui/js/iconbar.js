@@ -1,18 +1,4 @@
-IconBar = {
-		
-	activateFullscreenIcon: function() {
-		$(document).on('click', '.js-fullscreen', function(e) {
-			if ($(e.currentTarget).data('fullscreen') == 'on') {
-				environment.fullscreenDisable();
-				$(e.currentTarget).data('fullscreen', 'off');
-			} else {			
-				environment.fullscreenEnable();
-				$(e.currentTarget).data('fullscreen', 'on');
-			}
-		});
-	},
-}
-
+/* global cyberPanel, mixins, environment */
 mixins.push({
 	methods: {
 		toggleNoSleep: function() {

@@ -1,5 +1,4 @@
-socket = {
-
+var socket = {
 	conn: null,
 
 	handlers: {},
@@ -26,11 +25,11 @@ socket = {
 	handleDisconnect: function() {
 		setTimeout(function() {
 			socket.open();
-		}, 700)
+		}, 700);
 	},
 
-	onMessage: function(data) {
-		var data = (JSON.parse(data.data));
+	onMessage: function(rawData) {
+		var data = (JSON.parse(rawData.data));
 		if (socket.handlers[data.command] !== undefined) {
 			socket.handlers[data.command](data.response);
 		}
@@ -40,4 +39,4 @@ socket = {
 		this.handlers[command] = handler;
 	}
 
-}
+};

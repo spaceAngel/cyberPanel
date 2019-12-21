@@ -1,10 +1,11 @@
-environment = {
+/* global NoSleep */
+var environment = {
 
 	noSleep: new NoSleep(),
-	
+
 	noSleepEnable: function() {
 		environment.noSleep.enable();
-	},	
+	},
 
 	noSleepDisable: function() {
 		environment.noSleep.disable();
@@ -12,7 +13,7 @@ environment = {
 
 	fullscreenDisable: function() {
 		if (document.exitFullscreen) {
-			 document.exitFullscreen();
+			document.exitFullscreen();
 		} else if (document.webkitExitFullscreen) {
 			document.webkitExitFullscreen();
 		} else if (document.mozCancelFullScreen) {
@@ -33,4 +34,4 @@ environment = {
 			document.msRequestFullscreen();
 		}
 	}
-}
+};

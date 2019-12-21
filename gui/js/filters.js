@@ -1,5 +1,5 @@
+/* global Vue */
 Vue.filter('bytesToHuman', function (value) {
-
 	var i = 0;
 	var byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
 	do {
