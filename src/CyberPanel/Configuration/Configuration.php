@@ -10,7 +10,10 @@ class Configuration {
 
 	private $macroList;
 
+	private $systemLimits;
+
 	private function __construct() {
+		$this->systemLimits  = new SystemLimits();
 	}
 
 	public static function getInstance(): self {
@@ -31,5 +34,9 @@ class Configuration {
 
 	public function getMacroList() : MacroList {
 		return $this->macroList;
+	}
+
+	public function getSystemLimits() : SystemLimits {
+		return $this->systemLimits;
 	}
 }
