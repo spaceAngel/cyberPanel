@@ -68,6 +68,18 @@ module.exports = function(grunt) {
 				src: "*",
 				dest: 'build/fonts'
 			},
+			svg: {
+				expand: true,
+				cwd: 'gui/svg',
+				src: "*",
+				dest: 'build/svg'
+			},
+			fonts: {
+				expand: true,
+				cwd: 'gui/fonts',
+				src: "*",
+				dest: 'build/fonts'
+			},
 		},
 			
 		watch: {
