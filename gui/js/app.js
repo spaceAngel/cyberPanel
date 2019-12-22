@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		el: '#cyberPanel',
 		mixins: mixins,
 		data: defaultDataStruct,
-		delimiters: ['<%', '%>']
+		delimiters: ['<%', '%>'],
+		mounted: function() {
+			setTimeout(function() {cyberPanel.toggleNoSleep();}, 200);
+		}
 	});
 
 	
@@ -16,8 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	intervalCommandRunner.registerRunner(1000, 'datetime', dateTimeWidget.handle);
 	intervalCommandRunner.registerRunner(1000, 'systeminfo', systemInfoWidget.handle);
 	intervalCommandRunner.registerRunner(400, 'keyboard', keyboardWidget.handle);
-	
+
 	socket.registerHandler('loadmacros', macrosWidget.handle);
 	setTimeout( function() {socket.send('loadmacros', 123);},1000);
-	
 });
