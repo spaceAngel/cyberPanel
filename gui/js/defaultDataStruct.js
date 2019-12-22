@@ -23,5 +23,6 @@ var defaultDataStruct = {
 	},
 	macros: [],
 	noSleep: false,
-	fullScreen: false
+	fullScreen: false,
+	loaded: false
 };

@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		delimiters: ['<%', '%>'],
 		mounted: function() {
 			setTimeout(function() {cyberPanel.toggleNoSleep();}, 200);
+			setTimeout(function() {cyberPanel.loaded = true;}, 1500);
 		}
 	});
 
