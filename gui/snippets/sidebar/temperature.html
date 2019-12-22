@@ -3,11 +3,15 @@
 	<div class="content">
 		<div class="cell-50">
 			<div class="caption">CPU</div>
-			<div class="value"><% systemInfo.temperatures.cpu %> &#176;C</div>
+			<div class="value" v-bind:class="{alert: systemInfo.temperatures.cpu > systemInfo.temperatures.limits.cpu}">
+				<% systemInfo.temperatures.cpu %> &#176;C
+			</div>
 		</div>
 		<div class="cell-50">
 			<div class="caption">vga</div>
-			<div class="value"><% systemInfo.temperatures.gpu%> &#176;C</div>
+			<div class="value" v-bind:class="{alert: systemInfo.temperatures.gpu > systemInfo.temperatures.limits.gpu}">
+				<% systemInfo.temperatures.gpu%> &#176;C
+			</div>
 		</div>
 	</div>
 </div>
