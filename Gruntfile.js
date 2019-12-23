@@ -80,6 +80,12 @@ module.exports = function(grunt) {
 				src: "*",
 				dest: 'build/fonts'
 			},
+			sounds: {
+				expand: true,
+				cwd: 'gui/sounds',
+				src: "*",
+				dest: 'build/sounds'
+			},
 		},
 			
 		watch: {

@@ -1,4 +1,4 @@
-/* global cyberPanel, mixins, environment */
+/* global cyberPanel, mixins, environment, sound */
 mixins.push({
 	methods: {
 		toggleNoSleep: function() {
@@ -9,7 +9,7 @@ mixins.push({
 				environment.noSleepDisable();
 			}
 		},
-		
+
 		toggleFullScreen: function() {
 			cyberPanel.fullScreen = !cyberPanel.fullScreen;
 			if (cyberPanel.fullScreen) {
@@ -17,6 +17,14 @@ mixins.push({
 			} else {
 				environment.fullscreenDisable();
 			}
+		},
+
+		toggleSound: function() {
+			cyberPanel.sound = !cyberPanel.sound;
+			if (cyberPanel.sound) {
+				sound.playAlert();
+			}
 		}
+
 	}
 });

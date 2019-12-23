@@ -12,6 +12,7 @@
 	<object data="svg/logo.svg" type="image/svg+xml" height="80"></object>
 </div>
 <div class="statusbar">
+	<i class="fa fa-2x icon fa-bell" id="icoSound" v-bind:class="{'icon-off' : sound == false}" v-on:click="toggleSound()"></i>
 	<i class="fa fa-2x icon fa-unlock" v-bind:class="{'icon-off' : noSleep == false}" v-on:click="toggleNoSleep()"></i>
 	<i class="fa fa-2x icon fa-arrows-alt" v-bind:class="{'icon-off' : fullScreen == false}" v-on:click="toggleFullScreen()"></i>
 </div>
