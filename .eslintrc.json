@@ -16,6 +16,7 @@
     "plugins": [
     ],
     "rules": {
+    	"no-trailing-spaces": "error",
         "no-unused-vars": "off",
         "indent": [
             "error",
