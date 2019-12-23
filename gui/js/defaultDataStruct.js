@@ -25,6 +25,9 @@ var defaultDataStruct = {
 		capslock: 'off',
 		scrolllock:'off'
 	},
+	media: {
+		volume: 50
+	},
 	macros: [],
 	noSleep: false,
 	fullScreen: false,

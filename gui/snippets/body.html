@@ -3,12 +3,25 @@
 	<span data-templatePlaceholder="caption" class="caption">asdf</span>
 </div>
 
-<div class="main box">
-	<div v-for="macro in macros" class="icon" data-hash="" v-on:click="runMacro(macro.hash)">
-		<i class="fa fa-4x" v-bind:class="[macro.icon]"></i> <br/>
-		<span data-templatePlaceholder="caption" class="caption"><% macro.caption %></span>
+<div class="main">
+	<div class="box media">
+		<div class="content">
+			<div class="bar" style="width:100px">
+				<div class="full" v-bind:style="{width: media.volume + '%' }"></div>
+			</div>
+		</div>
 	</div>	
+
+	<div class="box">
+		<div v-for="macro in macros" class="icon" data-hash="" v-on:click="runMacro(macro.hash)">
+			<i class="fa fa-4x" v-bind:class="[macro.icon]"></i> <br/>
+			<span data-templatePlaceholder="caption" class="caption"><% macro.caption %></span>
+		</div>
+	</div>
+	
 </div>
+
+ 
 <div class="side">
 	
 	<!--(bake sidebar/keyboard.html)-->
