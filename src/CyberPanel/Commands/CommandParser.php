@@ -7,6 +7,7 @@ use CyberPanel\Commands\Commands\SystemInfoCommand;
 use CyberPanel\Commands\Commands\LoadMacrosCommand;
 use CyberPanel\Commands\Commands\RunMacroCommand;
 use CyberPanel\Commands\Commands\KeyboardCommand;
+use CyberPanel\Commands\Commands\MediaCommand;
 
 class CommandParser {
 
@@ -20,6 +21,7 @@ class CommandParser {
 		$this->registerCommand('loadmacros', LoadMacrosCommand::class);
 		$this->registerCommand('macro', RunMacroCommand::class);
 		$this->registerCommand('keyboard', KeyboardCommand::class);
+		$this->registerCommand('media', MediaCommand::class);
 	}
 
 	public static function getInstance() : CommandParser {
