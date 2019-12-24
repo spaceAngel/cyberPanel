@@ -12,13 +12,16 @@ class MediaCommand extends BaseCommand {
 
 		}
 
-		if (!empty(Executer::execAndGetResponse(Media::CMD_GETPLAYERS))) {
-			$id3 = $this->getCurrentSong();
+		$player = $this->getCurrentPlayer();
+		if (!empty($player)) {
+			$id3 = $this->getCurrentSong($player);
 			return [
 				'volume' => (int)Executer::execAndGetResponse(Media::CMD_VOLUME),
 				'currentsong' => $this->getSongName($id3),
 				'length' => $id3['length'],
-				'position' => (int)Executer::execAndGetResponse(Media::CMD_CURRENTPOSITION),
+				'position' => (int)Executer::execAndGetResponse(
+					sprintf(Media::CMD_CURRENTPOSITION, $player)
+				),
 			];
 		} else {
 			return [
@@ -30,13 +33,30 @@ class MediaCommand extends BaseCommand {
 		}
 	}
 
+	private function getCurrentPlayer() : ?string {
+		$players = explode("\n", trim(Executer::execAndGetResponse(Media::CMD_GETPLAYERS)));
+		foreach ($players as $player) {
+			if (
+				trim(Executer::execAndGetResponse(
+					sprintf(MEDIA::CMD_ISPLAYING, $player)
+				)) == 'Playing'
+			) {
+				return $player;
+			}
+		}
+		return NULL;
+	}
+
 	private function getSongName(array $id3) : string {
 		return $id3['author'] . ' - ' . $id3['title'];
 	}
 
-	private function getCurrentSong() : array {
+	private function getCurrentSong(string $player) : array {
 		$id3 = [];
-		$rawData = explode("\n", Executer::execAndGetResponse(Media::CMD_CURRENTSONG));
+		$rawData = explode(
+			"\n",
+			Executer::execAndGetResponse(sprintf(Media::CMD_CURRENTSONG, $player))
+		);
 		foreach ($rawData as $dataItem) {
 
 			if (strpos($dataItem, 'xesam:artist') === 0) {
