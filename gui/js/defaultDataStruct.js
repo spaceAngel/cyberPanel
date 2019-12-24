@@ -26,7 +26,10 @@ var defaultDataStruct = {
 		scrolllock:'off'
 	},
 	media: {
-		volume: 50
+		volume: 50,
+		currentsong: '',
+		length: 50,
+		position: 20
 	},
 	macros: [],
 	noSleep: false,
