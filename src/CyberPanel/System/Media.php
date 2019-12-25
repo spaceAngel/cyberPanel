@@ -23,33 +23,43 @@ class Media {
 		$players = explode("\n", trim(Executer::execAndGetResponse(Commands::CMD_GETPLAYERS)));
 		foreach ($players as $player) {
 			if (
-				trim(Executer::execAndGetResponse(
-						sprintf(Commands::CMD_ISPLAYING, $player)
+				!empty($player)
+				&& trim(Executer::execAndGetResponse(
+					sprintf(Commands::CMD_ISPLAYING, $player)
 				)) == 'Playing'
 			) {
 				return $player;
 			}
 		}
-		return $players[0];
+		return !empty($players[0]) ? $players[0] : NULL;
 	}
 
 	public function getCurrentSong() : Id3 {
-		$id3 = [];
-		$data = explode(
-			"\n",
-			Executer::execAndGetResponse(
-				sprintf(Commands::CMD_CURRENTSONG, $this->getCurrentPlayer())
-			)
-		);
+		//really one = due to assignation and test it to true
+		if ($player = $this->getCurrentPlayer()) {
+			$data = explode(
+				"\n",
+				Executer::execAndGetResponse(
+					sprintf(Commands::CMD_CURRENTSONG, $player)
+				)
+			);
 
-		$id3 = new Id3($data);
+			$id3 = new Id3($data);
+		} else {
+			return new Id3();
+		}
 		return $id3;
 	}
 
 	public function getPosition() {
-		return (int)Executer::execAndGetResponse(
-				sprintf(Commands::CMD_CURRENTPOSITION, $this->getCurrentPlayer())
-		);
+		//really one = due to assignation and test it to true
+		if ($player = $this->getCurrentPlayer()) {
+			return (int)Executer::execAndGetResponse(
+				sprintf(Commands::CMD_CURRENTPOSITION, $player)
+			);
+		}
+
+		return NULL;
 	}
 
 	public function getVolume() : int {
