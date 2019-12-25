@@ -1,0 +1,30 @@
+<div class="box mediapanel">
+		<div class="content">
+			<div class="player">
+				<div class="currentsong">
+					<% media.currentsong %>
+				</div>
+				<div class="controls">
+					<i class="fa fa-2x button fa-play"></i>
+					<i class="fa fa-2x button fa-stop"></i>
+					<i class="fa fa-2x button fa-pause"></i>
+					<i class="fa fa-2x button fa-fast-backward"></i>
+					<i class="fa fa-2x button fa-fast-forward"></i>
+				</div>
+				<div class="bar">
+					<div class="full" v-bind:style="{width: media.position * 100  / media.length + '%' }"></div>
+				</div>
+			</div>
+			<div class="volume">
+				<div class="bar">
+					<div class="full" v-bind:style="{width: media.volume + '%' }"></div>
+				</div>
+				<div class="controls">
+					<i class="fa fa-2x button fa-volume-down"></i>
+					<i class="fa fa-2x button fa-volume-up"></i>
+					<i class="fa fa-2x button fa-volume-off"></i>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>	

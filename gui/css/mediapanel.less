@@ -1,0 +1,65 @@
+.mediaPanel {
+	.volume {
+		width:150px;
+		float:right;
+	}
+
+	.player {
+		float:left;
+		width: -webkit-calc(100% - 20px);
+		width:    -moz-calc(100% - 170px);
+		width:         calc(100% - 170px);
+		overflow:hidden;
+		.controls {
+			float:left;
+		}
+
+		.bar {
+			float:right;
+			margin-top:8px;
+			width: -webkit-calc(100% - 20px);
+			width:    -moz-calc(100% - 240px);
+			width:         calc(100% - 240px);
+		}
+		
+		.currentsong {
+			font-size:22px;
+			white-space: nowrap;
+		}
+	}
+
+	.content {
+		clear:both;
+	}
+
+	.clear {
+		clear:both;
+	}
+
+	.controls {
+		text-align:center;
+		.button {
+			margin-right:15px;
+		}
+	}
+}
+
+
+@keyframes marquee {
+    0% {
+        transform: translate(0%, 0);
+		-webkit-transform: translate(0%, 0);
+    }    
+    50% {
+        transform: translate(-100%, 0);
+  -webkit-transform: translate(-100%, 0);
+    }
+    50.001% {
+        transform: translate(100%, 0);
+-webkit-transform: translate(100%, 0);
+    }
+    100% {
+        transform: translate(0%, 0);
+  -webkit-transform: translate(0%, 0);
+    }
+}
