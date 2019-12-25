@@ -64,9 +64,9 @@ module.exports = function(grunt) {
 			},
 			fa: {
 				expand: true,
-				cwd: 'node_modules/font-awesome/fonts',
+				cwd: 'node_modules/@fortawesome/fontawesome-free/webfonts',
 				src: "*",
-				dest: 'build/fonts'
+				dest: 'build/webfonts'
 			},
 			svg: {
 				expand: true,
