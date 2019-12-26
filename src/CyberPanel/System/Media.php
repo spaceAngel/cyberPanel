@@ -66,4 +66,26 @@ class Media {
 		return (int)Executer::execAndGetResponse(Commands::CMD_VOLUME);
 	}
 
+	public function getMuted() : bool {
+		return Executer::execAndGetResponse(Commands::CMD_ISMUTED) != 'no';
+	}
+
+	public function volumeUp() : void {
+		if (self::getVolume() >= 100) return;
+		Executer::execAndGetResponse(Commands::CMD_VOLUMEUP);
+	}
+
+	public function volumeDown() : void {
+		Executer::execAndGetResponse(Commands::CMD_VOLUMEDOWN);
+	}
+
+	public function volumeMute() : void {
+		Executer::execAndGetResponse(Commands::CMD_VOLUMEMUTE);
+	}
+
+	public function volumeUnMute() : void {
+		Executer::execAndGetResponse(Commands::CMD_VOLUMEUNMUTE);
+	}
+
+
 }
