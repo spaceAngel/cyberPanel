@@ -20,9 +20,10 @@
 					<div class="full" v-bind:style="{width: media.volume + '%' }"></div>
 				</div>
 				<div class="controls">
-					<i class="fa fa-2x button fa-volume-down"></i>
-					<i class="fa fa-2x button fa-volume-up"></i>
-					<i class="fa fa-2x button fa-volume-off"></i>
+					<i class="fas fa-2x button fa-volume-down" onclick="mediaWidget.volumeDown()"></i>
+					<i class="fas fa-2x button fa-volume-up" onclick="mediaWidget.volumeUp()"></i>
+					<i class="fas fa-2x button fa-volume-mute" onclick="mediaWidget.volumeUnmute()" v-if="media.muted" ></i>
+					<i class="fas fa-2x button fa-volume-off" onclick="mediaWidget.volumeMute()" v-if="!media.muted" ></i>
 				</div>
 			</div>
 			<div class="clear"></div>

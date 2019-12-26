@@ -27,6 +27,7 @@ var defaultDataStruct = {
 	},
 	media: {
 		volume: 50,
+		muted: false,
 		currentsong: '',
 		length: 50,
 		position: 20
