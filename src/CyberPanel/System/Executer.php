@@ -22,6 +22,6 @@ class Executer {
 	}
 
 	public static function execAndGetResponse(string $cmd) : string {
-		return (string)shell_exec($cmd);
+		return (string)trim(shell_exec($cmd));
 	}
 }
