@@ -7,20 +7,7 @@ use CyberPanel\System\Media;
 
 class MediaCommand extends BaseCommand {
 	public function run() : array {
-		switch ($this->parameters[0]) {
-			case 'volumeup':
-				Media::getInstance()->volumeUp();
-			break;
-			case 'volumedown':
-				Media::getInstance()->volumeDown();
-			break;
-			case 'volumemute':
-				Media::getInstance()->volumeMute();
-			break;
-			case 'volumeunmute':
-				Media::getInstance()->volumeUnMute();
-			break;
-		}
+		$this->handleCommand($this->parameters[0]);
 
 		$id3 = Media::getInstance()->getCurrentSong();
 		return [
@@ -30,6 +17,42 @@ class MediaCommand extends BaseCommand {
 			'length' => $id3->getLength(),
 			'position' => Media::getInstance()->getPosition(),
 		];
+	}
+
+	/**
+	 *
+	 * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+	 */
+	private function handleCommand(string $command) : void {
+		switch ($command) {
+			case 'volumeup':
+				Media::getInstance()->volumeUp();
+				break;
+			case 'volumedown':
+				Media::getInstance()->volumeDown();
+				break;
+			case 'volumemute':
+				Media::getInstance()->volumeMute();
+				break;
+			case 'volumeunmute':
+				Media::getInstance()->volumeUnMute();
+				break;
+			case 'stop':
+				Media::getInstance()->stop();
+				break;
+			case 'play':
+				Media::getInstance()->play();
+				break;
+			case 'pause':
+				Media::getInstance()->pause();
+				break;
+			case 'next':
+				Media::getInstance()->next();
+				break;
+			case 'previous':
+				Media::getInstance()->previous();
+				break;
+		}
 	}
 
 

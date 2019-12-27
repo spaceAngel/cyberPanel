@@ -17,6 +17,13 @@ interface Media {
 
 	const CMD_CURRENTSONG = "qdbus %s  /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Metadata";
 	const CMD_CURRENTPOSITION = "qdbus %s  /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Position";
+
+	const CMD_NEXT = "qdbus %s  /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next";
+	const CMD_PREVIOUS = "qdbus %s  /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous";
+	const CMD_STOP = "qdbus %s  /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop";
+	const CMD_PLAY = "qdbus %s  /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play";
+	const CMD_PAUSE = "qdbus %s  /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause";
+
 	// phpcs:enable
 
 }

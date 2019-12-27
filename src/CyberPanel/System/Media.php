@@ -87,5 +87,35 @@ class Media {
 		Executer::execAndGetResponse(Commands::CMD_VOLUMEUNMUTE);
 	}
 
+	public function stop() : void {
+		Executer::execAndGetResponse(
+			sprintf(Commands::CMD_STOP, $this->getCurrentPlayer())
+		);
+	}
+
+	public function play() : void {
+		Executer::execAndGetResponse(
+			sprintf(Commands::CMD_PLAY, $this->getCurrentPlayer())
+		);
+	}
+
+	public function pause() : void {
+		Executer::execAndGetResponse(
+			sprintf(Commands::CMD_PAUSE, $this->getCurrentPlayer())
+		);
+	}
+
+	public function previous() : void {
+		Executer::execAndGetResponse(
+			sprintf(Commands::CMD_PREVIOUS, $this->getCurrentPlayer())
+		);
+	}
+
+	public function next() : void {
+		Executer::execAndGetResponse(
+			sprintf(Commands::CMD_NEXT, $this->getCurrentPlayer())
+		);
+	}
+
 
 }
