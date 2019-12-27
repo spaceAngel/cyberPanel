@@ -27,7 +27,7 @@ class SystemInfo {
 
 	public function getTempCpu() {
 		$temps = explode("\n", Executer::execAndGetResponse(SystemInfoCommands::CMD_TEMP_CPU));
-		return $temps[count($temps) - 2];
+		return $temps[count($temps) - 1];
 	}
 
 	public function getStorages() : array {
