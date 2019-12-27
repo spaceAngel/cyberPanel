@@ -18,6 +18,26 @@ var mediaWidget = {
 
 	volumeUnmute: function() {
 		socket.send('media', 'volumeunmute');
+	},
+
+	play: function() {
+		socket.send('media', 'play');
+	},
+
+	stop: function() {
+		socket.send('media', 'stop');
+	},
+
+	pause: function() {
+		socket.send('media', 'pause');
+	},
+
+	next: function() {
+		socket.send('media', 'next');
+	},
+
+	previous: function() {
+		socket.send('media', 'previous');
 	}
 
 };
