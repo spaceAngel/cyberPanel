@@ -29,7 +29,11 @@ class Id3 {
 		return $this->length;
 	}
 
-	public function getName() : string {
-		return $this->author . ' - ' . $this->title;
+	public function getName() : ?string {
+		if (empty($this->title)) {
+			return NULL;
+		} else {
+			return sprintf('%s - %s', $this->author, $this->title);
+		}
 	}
 }
