@@ -2,16 +2,16 @@
 		<div class="content">
 			<div class="player">
 				<div class="currentsong">
-					<% media.currentsong %>
+					&nbsp;<% media.currentsong %>
 				</div>
 				<div class="controls">
-					<i class="fa fa-2x button fa-play" onclick="mediaWidget.play()"></i>
+					<i class="fa fa-2x button fa-play" onclick="mediaWidget.play()" v-if="!media.playing"></i>
+					<i class="fa fa-2x button fa-pause" onclick="mediaWidget.pause()" v-if="media.playing"></i>
 					<i class="fa fa-2x button fa-stop" onclick="mediaWidget.stop()"></i>
-					<i class="fa fa-2x button fa-pause" onclick="mediaWidget.pause()"></i>
 					<i class="fa fa-2x button fa-fast-backward" onclick="mediaWidget.previous()"></i>
 					<i class="fa fa-2x button fa-fast-forward" onclick="mediaWidget.next()"></i>
 				</div>
-				<div class="bar">
+				<div class="bar" v-if="media.currentsong">
 					<div class="full" v-bind:style="{width: media.position * 100  / media.length + '%' }"></div>
 				</div>
 			</div>

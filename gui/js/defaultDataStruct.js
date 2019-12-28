@@ -30,7 +30,8 @@ var defaultDataStruct = {
 		muted: false,
 		currentsong: '',
 		length: 50,
-		position: 20
+		position: 20,
+		playing: false
 	},
 	macros: [],
 	noSleep: false,
