@@ -23,15 +23,20 @@ class Media {
 		$players = explode("\n", trim(Executer::execAndGetResponse(Commands::CMD_GETPLAYERS)));
 		foreach ($players as $player) {
 			if (
-				!empty($player)
-				&& trim(Executer::execAndGetResponse(
-					sprintf(Commands::CMD_ISPLAYING, $player)
-				)) == 'Playing'
+				!empty($player) && $this->isPlayerPlaying($player)
 			) {
 				return $player;
 			}
 		}
 		return !empty($players[0]) ? $players[0] : NULL;
+	}
+
+	public function isPlayerPlaying(string $player) : bool {
+		return trim(
+			Executer::execAndGetResponse(
+				sprintf(Commands::CMD_ISPLAYING, $player)
+			)
+		) == 'Playing';
 	}
 
 	public function getCurrentSong() : Id3 {
