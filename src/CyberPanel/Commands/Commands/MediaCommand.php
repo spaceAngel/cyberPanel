@@ -16,6 +16,9 @@ class MediaCommand extends BaseCommand {
 			'currentsong' => $id3->getName(),
 			'length' => $id3->getLength(),
 			'position' => Media::getInstance()->getPosition(),
+			'playing' => Media::getInstance()->isPlayerPlaying(
+				Media::getInstance()->getCurrentPlayer()
+			)
 		];
 	}
 
@@ -23,7 +26,7 @@ class MediaCommand extends BaseCommand {
 	 *
 	 * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
 	 */
-	private function handleCommand(string $command) : void {
+	private function handleCommand(string $command = NULL) : void {
 		switch ($command) {
 			case 'volumeup':
 				Media::getInstance()->volumeUp();
