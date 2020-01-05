@@ -28,15 +28,32 @@ class Media {
 				return $player;
 			}
 		}
+
+		//now when not playing player found, try to found first paused player
+		foreach ($players as $player) {
+			if (
+				!empty($player) && $this->isPlayerPlaying($player, TRUE)
+			) {
+				return $player;
+			}
+		}
+
 		return !empty($players[0]) ? $players[0] : NULL;
 	}
 
-	public function isPlayerPlaying(string $player) : bool {
-		return trim(
-			Executer::execAndGetResponse(
-				sprintf(Commands::CMD_ISPLAYING, $player)
-			)
-		) == 'Playing';
+	public function isPlayerPlaying(string $player, bool $includePaused = FALSE) : bool {
+		$playingStates = ['Playing'];
+		if ($includePaused) {
+			$playingStates[] = 'Paused';
+		}
+		return in_array(
+			trim(
+				Executer::execAndGetResponse(
+					sprintf(Commands::CMD_ISPLAYING, $player)
+				)
+			),
+			$playingStates
+		);
 	}
 
 	public function getCurrentSong() : Id3 {
