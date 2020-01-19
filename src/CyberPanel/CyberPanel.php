@@ -19,6 +19,7 @@ class CyberPanel {
 
 	private function __construct() {
 		$this->init();
+		$this->handleInfoSwitches();
 		if ($this->isRunningAsDaemon()) {
 			$this->daemonize();
 		}
@@ -31,6 +32,13 @@ class CyberPanel {
 
 		}
 		return self::$instance;
+	}
+
+	private function handleInfoSwitches() {
+		if ($this->isRunningWithSwitch('v', 'version')) {
+			$this->println($this->getVersion());
+			exit();
+		}
 	}
 
 	private function runSocketServer() {
@@ -62,8 +70,8 @@ class CyberPanel {
 
 	private function init() : void {
 		$this->options = getopt(
-			'p::d::',
-			['port::', 'daemonise']
+			'p::d::v::h::',
+			['port::', 'daemonise', 'version', 'help']
 		);
 	}
 
@@ -71,6 +79,19 @@ class CyberPanel {
 		if (0 !== pcntl_fork()) {
 			exit;
 		}
+	}
+
+	private function isRunningWithSwitch(string $short, string $long) : bool {
+		return array_key_exists($short, $this->options)
+		|| array_key_exists($long, $this->options);
+	}
+
+	public static function getVersion() : string {
+		return '1.0.0-beta';
+	}
+
+	private function println(string $str) : void {
+		echo $str . "\n";
 	}
 
 }
