@@ -6,6 +6,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
     "nosleep.js": "^0.9.0",
+    "swiped-events": "git+https://github.com/john-doherty/swiped-events.git",
     "vue": "^2.6.11"
   },
   "devDependencies": {
@@ -30,7 +31,8 @@
   "libs": {
     "js": [
       "node_modules/nosleep.js/dist/NoSleep.js",
-      "node_modules/vue/dist/vue.min.js"
+      "node_modules/vue/dist/vue.min.js",
+      "node_modules/swiped-events/dist/swiped-events.min.js"
     ],
     "css": [
       "node_modules/@fortawesome/fontawesome-free/css/all.css"

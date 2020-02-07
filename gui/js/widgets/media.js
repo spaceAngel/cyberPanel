@@ -41,3 +41,13 @@ var mediaWidget = {
 	}
 
 };
+
+
+document.addEventListener('DOMContentLoaded', function() {
+	document.getElementById('mediaPanel').addEventListener('swiped-right', function(e) {
+		mediaWidget.previous();
+	});
+	document.getElementById('mediaPanel').addEventListener('swiped-left', function(e) {
+		mediaWidget.next();
+	});
+});
