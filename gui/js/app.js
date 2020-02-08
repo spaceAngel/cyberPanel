@@ -1,4 +1,4 @@
-/* global Vue, socket, dateTimeWidget, keyboardWidget, systemInfoWidget, intervalCommandRunner, macrosWidget, defaultDataStruct, mediaWidget */
+/* global Vue, socket, dateTimeWidget, keyboardWidget, systemInfoWidget, intervalCommandRunner, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget */
 var cyberPanel;
 var mixins = [];
 
@@ -23,4 +23,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	socket.registerHandler('loadmacros', macrosWidget.handle);
 	setTimeout( function() {socket.send('loadmacros', 123);},1000);
+	mainPanelWidget.init('mainSwipingPanel');
 });

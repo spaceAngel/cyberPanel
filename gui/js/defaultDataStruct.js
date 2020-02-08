@@ -37,5 +37,6 @@ var defaultDataStruct = {
 	noSleep: false,
 	fullScreen: false,
 	loaded: false,
-	sound: false
+	sound: false,
+	currentPanel: 1
 };

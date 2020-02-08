@@ -6,11 +6,15 @@
 <div class="main">
 	<!--(bake media.html)-->
 
-	<div class="box">
-		<div v-for="macro in macros" class="icon" data-hash="" v-on:click="runMacro(macro.hash)">
-			<i class="fa fa-4x" v-bind:class="[macro.icon]"></i> <br/>
-			<span data-templatePlaceholder="caption" class="caption"><% macro.caption %></span>
+	<div class="box swiper" id="mainSwipingPanel">
+		<div v-show="currentPanel == 1">
+			<div v-for="macro in macros" class="icon" data-hash="" v-on:click="runMacro(macro.hash)">
+				<i class="fa fa-4x" v-bind:class="[macro.icon]"></i> <br/>
+				<span data-templatePlaceholder="caption" class="caption"><% macro.caption %></span>
+			</div>
 		</div>
+		<div v-show="currentPanel == 2">Future's process list</div>
+		<div v-show="currentPanel == 3">Big calc here</div>
 	</div>
 	
 </div>
