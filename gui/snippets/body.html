@@ -24,7 +24,7 @@
 				</thead>
 				<tr v-for="process in systemInfo.processes">
 					<td> <% process.cpu %> </td>
-					<td> <% process.memory | bytesToHuman %> </td>
+					<td class="value"> <% process.memory | bytesToHuman %> </td>
 					<td> <% process.user %> </td>
 					<td> <% process.cmd %> </td>
 				</tr>
