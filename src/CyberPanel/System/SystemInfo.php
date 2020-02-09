@@ -60,5 +60,24 @@ class SystemInfo {
 		];
 	}
 
+	public function getProcessList()  : array {
+		$processes = explode(
+			"\n",
+			Executer::execAndGetResponse(SystemInfoCommands::CMD_PROCESSLIST)
+		);
+		$rslt = [];
+		foreach ($processes as $process) {
+			$process = explode("|", $process);
+			$rslt[] = [
+				'cmd' => $process[0],
+				'cpu' => $process[1],
+				'memory' => $process[2],
+				'user' => $process[3],
+				'args' => $process[4],
+			];
+		}
+		return $rslt;
+	}
+
 
 }
