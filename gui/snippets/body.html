@@ -13,7 +13,25 @@
 				<span data-templatePlaceholder="caption" class="caption"><% macro.caption %></span>
 			</div>
 		</div>
-		<div v-show="currentPanel == 2">Future's process list</div>
+		<div v-show="currentPanel == 2">
+			<table>
+				<thead>
+					<tr>
+						<th>command</th>
+						<th>CPU %</th>
+						<th>memory</th>
+						<th>user</th>
+						<th>full command</th>
+				</thead>
+				<tr v-for="process in systemInfo.processes">
+					<td> <% process.cmd %> </td>
+					<td> <% process.cpu %> </td>
+					<td> <% process.memory %> </td>
+					<td> <% process.user %> </td>
+					<td> <% process.args %> </td>
+				</tr>
+			</table>
+		</div>
 		<div v-show="currentPanel == 3">Big calc here</div>
 	</div>
 	

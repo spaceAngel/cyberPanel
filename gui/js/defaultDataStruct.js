@@ -18,7 +18,8 @@ var defaultDataStruct = {
 				gpu: 30
 			}
 		},
-		storages: []
+		storages: [],
+		processes: []
 	},
 	keyboard: {
 		numlock: 'off',
