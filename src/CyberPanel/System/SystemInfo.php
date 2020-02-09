@@ -60,24 +60,36 @@ class SystemInfo {
 		];
 	}
 
-	public function getProcessList()  : array {
+	public function getProcessList() : array {
 		$processes = explode(
 			"\n",
 			Executer::execAndGetResponse(SystemInfoCommands::CMD_PROCESSLIST)
 		);
 		$rslt = [];
+		$header = array_shift($processes);
+		$header = explode('|', trim($header));
+		$header = array_flip($header);
+
 		foreach ($processes as $process) {
-			$process = explode("|", $process);
+			$cols = explode('|', trim($process));
+			if (substr($cols[$header['RES']], -1) == 'g') {
+				$cols[$header['RES']] = $this->convertTpsGtoKilobytes($cols[$header['RES']]);
+			}
+
 			$rslt[] = [
-				'cmd' => $process[0],
-				'cpu' => $process[1],
-				'memory' => $process[2],
-				'user' => $process[3],
-				'args' => $process[4],
+				'cpu' => $cols[$header['%CPU']],
+				'memory' => (int)$cols[$header['RES']] - (int)$cols[$header['SHR']],
+				'user' => $cols[$header['USER']],
+				'cmd' => $cols[$header['COMMAND']],
 			];
 		}
 		return $rslt;
 	}
 
+	private function convertTpsGtoKilobytes(string $gbs) : int {
+		return (int)((float)str_replace(
+			',', '.', $gbs
+		) * 1024 * 1024);
+	}
 
 }

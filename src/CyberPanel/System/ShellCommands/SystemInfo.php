@@ -15,8 +15,7 @@ interface SystemInfo {
 
 	const CMD_MEMORY = "free | awk '/Mem:/ { print sprintf(\"%u %u\",$2, $3+$5) }' ";
 
-	const CMD_PROCESSLIST = 'ps -e -o "%c|%C|%z|" -o user:20 -o "|%a" --sort -pcpu,-rss ';
-
+	const CMD_PROCESSLIST = 'top -bn1 -c -o %MEM -w 180 |tail -n +7 | awk  \'{print $2"|"$6"|"$7"|"$9"|"$12" "$13" "$14" "$15}\' ';
 	// phpcs:enable
 
 }
