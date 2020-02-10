@@ -5,13 +5,12 @@ namespace CyberPanel\System\ShellCommands;
 interface Media {
 
 	// phpcs:disable Generic.Files.LineLength
-	CONST CMD_GETSINK = "pactl list short | grep RUNNING | sed -e 's,^\\([0-9][0-9]*\\)[^0-9].*,\\1,'";
-	const CMD_VOLUME = "pactl list sinks | grep '^[[:space:]]Volume:' | sed -n %sp |sed -e 's,.* \\([0-9][0-9]*\\)%%.*,\\1,'";
-	const CMD_ISMUTED = "pactl list sinks | grep '^[[:space:]]Mute:' | sed -n %sp | sed -e 's/\tMute: //g'";
-	const CMD_VOLUMEUP = 'pactl set-sink-volume $(pactl list short sinks | sed -n %sp  | cut -f1) +5%%';
-	const CMD_VOLUMEDOWN = 'pactl set-sink-volume $(pactl list short sinks | sed -n %sp  | cut -f1) -5%%';
-	const CMD_VOLUMEMUTE = 'pactl set-sink-mute $(pactl list short sinks | sed -n %sp  | cut -f1) 1';
-	const CMD_VOLUMEUNMUTE = 'pactl set-sink-mute $(pactl list short sinks | sed -n %sp  | cut -f1) 0';
+	const CMD_VOLUME = "pacmd list-sinks|grep -A 15 '* index'| awk '/volume: front/{ print $5 }' | sed 's/[%|,]//g'";
+	const CMD_ISMUTED = "pacmd list-sinks|grep -A 15 '* index'|awk '/muted:/{ print $2 }'";
+	const CMD_VOLUMEUP = 'pactl set-sink-volume $(pactl list short sinks | grep RUNNING  | cut -f1) +5%';
+	const CMD_VOLUMEDOWN = 'pactl set-sink-volume $(pactl list short sinks | grep RUNNING| cut -f1) -5%';
+	const CMD_VOLUMEMUTE = 'pactl set-sink-mute $(pactl list short sinks | grep RUNNING  | cut -f1) 1';
+	const CMD_VOLUMEUNMUTE = 'pactl set-sink-mute $(pactl list short sinks | grep RUNNING| cut -f1) 0';
 
 	const CMD_GETPLAYERS = "qdbus | egrep -i 'org.mpris.MediaPlayer'";
 	const CMD_ISPLAYING = "qdbus %s /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlaybackStatus";

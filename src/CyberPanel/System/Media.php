@@ -85,40 +85,28 @@ class Media {
 	}
 
 	public function getVolume() : int {
-		return (int)Executer::execAndGetResponse(
-			sprintf(Commands::CMD_VOLUME, $this->getCurrentSink())
-		);
+		return (int)Executer::execAndGetResponse(Commands::CMD_VOLUME);
 	}
 
 	public function getMuted() : bool {
-		return Executer::execAndGetResponse(
-			sprintf(Commands::CMD_ISMUTED, $this->getCurrentSink())
-		) != 'no';
+		return Executer::execAndGetResponse(Commands::CMD_ISMUTED) != 'no';
 	}
 
 	public function volumeUp() : void {
 		if (self::getVolume() >= 100) return;
-		Executer::execAndGetResponse(
-			sprintf(Commands::CMD_VOLUMEUP, $this->getCurrentSink())
-		);
+		Executer::execAndGetResponse(Commands::CMD_VOLUMEUP);
 	}
 
 	public function volumeDown() : void {
-		Executer::execAndGetResponse(
-			sprintf(Commands::CMD_VOLUMEDOWN, $this->getCurrentSink())
-		);
+		Executer::execAndGetResponse(Commands::CMD_VOLUMEDOWN);
 	}
 
 	public function volumeMute() : void {
-		Executer::execAndGetResponse(
-			sprintf(Commands::CMD_VOLUMEMUTE, $this->getCurrentSink())
-		);
+		Executer::execAndGetResponse(Commands::CMD_VOLUMEMUTE);
 	}
 
 	public function volumeUnMute() : void {
-		Executer::execAndGetResponse(
-			sprintf(Commands::CMD_VOLUMEUNMUTE, $this->getCurrentSink())
-		);
+		Executer::execAndGetResponse(Commands::CMD_VOLUMEUNMUTE);
 	}
 
 	public function stop() : void {
@@ -150,11 +138,4 @@ class Media {
 			sprintf(Commands::CMD_NEXT, $this->getCurrentPlayer())
 		);
 	}
-
-	protected function getCurrentSink() : int {
-		$sink = (int)Executer::execAndGetResponse(Commands::CMD_GETSINK);
-		return !empty($sink) ? $sink : 1;
-	}
-
-
 }
