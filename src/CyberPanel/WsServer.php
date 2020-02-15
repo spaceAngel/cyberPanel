@@ -23,13 +23,15 @@ class WsServer implements MessageComponentInterface {
 	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 */
 	public function onMessage(ConnectionInterface $conn, $msg) {
-		$command = CommandParser::getInstance()->parse(
+		$commands = CommandParser::getInstance()->parse(
 			json_decode($msg)
 		);
 
-		$this->sendMessage(
-			$command->buildResponse()
-		);
+		foreach ($commands as $command) {
+			$this->sendMessage(
+				$command->buildResponse()
+			);
+		}
 
 	}
 

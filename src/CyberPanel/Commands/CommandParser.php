@@ -31,16 +31,24 @@ class CommandParser {
 		return self::$instance;
 	}
 
-	public function parse(object $command) : Command {
-		if (
-			!empty($command->command)
-			&& array_key_exists($command->command, $this->commands)
-		) {
-			$command = new $this->commands[$command->command](
-				$command->command, !empty($command->parameters) ? $command->parameters : NULL
-			);
-			return $command;
+	public function parse($commandQuery) : array {
+		if (!is_array($commandQuery)) {
+			$commandQuery = [$commandQuery];
 		}
+		$commands = [];
+		foreach ($commandQuery as $commandQuery) {
+			if (
+				!empty($commandQuery->command)
+				&& array_key_exists($commandQuery->command, $this->commands)
+			) {
+				$command = new $this->commands[$commandQuery->command](
+					$commandQuery->command,
+					!empty($commandQuery->parameters) ? $commandQuery->parameters : []
+				);
+				$commands[] = $command;
+			}
+		}
+		return $commands;
 	}
 
 	public function registerCommand(string $command, string $class) : void {
