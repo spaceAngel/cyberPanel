@@ -8,9 +8,6 @@ var socket = {
 		socket.conn.onmessage = this.onMessage;
 		socket.conn.onclose = this.handleDisconnect;
 		socket.conn.sendmessage = async function(msg) {
-			while (this.readyState === 0) {
-				await sleep(200);
-			}
 			this.send(msg);
 		};
 	},
@@ -25,6 +22,12 @@ var socket = {
 				command: command,
 				parameters: parameters
 			})
+		);
+	},
+
+	sendMultiple: async function(commands) {
+		socket.conn.send(
+			JSON.stringify(commands)
 		);
 	},
 

@@ -21,7 +21,10 @@
 
 		</div>
 		<script>
-			document.write('<sc' + 'ript src="http://' + window.location.hostname + ':35729/livereload.js"></sc' + 'ript>');
+			urlParams = new URLSearchParams(window.location.search);
+			if (urlParams.get('debug') == 1) {
+				document.write('<sc' + 'ript src="http://' + window.location.hostname + ':35729/livereload.js"></sc' + 'ript>');
+			}
 		</script>
 	</body>
 </html>

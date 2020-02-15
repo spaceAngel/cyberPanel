@@ -1,4 +1,4 @@
-/* global Vue, socket, dateTimeWidget, keyboardWidget, systemInfoWidget, intervalCommandRunner, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget */
+/* global Vue, socket, dateTimeWidget, keyboardWidget, systemInfoWidget, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget */
 var cyberPanel;
 var mixins = [];
 
@@ -11,17 +11,28 @@ document.addEventListener('DOMContentLoaded', function() {
 		delimiters: ['<%', '%>'],
 		mounted: function() {
 			setTimeout(function() {cyberPanel.toggleNoSleep();}, 200);
-			setTimeout(function() {cyberPanel.loaded = true;}, 1500);
+			setTimeout(function() {cyberPanel.loaded = true;}, 2500);
 		}
 	});
 
 	socket.open();
-	intervalCommandRunner.registerRunner(1000, 'datetime', dateTimeWidget.handle);
-	intervalCommandRunner.registerRunner(1000, 'systeminfo', systemInfoWidget.handle);
-	intervalCommandRunner.registerRunner(400, 'keyboard', keyboardWidget.handle);
-	intervalCommandRunner.registerRunner(800, 'media', mediaWidget.handle);
+
+	socket.registerHandler('datetime', dateTimeWidget.handle);
+	socket.registerHandler('systeminfo', systemInfoWidget.handle);
+	socket.registerHandler('keyboard', keyboardWidget.handle);
+	socket.registerHandler('media',  mediaWidget.handle);
+
+	setInterval(function() {
+		socket.sendMultiple([
+			{command:'datetime', parameters:[]},
+			{command:'keyboard', parameters:[]},
+			{command:'media', parameters:[]},
+			{command:'systeminfo', parameters:[]},
+		]);
+	}, 1000);
 
 	socket.registerHandler('loadmacros', macrosWidget.handle);
-	setTimeout( function() {socket.send('loadmacros', 123);},1000);
+	setInterval( function() {socket.send('loadmacros', 123);},20000);
+
 	mainPanelWidget.init('mainSwipingPanel');
 });
