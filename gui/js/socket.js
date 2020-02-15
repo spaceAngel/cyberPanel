@@ -4,17 +4,23 @@ var socket = {
 	handlers: {},
 
 	open: function() {
-		this.conn = new WebSocket('ws://' + window.location.hostname + ':8081');
-		this.conn.onmessage = this.onMessage;
-		this.conn.onclose = this.handleDisconnect;
+		socket.conn = new WebSocket('ws://' + window.location.hostname + ':8081');
+		socket.conn.onmessage = this.onMessage;
+		socket.conn.onclose = this.handleDisconnect;
+		socket.conn.sendmessage = async function(msg) {
+			while (this.readyState === 0) {
+				await sleep(200);
+			}
+			this.send(msg);
+		};
 	},
 
-	send: function(command, parameters) {
+	send: async function(command, parameters) {
 		if (!Array.isArray(parameters)) {
 			parameters = Array(parameters);
 		}
 
-		this.conn.send(
+		socket.conn.send(
 			JSON.stringify({
 				command: command,
 				parameters: parameters
