@@ -11,14 +11,14 @@ var mainPanelWidget = {
 		});
 	},
 
-	swipeLeft: function() {
+	swipeRight: function() {
 		cyberPanel.currentPanel++;
 		if (cyberPanel.currentPanel > mainPanelWidget.getPanelsCount()) {
 			cyberPanel.currentPanel = 1;
 		}
 	},
 
-	swipeRight: function() {
+	swipeLeft: function() {
 		cyberPanel.currentPanel--;
 		if (cyberPanel.currentPanel == 0) {
 			cyberPanel.currentPanel = mainPanelWidget.getPanelsCount();
