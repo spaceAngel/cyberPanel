@@ -15,11 +15,13 @@
 			<!--(bake snippets/splashscreen.html)-->	
 			<div class="header"> 	<!--(bake snippets/header.html)-->	</div>
 			<div class="body">		<!--(bake snippets/body.html)-->	</div>
-
-			<script src="js/libs.min.js" type="text/javascript"></script>
-			<script src="js/app.min.js" type="text/javascript"></script>
-
+			<div class="lockScreen" v-show="systemInfo.locked">
+				<img v-bind:src="'data:' + lockScreen.type + ';base64,' + lockScreen.binary" >
+			</div>
 		</div>
+
+		<script src="js/libs.min.js" type="text/javascript"></script>
+		<script src="js/app.min.js" type="text/javascript"></script>
 		<script>
 			urlParams = new URLSearchParams(window.location.search);
 			if (urlParams.get('debug') == 1) {

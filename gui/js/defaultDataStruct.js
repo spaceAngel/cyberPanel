@@ -19,7 +19,8 @@ var defaultDataStruct = {
 			}
 		},
 		storages: [],
-		processes: []
+		processes: [],
+		locked: true
 	},
 	keyboard: {
 		numlock: 'off',
@@ -34,10 +35,14 @@ var defaultDataStruct = {
 		position: 20,
 		playing: false
 	},
+	lockScreen: {
+		binary: null,
+		type: null
+	},
 	macros: [],
 	noSleep: false,
 	fullScreen: false,
 	loaded: false,
 	sound: false,
-	currentPanel: 1
+	currentPanel: 3
 };

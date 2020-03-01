@@ -1,4 +1,4 @@
-/* global Vue, socket, dateTimeWidget, keyboardWidget, systemInfoWidget, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget, graph */
+/* global Vue, socket, dateTimeWidget, keyboardWidget, systemInfoWidget, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget, graph, lockScreenImage */
 var cyberPanel;
 var mixins = [];
 
@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	socket.registerHandler('loadmacros', macrosWidget.handle);
 	setInterval( function() {socket.send('loadmacros', 123);},20000);
+
+	lockScreenImage.init();
 
 	mainPanelWidget.init('mainSwipingPanel');
 	graph.init();
