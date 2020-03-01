@@ -8,6 +8,7 @@ use CyberPanel\Commands\Commands\LoadMacrosCommand;
 use CyberPanel\Commands\Commands\RunMacroCommand;
 use CyberPanel\Commands\Commands\KeyboardCommand;
 use CyberPanel\Commands\Commands\MediaCommand;
+use CyberPanel\Commands\Commands\LockScreenImageCommand;
 
 class CommandParser {
 
@@ -22,6 +23,7 @@ class CommandParser {
 		$this->registerCommand('macro', RunMacroCommand::class);
 		$this->registerCommand('keyboard', KeyboardCommand::class);
 		$this->registerCommand('media', MediaCommand::class);
+		$this->registerCommand('lockscreenimage', LockScreenImageCommand::class);
 	}
 
 	public static function getInstance() : CommandParser {
