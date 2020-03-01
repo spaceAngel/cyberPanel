@@ -16,6 +16,8 @@ interface SystemInfo {
 	const CMD_MEMORY = "free | awk '/Mem:/ { print sprintf(\"%u %u\",$2, $3+$5) }' ";
 
 	const CMD_PROCESSLIST = 'top -bn1 -c -o %MEM -w 180 |tail -n +7 | awk  \'{print $2"|"$6"|"$7"|"$9"|"$12" "$13" "$14" "$15}\' ';
+
+	const CMD_ISLOCKEDSCREEN = 'ps -e | grep kscreenlocker | wc -l';
 	// phpcs:enable
 
 }

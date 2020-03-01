@@ -86,6 +86,10 @@ class SystemInfo {
 		return $rslt;
 	}
 
+	public function isLockedScreen() : bool {
+		return Executer::execAndGetResponse(SystemInfoCommands::CMD_ISLOCKEDSCREEN) == 1;
+	}
+
 	private function convertTpsGtoKilobytes(string $gbs) : int {
 		return (int)((float)str_replace(
 			',', '.', $gbs
