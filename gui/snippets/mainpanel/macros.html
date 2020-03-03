@@ -1,0 +1,4 @@
+<div v-for="macro in macros" class="icon" data-hash="" v-on:click="runMacro(macro.hash)">
+	<i class="fa fa-4x" v-bind:class="[macro.icon]"></i> <br/>
+	<span data-templatePlaceholder="caption" class="caption"><% macro.caption %></span>
+</div>

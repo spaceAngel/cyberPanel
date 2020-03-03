@@ -11,32 +11,9 @@
 	</div>
 
 	<div class="box swiper" id="mainSwipingPanel">
-		<div v-show="currentPanel == 1">
-			<div v-for="macro in macros" class="icon" data-hash="" v-on:click="runMacro(macro.hash)">
-				<i class="fa fa-4x" v-bind:class="[macro.icon]"></i> <br/>
-				<span data-templatePlaceholder="caption" class="caption"><% macro.caption %></span>
-			</div>
-		</div>
-		<div v-show="currentPanel == 2">
-			<table>
-				<thead>
-					<tr>
-						<th>CPU %</th>
-						<th>memory</th>
-						<th>user</th>
-						<th>full command</th>
-				</thead>
-				<tr v-for="process in systemInfo.processes">
-					<td> <% process.cpu %> </td>
-					<td class="value"> <% process.memory | bytesToHuman %> </td>
-					<td> <% process.user %> </td>
-					<td> <% process.cmd %> </td>
-				</tr>
-			</table>
-		</div>
-		<div v-show="currentPanel == 3">
-			<canvas id="chart"></canvas>
-		</div>
+		<div v-show="currentPanel == 1"><!--(bake mainpanel/macros.html)--></div>
+		<div v-show="currentPanel == 2"><!--(bake mainpanel/processGrid.html)--></div>
+		<div v-show="currentPanel == 3"><!--(bake mainpanel/graph.html)--></div>
 	</div>
 	<!--(bake media.html)-->
 </div>

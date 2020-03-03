@@ -1,0 +1,15 @@
+<table>
+	<thead>
+		<tr>
+			<th>CPU %</th>
+			<th>memory</th>
+			<th>user</th>
+			<th>full command</th>
+	</thead>
+	<tr v-for="process in systemInfo.processes">
+		<td> <% process.cpu %> </td>
+		<td class="value"> <% process.memory | bytesToHuman %> </td>
+		<td> <% process.user %> </td>
+		<td> <% process.cmd %> </td>
+	</tr>
+</table>
