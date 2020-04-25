@@ -7,7 +7,9 @@ use CyberPanel\System\Media;
 
 class MediaCommand extends BaseCommand {
 	public function run() : array {
-		$this->handleCommand($this->parameters[0]);
+		if (!empty($this->parameters)) {
+			$this->handleCommand($this->parameters[0]);
+		}
 
 		$id3 = Media::getInstance()->getCurrentSong();
 		$media = Media::getInstance();
