@@ -1,0 +1,68 @@
+.sysinfo {
+	.block {
+		float:left;
+		border-right:1px @colorBorder dotted;
+		height:100%;	
+		.storage {
+			margin-bottom:16px;
+
+		}
+
+		h2 {
+			text-align:center;
+			margin: 0px 0px 15px 0px;
+			padding:4px;
+			background-color:@colorMain;
+			color:@colorFontReversed;	
+		}
+
+		h3 {
+			margin: 0px;
+			padding-left:20px;
+			.fas, .fab {
+				margin-right:15px;
+			}
+			font-size:21px;
+		}
+
+		.label, .value {
+			font-size: 21px;
+			display: inline-block;
+			line-height:130%;
+		}
+
+		.label {
+			width:36%;
+			text-align:right;
+		}
+		.value {
+			padding-left:10px;
+		}
+	}
+
+	.block-thin {
+		width:40%;
+	}
+
+	.block-wide {
+		width:59.85%;
+		.storage {
+			clear:both;
+			padding-bottom:25px;	
+		}
+		
+		.col {
+			float:left;
+			width:38%;
+		}
+		
+		.col:last-of-type {
+			width:60%;
+		}
+		
+	}
+
+	.block:last-of-type {
+		border-right:0px solid #000000;
+	}
+}

@@ -1,0 +1,82 @@
+<div class="block block-thin">
+	<h2>System info</h2>
+
+	<div class="storage">
+		<h3><i class="fab fa-linux"></i>System</h3>
+	
+		<div class="row">
+			<span class="label">Uptime:</span>
+			<span class="value"></span>
+		</div>
+		<div class="row">
+			<span class="label">Kernel:</span>
+			<span class="value"></span>
+		</div>
+		<div class="row">
+			<span class="label">Distribution:</span>
+			<span class="value"></span>
+		</div>
+	</div>
+	
+	<div class="storage">
+		<h3><i class="fas fa-microchip"></i>CPU</h3>
+		<div class="row">
+			<span class="label">Cpu model:</span>
+			<span class="value"></span>
+		</div>
+		<div class="row">
+			<span class="label">Cpu usage:</span>
+			<span class="value"><% systemInfo.cpuload %> %</span>
+		</div>
+		<div class="row">
+			<span class="label">Cpu temp:</span>
+			<span class="value"><% systemInfo.temperatures.cpu %> &#176;C</span>
+		</div>
+	</div>
+	
+	<div class="storage">
+		<h3><i class="fas fa-memory"></i>Memory</h3>
+		<div class="row">
+			<span class="label">RAM total:</span>
+			<span class="value"><% systemInfo.memory.total | bytesToHuman %></span>
+		</div>
+		<div class="row">
+			<span class="label">RAM used:</span>
+			<span class="value"><% systemInfo.memory.used  | bytesToHuman %></span>
+		</div>
+	</div>
+
+	<div class="storage">
+		<h3><i class="fas fa-microchip"></i>GPU</h3>
+		<div class="row">
+			<span class="label">GPU model:</span>
+			<span class="value"></span>
+		</div>
+		<div class="row">
+			<span class="label">GPU temp:</span>
+			<span class="value"><% systemInfo.temperatures.gpu %> &#176;C</span>
+		</div>
+	</div>
+</div>
+
+<div class="block block-wide">
+	<h2>Storages</h2>
+	<div v-for="storage in systemInfo.storages" class="storage">
+		<div class="row">
+			<h3><i class="fas fa-hdd"></i><% storage.caption %></h3>
+		</div>
+		<div class="row">
+			<div class="col">
+				<span class="label">Total:</span>
+				<span class="value"><% storage.size | bytesToHuman %></span>
+			</div>
+			<div class="col">
+				<span class="label" >Free:</span>
+				<span class="value">
+					<% storage.available | bytesToHuman %> 
+					(<% Number(storage.available * 100 / storage.size).toFixed(1) %>%)
+				</span>
+			</div>
+		</div>
+	</div>
+</div>

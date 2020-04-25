@@ -44,5 +44,5 @@ var defaultDataStruct = {
 	fullScreen: false,
 	loaded: false,
 	sound: false,
-	currentPanel: 3
+	currentPanel: 4
 };
