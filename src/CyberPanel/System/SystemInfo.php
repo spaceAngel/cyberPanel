@@ -3,6 +3,8 @@
 namespace CyberPanel\System;
 
 use CyberPanel\System\ShellCommands\SystemInfo as SystemInfoCommands;
+use CyberPanel\Commands\Commands\SystemInfoCommand;
+use CyberPanel\System\ShellCommands\GraphicNvidia;
 
 class SystemInfo {
 
@@ -21,7 +23,7 @@ class SystemInfo {
 	}
 
 	public function getTempGpu() : int {
-		$temp = Executer::execAndGetResponse(SystemInfoCommands::CMD_TEMP_GPU);
+		$temp = Executer::execAndGetResponse(GraphicNvidia::CMD_TEMP);
 		return (int)$temp == $temp ? (int)$temp : 0;
 	}
 
@@ -88,6 +90,38 @@ class SystemInfo {
 
 	public function isLockedScreen() : bool {
 		return Executer::execAndGetResponse(SystemInfoCommands::CMD_ISLOCKEDSCREEN) == 1;
+	}
+
+	public function getGpuName() : string {
+		return Executer::execAndGetResponse(SystemInfoCommands::CMD_GPUNAME);
+	}
+
+	public function getCpuName() : string {
+		return Executer::execAndGetResponse(SystemInfoCommands::CMD_CPUNAME);
+	}
+
+	public function getUptime() : string {
+		return Executer::execAndGetResponse(SystemInfoCommands::CMD_UPTIME);
+	}
+
+	public function getKernelVersion() : string {
+		return Executer::execAndGetResponse(SystemInfoCommands::CMD_KERNELVERSION);
+	}
+
+	public function getDistro() : string {
+		return Executer::execAndGetResponse(SystemInfoCommands::CMD_DISTRO);
+	}
+
+	public function getGpuLoad() : string {
+		return Executer::execAndGetResponse(GraphicNvidia::CMD_LOAD);
+	}
+
+	public function getGpuMemoryFree() : string {
+		return Executer::execAndGetResponse(GraphicNvidia::CMD_MEMORY_FREE);
+	}
+
+	public function getGpuMemoryTotal() : string {
+		return Executer::execAndGetResponse(GraphicNvidia::CMD_MEMORY_TOTAL);
 	}
 
 	private function convertTpsGtoKilobytes(string $gbs) : int {

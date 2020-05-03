@@ -9,6 +9,7 @@ use CyberPanel\Commands\Commands\RunMacroCommand;
 use CyberPanel\Commands\Commands\KeyboardCommand;
 use CyberPanel\Commands\Commands\MediaCommand;
 use CyberPanel\Commands\Commands\LockScreenImageCommand;
+use CyberPanel\Commands\Commands\HwInfoCommand;
 
 class CommandParser {
 
@@ -19,6 +20,7 @@ class CommandParser {
 	private function __construct() {
 		$this->registerCommand('datetime', DateTimeCommand::class);
 		$this->registerCommand('systeminfo', SystemInfoCommand::class);
+		$this->registerCommand('hwinfo', HwInfoCommand::class);
 		$this->registerCommand('loadmacros', LoadMacrosCommand::class);
 		$this->registerCommand('macro', RunMacroCommand::class);
 		$this->registerCommand('keyboard', KeyboardCommand::class);

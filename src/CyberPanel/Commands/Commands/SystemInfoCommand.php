@@ -17,11 +17,17 @@ class SystemInfoCommand extends BaseCommand {
 					'gpu' => Configuration::getInstance()->getSystemLimits()->getTempGpu(),
 				] ,
 			],
-			'storages' => SystemInfo::getInstance()->getStorages(),
 			'cpuload' => SystemInfo::getInstance()->getCpuLoad(),
 			'memory' => SystemInfo::getInstance()->getMemory(),
 			'processes' => SystemInfo::getInstance()->getProcessList(),
-			'locked' => Systeminfo::getInstance()->isLockedScreen()
+			'locked' => Systeminfo::getInstance()->isLockedScreen(),
+			'gpu' => [
+				'load' => Systeminfo::getInstance()->getGpuLoad(),
+				'memory' => [
+					'free' => Systeminfo::getInstance()->getGpuMemoryFree(),
+					'total' => Systeminfo::getInstance()->getGpuMemoryTotal()
+				]
+			]
 		];
 	}
 }
