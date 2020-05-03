@@ -1,7 +1,7 @@
 <div class="box">
 	<div class="title">Storages</div>
 	<div class="content">
-		<div v-for="storage in systemInfo.storages">
+		<div v-for="storage in hwInfo.storages">
 			<span><% storage.caption %></span>
 			<span class="ta-right" > <% storage.available | bytesToHuman %></span>
 			/ <span class="ta-right"> <% storage.size | bytesToHuman %> </span>

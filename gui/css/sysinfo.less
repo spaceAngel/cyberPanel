@@ -1,68 +1,77 @@
 .sysinfo {
 	.block {
+		margin-bottom:10px;
+	}
+
+	h2 {
+		text-align:center;
+		margin: 0px 0px 15px 0px;
+		padding:4px;
+		background-color:@colorMain;
+		color:@colorFontReversed;
+		font-size: 20px;	
+	}
+
+	h3 {
+		margin: 0px;
+		padding-left:20px;
+		.fas, .fab {
+			margin-right:15px;
+		}
+		font-size:20px;
+	}
+
+	.label, .value {
+		font-size: 20px;
+		display: inline-block;
+		line-height:125%;
+	}
+
+	.label {
+		width:30%;
+		text-align:right;
+		 vertical-align: top;
+	}
+
+	.value {
+		padding-left:10px;
+		word-wrap: nowrap;
+	}
+
+	.block-thin, .block-wide {
 		float:left;
-		border-right:1px @colorBorder dotted;
-		height:100%;	
-		.storage {
-			margin-bottom:16px;
-
-		}
-
-		h2 {
-			text-align:center;
-			margin: 0px 0px 15px 0px;
-			padding:4px;
-			background-color:@colorMain;
-			color:@colorFontReversed;	
-		}
-
-		h3 {
-			margin: 0px;
-			padding-left:20px;
-			.fas, .fab {
-				margin-right:15px;
-			}
-			font-size:21px;
-		}
-
-		.label, .value {
-			font-size: 21px;
-			display: inline-block;
-			line-height:130%;
-		}
-
-		.label {
-			width:36%;
-			text-align:right;
-		}
-		.value {
-			padding-left:10px;
-		}
+		height:100%;
 	}
 
 	.block-thin {
-		width:40%;
+		width:46%;
+		border-right:1px @colorBorder dotted;
+
+		.label {
+			width:30%;
+		}
+
+		.value {
+			width:65%;
+		}
 	}
 
 	.block-wide {
-		width:59.85%;
-		.storage {
+		width:53.85%;
+		.block {
 			clear:both;
-			padding-bottom:25px;	
+			padding-bottom:25px;
+			padding-left:15px;
+			margin-bottom:10px;
 		}
-		
+
 		.col {
 			float:left;
 			width:38%;
 		}
-		
+
 		.col:last-of-type {
 			width:60%;
-		}
-		
-	}
-
-	.block:last-of-type {
-		border-right:0px solid #000000;
+		}	
 	}
 }

@@ -1,4 +1,4 @@
-/* global Vue, socket, dateTimeWidget, keyboardWidget, systemInfoWidget, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget, graph, lockScreenImage */
+/* global Vue, socket, dateTimeWidget, keyboardWidget, systemInfoWidget, hwInfoWidget, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget, graph, lockScreenImage */
 var cyberPanel;
 var mixins = [];
 
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	socket.registerHandler('datetime', dateTimeWidget.handle);
 	socket.registerHandler('systeminfo', systemInfoWidget.handle);
+	socket.registerHandler('hwinfo', hwInfoWidget.handle);
 	socket.registerHandler('keyboard', keyboardWidget.handle);
 	socket.registerHandler('media',  mediaWidget.handle);
 
@@ -28,6 +29,18 @@ document.addEventListener('DOMContentLoaded', function() {
 			{command:'keyboard', parameters:[]},
 			{command:'media', parameters:[]},
 			{command:'systeminfo', parameters:[]},
+		]);
+	}, 1000);
+
+	setInterval(function() {
+		socket.sendMultiple([
+			{command:'hwinfo', parameters:[]},
+		]);
+	}, 30000);
+
+	setTimeout( function() {
+		socket.sendMultiple([
+			{command:'hwinfo', parameters:[]},
 		]);
 	}, 1000);
 

@@ -18,9 +18,23 @@ var defaultDataStruct = {
 				gpu: 30
 			}
 		},
-		storages: [],
 		processes: [],
-		locked: true
+		locked: true,
+		gpu: {
+			load: '0%',
+			memory: {
+				free: '10%',
+				total: '2%'
+			}
+		}
+	},
+	hwInfo: {
+		storages: [],
+		gpu: '',
+		cpu: '',
+		kernel: '',
+		distro: '',
+		uptime: ''
 	},
 	keyboard: {
 		numlock: 'off',
