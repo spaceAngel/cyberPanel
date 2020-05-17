@@ -9,21 +9,27 @@ body {
 
 	.date {
 		display:inline-block;
-		
 	}
 }
 
 .body {
+	position:absolute;
+	top:80px;
+	left:0px;
+	right:0px;
+	bottom:20px;
 	
 	.main{
 		float:left;
 		width: -webkit-calc(100% - 20px);
-		width:    -moz-calc(100% - 285px);
+		width:    -moz-calc(100% - 20px);
 		width:         calc(100% - 285px);
+		height: -webkit-calc(100% - 190px);
+		height:    -moz-calc(100% - 190px);
+		height:         calc(100% - 190px);
+			
 		.swiper {
-			height: -webkit-calc(100% - 20px);
-			height:    -moz-calc(100% - 285px);
-			height:         calc(100% - 285px);
+			height:100%;
 			overflow-y:scroll;
 			overflow-x:hidden;
 		}
