@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		data: defaultDataStruct,
 		delimiters: ['<%', '%>'],
 		mounted: function() {
-			setTimeout(function() {cyberPanel.toggleNoSleep();}, 200);
 			setTimeout(function() {cyberPanel.loaded = true;}, 2500);
 		}
 	});
