@@ -10,6 +10,7 @@ use CyberPanel\Commands\Commands\KeyboardCommand;
 use CyberPanel\Commands\Commands\MediaCommand;
 use CyberPanel\Commands\Commands\LockScreenImageCommand;
 use CyberPanel\Commands\Commands\HwInfoCommand;
+use CyberPanel\Commands\Commands\KeyPressCommand;
 
 class CommandParser {
 
@@ -26,6 +27,7 @@ class CommandParser {
 		$this->registerCommand('keyboard', KeyboardCommand::class);
 		$this->registerCommand('media', MediaCommand::class);
 		$this->registerCommand('lockscreenimage', LockScreenImageCommand::class);
+		$this->registerCommand('keypress', KeyPressCommand::class);
 	}
 
 	public static function getInstance() : CommandParser {
