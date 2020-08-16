@@ -21,13 +21,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	socket.registerHandler('hwinfo', hwInfoWidget.handle);
 	socket.registerHandler('keyboard', keyboardWidget.handle);
 	socket.registerHandler('media',  mediaWidget.handle);
-
+	socket.registerHandler('downloads',  downloadsWidget.handle);
+	
 	setInterval(function() {
 		socket.sendMultiple([
 			{command:'datetime', parameters:[]},
 			{command:'keyboard', parameters:[]},
 			{command:'media', parameters:[]},
 			{command:'systeminfo', parameters:[]},
+			{command:'downloads', parameters:[]},
 		]);
 	}, 1000);
 

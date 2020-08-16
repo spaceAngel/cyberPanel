@@ -53,10 +53,11 @@ var defaultDataStruct = {
 		binary: null,
 		type: null
 	},
+	downloads:[],
 	macros: [],
 	noSleep: false,
 	fullScreen: false,
 	loaded: false,
 	sound: false,
-	currentPanel: 4
+	currentPanel: 6
 };

@@ -1,0 +1,21 @@
+<div v-for="download in downloads" class="download">
+	<div class="info">
+		<div class="name">
+			<% download.filename | filename%>
+		</div>
+		<div class="times">
+			<div class="w33">
+				<% download.bytesReceived / 1024| bytesToHuman %> / <% download.bytesTotal / 1024 | bytesToHuman %>
+			</div>
+			<div class="w33">
+				<% (Date.parse(download.estimatedEndTime) - (new Date)) | milisecondsToHuman %>
+			</div>
+			<div class="w33">
+				<% (download.bytesTotal - download.bytesReceived) / (Date.parse(download.estimatedEndTime) - (new Date)) | bytesToHuman %> / s
+			</div>
+		</div>
+	</div>
+	<div class="state">
+		<div class="bar"><div class="full" v-bind:style="{width: (100 * download.bytesReceived / download.bytesTotal) + '%' }"></div></div>
+	</div>
+</div>
