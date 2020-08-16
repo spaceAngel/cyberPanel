@@ -11,6 +11,8 @@ use CyberPanel\Commands\Commands\MediaCommand;
 use CyberPanel\Commands\Commands\LockScreenImageCommand;
 use CyberPanel\Commands\Commands\HwInfoCommand;
 use CyberPanel\Commands\Commands\KeyPressCommand;
+use CyberPanel\Commands\Commands\DownloadsCommand;
+use CyberPanel\Commands\Commands\StoreDownloadsCommand;
 
 class CommandParser {
 
@@ -28,6 +30,8 @@ class CommandParser {
 		$this->registerCommand('media', MediaCommand::class);
 		$this->registerCommand('lockscreenimage', LockScreenImageCommand::class);
 		$this->registerCommand('keypress', KeyPressCommand::class);
+		$this->registerCommand('downloads', DownloadsCommand::class);
+		$this->registerCommand('storeDownloads', StoreDownloadsCommand::class);
 	}
 
 	public static function getInstance() : CommandParser {
