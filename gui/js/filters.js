@@ -26,7 +26,7 @@ Vue.filter('milisecondsToHuman', function (value) {
 	if (hours > 0) {
 		rslt += hours + ':';
 	}
-	rslt += minutes + ':';
+	rslt += (minutes < 10 ? '0' : '') + minutes + ':';
 	rslt += (seconds < 10 ? '0' : '') + seconds;
 	return rslt;
 });
