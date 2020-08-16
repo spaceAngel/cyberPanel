@@ -28,7 +28,7 @@ class WsServer implements MessageComponentInterface {
 		);
 
 		foreach ($commands as $command) {
-			$this->sendMessage(
+			$conn->send(
 				$command->buildResponse()
 			);
 		}
