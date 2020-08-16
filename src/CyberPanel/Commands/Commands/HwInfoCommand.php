@@ -4,7 +4,6 @@ namespace CyberPanel\Commands\Commands;
 
 use CyberPanel\Commands\BaseCommand;
 use CyberPanel\System\SystemInfo;
-use CyberPanel\Configuration\Configuration;
 
 class HwInfoCommand extends BaseCommand {
 	public function run() : array {

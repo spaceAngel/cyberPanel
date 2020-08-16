@@ -3,7 +3,6 @@
 namespace CyberPanel\System;
 
 use CyberPanel\System\ShellCommands\SystemInfo as SystemInfoCommands;
-use CyberPanel\Commands\Commands\SystemInfoCommand;
 use CyberPanel\System\ShellCommands\GraphicNvidia;
 
 class SystemInfo {

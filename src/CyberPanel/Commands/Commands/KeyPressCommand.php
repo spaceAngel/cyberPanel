@@ -3,7 +3,6 @@
 namespace CyberPanel\Commands\Commands;
 
 use CyberPanel\Commands\BaseCommand;
-use CyberPanel\System\Executer;
 use CyberPanel\System\KeyboardEmulator;
 
 class KeyPressCommand extends BaseCommand {
