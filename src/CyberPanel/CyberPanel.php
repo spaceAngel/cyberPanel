@@ -6,6 +6,7 @@ use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
 use CyberPanel\WsServer as CyberpanelSocketServer;
+use React\Socket\Server as Reactor;
 
 class CyberPanel {
 
@@ -14,6 +15,8 @@ class CyberPanel {
 	private static $instance;
 
 	private $socketServer;
+
+	private $webServer;
 
 	private $options;
 
@@ -28,7 +31,14 @@ class CyberPanel {
 	public static function run() : self {
 		if (empty(self::$instance)) {
 			self::$instance = new self();
-			self::$instance->runSocketServer();
+			if (0 !== pcntl_fork()) {
+				self::$instance->runSocketServer();
+			} else {
+				self::$instance->runWebServer();
+			}
+
+
+
 
 		}
 		return self::$instance;
@@ -52,6 +62,18 @@ class CyberPanel {
 		);
 
 		$this->socketServer->run();
+
+	}
+
+	private function runWebServer() {
+		$this->webServer = IoServer::factory(
+			new HttpServer(
+				new WebServer()
+			),
+			8082
+		);
+		$this->webServer->run();
+
 	}
 
 	private function getPort() : int {
