@@ -6,7 +6,7 @@ use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
 use CyberPanel\WsServer as CyberpanelSocketServer;
-use React\Socket\Server as Reactor;
+use CyberPanel\Server\WebServer;
 
 class CyberPanel {
 
@@ -36,10 +36,6 @@ class CyberPanel {
 			} else {
 				self::$instance->runWebServer();
 			}
-
-
-
-
 		}
 		return self::$instance;
 	}
@@ -66,12 +62,7 @@ class CyberPanel {
 	}
 
 	private function runWebServer() {
-		$this->webServer = IoServer::factory(
-			new HttpServer(
-				new WebServer()
-			),
-			8082
-		);
+		$this->webServer = new WebServer();
 		$this->webServer->run();
 
 	}
