@@ -29,12 +29,19 @@ class WebServer  {
 	}
 
 	protected function handleRequest(ServerRequestInterface $request) : Response {
-		$file = $this->getFullFilePath($request->getUri()->getPath());
+		$uri = $request->getUri()->getPath();
+		$file = $this->getFullFilePath($uri);
 		if (file_exists($file)) {
 			return new Response(
 				200,
 				[Mime::getContentType($file)],
 				file_get_contents($file)
+			);
+		} elseif ($uri == '/config.js') {
+			return new Response(
+				200,
+				[Mime::getContentType($uri)],
+				include __DIR__ . '/tpl/config.js.php'
 			);
 		}
 	}
