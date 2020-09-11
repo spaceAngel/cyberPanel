@@ -1,3 +1,5 @@
+keys:
+    lastfm: <samplekey>
 systemLimits:
     temperatures:
         cpu: 26

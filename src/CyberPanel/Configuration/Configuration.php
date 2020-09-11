@@ -12,6 +12,8 @@ class Configuration {
 
 	private $systemLimits;
 
+	private string $lastFmApiKey;
+
 	private function __construct() {
 		$this->systemLimits  = new SystemLimits();
 	}
@@ -38,5 +40,13 @@ class Configuration {
 
 	public function getSystemLimits() : SystemLimits {
 		return $this->systemLimits;
+	}
+
+	public function getLastFmApiKey() : string {
+		return $this->lastFmApiKey;
+	}
+
+	public function setLastFmApiKey(string $apiKey) : void {
+		$this->lastFmApiKey = $apiKey;
 	}
 }

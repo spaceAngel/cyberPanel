@@ -20,6 +20,7 @@ class ConfigurationLoader {
 		$temperaturesLimits = $yaml['systemLimits']['temperatures'];
 		$configuration->getSystemLimits()->setTempCpu($temperaturesLimits['cpu']);
 		$configuration->getSystemLimits()->setTempGpu($temperaturesLimits['gpu']);
+		$configuration->setLastFmApiKey($yaml['keys']['lastfm']);
 	}
 
 	private static function parseMacro(array $data) : Macro {
