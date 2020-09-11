@@ -11,6 +11,7 @@
 			<i class="fas fa-info-circle fa-3x"  v-bind:class="{active: currentPanel == 4}"  v-on:click="currentPanel = 4"></i>
 			<i class="fas fa-calculator fa-3x"  v-bind:class="{active: currentPanel == 5}"  v-on:click="currentPanel = 5"></i>
 			<i class="fas fa-download fa-3x"  v-bind:class="{active: currentPanel == 6}"  v-on:click="currentPanel = 6"></i>
+			<i class="fas fa-music fa-3x"  v-bind:class="{active: currentPanel == 7}"  v-on:click="currentPanel = 7"></i>
 	</div>
 
 	<div class="box swiper" id="mainSwipingPanel">
@@ -20,6 +21,7 @@
 		<div v-show="currentPanel == 4" class="sysinfo"><!--(bake mainpanel/sysinfo.html)--></div>
 		<div v-show="currentPanel == 5"><!--(bake mainpanel/keyboard.html)--></div>
 		<div v-show="currentPanel == 6" class="downloads"><!--(bake mainpanel/downloads.html)--></div>
+		<div v-show="currentPanel == 7" class="downloads"><!--(bake mainpanel/lastfmTrackInfo.html)--></div>
 	</div>
 	<!--(bake media.html)-->
 </div>

@@ -52,4 +52,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	mainPanelWidget.init('mainSwipingPanel');
 	graph.init();
+	lastFmTrackInfo.init();
 });

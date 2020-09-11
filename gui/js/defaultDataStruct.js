@@ -44,10 +44,16 @@ var defaultDataStruct = {
 	media: {
 		volume: 50,
 		muted: false,
-		currentsong: '',
+		currentsong: {
+			name: '',
+			title:'',
+			artist: ''	
+		},
 		length: 50,
 		position: 20,
 		playing: false
+	},
+	lastfmTrackInfo: {
 	},
 	lockScreen: {
 		binary: null,
@@ -59,5 +65,5 @@ var defaultDataStruct = {
 	fullScreen: false,
 	loaded: false,
 	sound: false,
-	currentPanel: 6
+	currentPanel: 7
 };
