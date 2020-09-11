@@ -16,7 +16,12 @@ class MediaCommand extends BaseCommand {
 		return [
 			'volume' => $media->getVolume(),
 			'muted' => $media->getMuted(),
-			'currentsong' => $id3->getName(),
+			'currentsong' => [
+				'name' => $id3->getName(),
+				'title' => $id3->getTitle(),
+				'artist' => $id3->getArtist(),
+				'album' => $id3->getAlbum(),
+			],
 			'length' => $id3->getLength(),
 			'position' => $media->getPosition(),
 			'playing' => $media->getCurrentPlayer() ? $media->isPlayerPlaying(
