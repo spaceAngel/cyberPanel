@@ -1,18 +1,26 @@
 <div class="lastfmTrackInfo">
-	<div class="metadata">
+	<div class="track">
 		<div v-if="lastfmTrackInfo.artist" class="artist"><% lastfmTrackInfo.artist.name %></div>
-		<div v-if="lastfmTrackInfo.name" class="song"><% lastfmTrackInfo.name %></div>
-		<div v-if="lastfmTrackInfo.album" class="album">
-			<div v-if="lastfmTrackInfo.album.title"><% lastfmTrackInfo.album.title %></div>
-		</div>
-		<div v-if="lastfmTrackInfo.wiki">
-			<div v-if="lastfmTrackInfo.wiki.released"><% lastfmTrackInfo.wiki.released %></div>
-		</div>
-		<ul v-if="lastfmTrackInfo.toptags" class="tags">
-			<li v-for="tag in lastfmTrackInfo.toptags.tag"> <% tag.name %> </li> 
-		</ul>
+		<div v-if="lastfmTrackInfo.name" class="name"><% lastfmTrackInfo.name %></div>
 	</div>
+	<div class="album">
+		<div class="metadata">
+			<div v-if="lastfmTrackInfo.album" class="name">
+				<div v-if="lastfmTrackInfo.album.title"><% lastfmTrackInfo.album.title %></div>
+			</div>
+			<div v-if="lastfmTrackInfo.wiki">
+				<div v-if="lastfmTrackInfo.wiki.released"><% lastfmTrackInfo.wiki.released %></div>
+			</div>
+			<ul v-if="lastfmTrackInfo.toptags" class="tags">
+				<li v-for="tag in lastfmTrackInfo.toptags.tag"> <% tag.name %> </li> 
+			</ul>
+		</div>
+
 		<div v-if="lastfmTrackInfo.album && lastfmTrackInfo.album.image" class="cover">
-	 	<img v-bind:src="val" v-for="val, key in lastfmTrackInfo.album.image[3]" v-if="key=='#text'"/>
+	 		<img v-bind:src="val" v-for="val, key in lastfmTrackInfo.album.image[3]" v-if="key=='#text'"/>
+	 	</div>
+		<div v-else class="coverEmpty">
+	 		<i class="fas fa-compact-disc  fa-10x"></i>
+		</div>
 	</div>
 </div>

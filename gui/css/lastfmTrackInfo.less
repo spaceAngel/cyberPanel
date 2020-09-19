@@ -1,45 +1,51 @@
 .lastfmTrackInfo {
 	max-height:100%;
-	.cover {
-		max-height:100%;
-		float:right;
-		img {
-			max-height:100%;
-		}
-		
-	}
-
-	div {
-		margin:0px;
-		padding:0px;
-	}	
-	.metadata {
-		padding-left: 10px;
-		float:left;
-	
+	margin:10px 40px 40px 40px;
+	.track {
 		.artist {
 			font-size: 30px;
 		}
-		
-		.album {
-			font-size:28px;
-		}
-		
-		.tags {
-			padding:0px;
-		 	li {
-				display:block;
-				font-size: 27px;
-			}	
-			
-			li::before {
-				content: '#';
-			}
-			
-		}
-		.song {
-			font-size: 42px;
-			font-weight: bold;
+		.name {
+			font-size:45px;
 		}
 	}
+	.album {
+		border-top: 1px dotted @colorBorder;
+		padding-top:10px;
+		.cover, .coverEmpty {
+			float:right;
+			img {
+				max-height:100%;
+			}
+		}
+		.coverEmpty {
+			border: 2px solid @colorBorder;
+			padding:10px;
+		}
+		.metadata {
+			float:left;
+			text-align:center;
+			width:550px;
+			.name {
+				font-size:35px;
+			}
+
+			.tags {
+				padding:0px;
+				margin-top:20px;
+			 	li {
+					display:inline-block;
+					font-size: 27px;
+					margin:5px 10px 0px 10px;
+				}	
+				li::before {
+					content: '#';
+				}
+			}
+	}	
+	
+	div {
+		margin:0px;
+		padding:0px;
+	}		}
 }
