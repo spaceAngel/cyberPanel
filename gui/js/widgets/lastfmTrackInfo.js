@@ -1,7 +1,11 @@
 var lastFmTrackInfo = {
 	init: async function() {
 		cyberPanel.$watch('media.currentsong.name', async function(newval) {
-			 axios({
+			if (cyberPanel.media.currentsong.artist == undefined) {
+				lastFmTrackInfo.handleFallback();
+				return;
+			}
+			axios({
 				method: 'get',
 				url: lastFmTrackInfo.buildUrl('track.getInfo', {autocorrect:1, artist: cyberPanel.media.currentsong.artist, track: cyberPanel.media.currentsong.title}),
 				mode: 'no-cors',
@@ -10,12 +14,24 @@ var lastFmTrackInfo = {
 					'Content-Type': 'application/json',
 				},
 			}).then(async function (response) {
-				cyberPanel.lastfmTrackInfo = response.data.track;
-				if (cyberPanel.lastfmTrackInfo.album == undefined) {
-					cyberPanel.lastfmTrackInfo.album = { title: cyberPanel.media.currentsong.album};
+				if (response.data.error == 6) {
+					lastFmTrackInfo.handleFallback();
+				} else {
+					cyberPanel.lastfmTrackInfo = response.data.track;
+					if (cyberPanel.lastfmTrackInfo.album == undefined) {
+						cyberPanel.lastfmTrackInfo.album = { title: cyberPanel.media.currentsong.album};
+					}
 				}
 			});
 		});
+	},
+	
+	handleFallback: function() {
+		cyberPanel.lastfmTrackInfo = {
+			album: {title: cyberPanel.media.currentsong.album},
+			artist: cyberPanel.media.currentsong.artist,
+			name: cyberPanel.media.currentsong.title
+		}		
 	},
 	
 	buildUrl: function(action, params) {
