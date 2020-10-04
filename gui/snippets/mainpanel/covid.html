@@ -3,9 +3,8 @@
 		<div class="time">
 			<% item.time %>
 			<span class="flag" v-html="item.flag"></span>
-			
 		</div>
-		<div class="content" v-html="item.html"></div>
+		<div class="content" v-html="item.html" v-bind:class="{ important: item.important }"></div>
 	</div>
 </div>
 <div class="stats">

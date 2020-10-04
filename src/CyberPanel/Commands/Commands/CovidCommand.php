@@ -26,13 +26,19 @@ class CovidCommand extends BaseCommand{
 		$news = $parser->query('//div[contains(@class, "event")]');
 		$rslt = [];
 		foreach ($news as $new) {
+			$html = trim($new->ownerDocument->saveHTML($new));
+			$html = $this->cleanTwitter($html);
 			$rslt[] = [
 				'time' => trim($new->parentNode->childNodes[3]->textContent),
 				'content' => trim($new->textContent),
-				'html' => $this->cleanTwitter(trim($new->ownerDocument->saveHTML($new))),
+				'html' => $html,
 				'flag' => trim(
 					$new->ownerDocument->saveHTML($new->parentNode->childNodes[5]->childNodes[0])
-				)
+				),
+				'important' => (bool)strpos(
+					$new->ownerDocument->saveHTML($new->parentNode),
+					'o-c3'
+				),
 			];
 		}
 		return $rslt;
