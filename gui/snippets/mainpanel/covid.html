@@ -8,3 +8,39 @@
 		<div class="content" v-html="item.html"></div>
 	</div>
 </div>
+<div class="stats">
+	<div class="stat">
+		<i class="fas fa-head-side-virus fa-3x"></i>
+		<span class="number"> <% Number(covid.stats.cases.today).toLocaleString() %> </span>
+	</div>
+	
+	<div class="stat">
+		<i class="fas fa-head-side-virus fa-3x"></i>
+		<span class="number"> <% Number(covid.stats.cases.yesterday).toLocaleString() %> </span>
+	</div>
+	
+		<div class="stat">
+		<i class="fas fa-microscope fa-3x"></i>
+		<span class="number"> <% Number(covid.stats.tests).toLocaleString() %> </span>
+	</div>	
+	
+	
+	<div class="stat">
+		<i class="fas fa-head-side-cough fa-3x"></i>
+		<span class="number"> <% Number(covid.stats.cases.total).toLocaleString() %> </span>
+	</div>
+	
+	<div class="stat">
+		<i class="fas fa-hospital-user fa-3x"></i>
+		<span class="number"> <% Number(covid.stats.hospitalised).toLocaleString() %> </span>
+	</div>
+	
+
+	
+	<div class="stat">
+		<i class="fas fa-cross fa-3x"></i>
+		<span class="number"> <% Number(covid.stats.deaths).toLocaleString() %> </span>
+	</div>
+	
+
+</div>

@@ -62,7 +62,17 @@ var defaultDataStruct = {
 	downloads:[],
 	macros: [],
 	covid: {
-		news: []
+		news: [],
+		stats: {
+			cases: {
+				today: 0,
+				yesterday: 0,
+				total: 0
+			},
+			tests: 0,
+			hospitalised: 0,
+			deaths: 0,
+		}
 	},
 	noSleep: false,
 	fullScreen: false,

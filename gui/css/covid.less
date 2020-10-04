@@ -1,30 +1,60 @@
 .covid {
-	.new {
-		clear:both;
-		border-bottom: 1px dotted @colorBorder;
-		margin-bottom:10px;
-		 
-		.time {
-			width:100px;
-			padding-top:10px;
-			float:left;
-			font-size:23px;
-			text-align:center;
-			font-weight:bold;
+	clear: both;
+	overflow: clip;
+	.news {
+		float: left;
+		width: -webkit-calc(100% - 130px);
+		width:    -moz-calc(100% - 130px);
+		width:         calc(100% - 130px);
+		height: 100%;
+		overflow: scroll;
 
-		}
-		
-		.content {
-			font-size:20px;
-			float:left;
-			width: -webkit-calc(100% - 120px);
-			width:    -moz-calc(100% - 120px);
-			width:         calc(100% - 120px);
-		
-			div, p {
-				display:inline-block;
+		.new {
+			clear:both;
+			border-bottom: 1px dotted @colorBorder;
+			margin-bottom: 10px;
+
+			.time {
+				width: 100px;
+				padding-top:10px;
+				float: left;
+				font-size: 23px;
+				text-align: center;
+				font-weight: bold;
 			}
+
+			.content {
+				font-size: 20px;
+				float: left;
+				width: -webkit-calc(100% - 120px);
+				width:    -moz-calc(100% - 120px);
+				width:         calc(100% - 120px);
 			
+				div, p {
+					display: inline-block;
+				}
+				
+			}
+		}
+	}
+
+	.stats {
+		float: right;
+		width: 110px;
+		border-left: 1px dotted @colorBorder;
+		padding-top: 5px;
+		height: 100%;
+		.stat {
+			padding-top: 5px;
+			text-align: center;
+			i, span {
+				display: block;
+			}
+			span {
+				font-weight: bold;
+				font-size: 20px;
+				margin-top: 2px;
+			}
 		}
 	}
 }
