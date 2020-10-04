@@ -1,0 +1,10 @@
+<div class="news">
+	<div v-for="item in covid.news" class="new">
+		<div class="time">
+			<% item.time %>
+			<span class="flag" v-html="item.flag"></span>
+			
+		</div>
+		<div class="content" v-html="item.html"></div>
+	</div>
+</div>

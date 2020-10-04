@@ -61,6 +61,9 @@ var defaultDataStruct = {
 	},
 	downloads:[],
 	macros: [],
+	covid: {
+		news: []
+	},
 	noSleep: false,
 	fullScreen: false,
 	loaded: false,

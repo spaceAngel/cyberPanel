@@ -48,6 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	socket.registerHandler('loadmacros', macrosWidget.handle);
 	setInterval( function() {socket.send('loadmacros', 123);},20000);
 
+	socket.registerHandler('covid', covidWidget.handle);
+	setInterval( function() {socket.send('covid', 123);}, 5 * 60 * 1000);
+	setTimeout( function() {socket.send('covid', 123);}, 2000);
+	
 	lockScreenImage.init();
 
 	mainPanelWidget.init('mainSwipingPanel');
