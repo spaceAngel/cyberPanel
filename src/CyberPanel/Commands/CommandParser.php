@@ -13,6 +13,7 @@ use CyberPanel\Commands\Commands\HwInfoCommand;
 use CyberPanel\Commands\Commands\KeyPressCommand;
 use CyberPanel\Commands\Commands\DownloadsCommand;
 use CyberPanel\Commands\Commands\StoreDownloadsCommand;
+use CyberPanel\Commands\Commands\CovidCommand;
 
 class CommandParser {
 
@@ -32,6 +33,7 @@ class CommandParser {
 		$this->registerCommand('keypress', KeyPressCommand::class);
 		$this->registerCommand('downloads', DownloadsCommand::class);
 		$this->registerCommand('storeDownloads', StoreDownloadsCommand::class);
+		$this->registerCommand('covid', CovidCommand::class);
 	}
 
 	public static function getInstance() : CommandParser {
