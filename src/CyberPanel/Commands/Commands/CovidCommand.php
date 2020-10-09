@@ -28,13 +28,13 @@ class CovidCommand extends BaseCommand{
 		foreach ($news as $new) {
 			$html = trim($new->ownerDocument->saveHTML($new));
 			$html = $this->cleanTwitter($html);
+			$flag = $new->ownerDocument->saveHTML($new->parentNode->childNodes[5]->childNodes[0]);
+			$flag = substr($flag, 0, 4) == '<img' ? $flag : '';
 			$rslt[] = [
 				'time' => trim($new->parentNode->childNodes[3]->textContent),
 				'content' => trim($new->textContent),
 				'html' => $html,
-				'flag' => trim(
-					$new->ownerDocument->saveHTML($new->parentNode->childNodes[5]->childNodes[0])
-				),
+				'flag' => $flag,
 				'important' => (bool)strpos(
 					$new->ownerDocument->saveHTML($new->parentNode),
 					'o-c3'
