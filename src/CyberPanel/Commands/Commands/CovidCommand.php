@@ -28,6 +28,7 @@ class CovidCommand extends BaseCommand{
 		foreach ($news as $new) {
 			$html = trim($new->ownerDocument->saveHTML($new));
 			$html = $this->cleanTwitter($html);
+			$html = $this->makeLinksClickable($html);
 			$flag = $new->ownerDocument->saveHTML($new->parentNode->childNodes[5]->childNodes[0]);
 			$flag = substr($flag, 0, 4) == '<img' ? $flag : '';
 			$rslt[] = [
@@ -47,6 +48,11 @@ class CovidCommand extends BaseCommand{
 	protected function cleanTwitter(string $html) : string {
 		$html = preg_replace('/<div class="es-bot">(.+)<\/div>/', "", $html);
 		$html = preg_replace('/<div class="es-date">(.+)<\/div>/', "", $html);
+		return $html;
+	}
+
+	protected function makeLinksClickable(string $html) : string {
+		$html = str_replace('<a', '<a onclick="return openBrowser(this);" ', $html);
 		return $html;
 	}
 
