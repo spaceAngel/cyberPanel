@@ -14,6 +14,7 @@ use CyberPanel\Commands\Commands\KeyPressCommand;
 use CyberPanel\Commands\Commands\DownloadsCommand;
 use CyberPanel\Commands\Commands\StoreDownloadsCommand;
 use CyberPanel\Commands\Commands\CovidCommand;
+use CyberPanel\Commands\Commands\OpenInBrowserCommand;
 
 class CommandParser {
 
@@ -34,6 +35,7 @@ class CommandParser {
 		$this->registerCommand('downloads', DownloadsCommand::class);
 		$this->registerCommand('storeDownloads', StoreDownloadsCommand::class);
 		$this->registerCommand('covid', CovidCommand::class);
+		$this->registerCommand('openbrowser', OpenInBrowserCommand::class);
 	}
 
 	public static function getInstance() : CommandParser {
