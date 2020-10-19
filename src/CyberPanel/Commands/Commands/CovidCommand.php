@@ -3,7 +3,7 @@
 namespace CyberPanel\Commands\Commands;
 
 use CyberPanel\Commands\BaseCommand;
-use CyberPanel\CovidNews\IdnesOnlineNews;
+use CyberPanel\Covid\News;
 
 class CovidCommand extends BaseCommand {
 
@@ -12,25 +12,18 @@ class CovidCommand extends BaseCommand {
 	const URL_MZCR_STATS = 'https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/zakladni-prehled.json';
 	// phpcs::enable
 
-	protected $idnesNewsParser;
+	protected $news;
 
 	public function __construct(string $invokingCommand, array $parameters = []) {
 		parent::__construct($invokingCommand, $parameters);
-
-		$this->idnesNewsParser = new IdnesOnlineNews();
+		$this->news = new News();
 	}
 
 	public function run() : array {
 		return [
-			'news' => $this->getNews(),
+			'news' => $this->news->getNews(),
 			'stats' => $this->parseMzcrStats(),
 		];
-	}
-
-	protected function getNews() : array {
-		return array_merge(
-			$this->idnesNewsParser->getNews()
-		);
 	}
 
 	protected function parseMzcrStats() : array {

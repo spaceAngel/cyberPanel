@@ -1,6 +1,6 @@
 <?php
 
-namespace CyberPanel\CovidNews;
+namespace CyberPanel\Covid\NewsParsers;
 
 use \DOMDocument;
 
