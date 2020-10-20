@@ -4,7 +4,7 @@ namespace CyberPanel\Covid\NewsParsers;
 
 use \DOMDocument;
 
-class IdnesOnlineNews {
+class IdnesOnlineNews implements Parser {
 
 	const URL_IDNES = 'https://www.idnes.cz/koronavirus/online';
 
