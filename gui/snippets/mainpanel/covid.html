@@ -4,7 +4,11 @@
 			<% item.time %>
 			<span class="flag" v-html="item.flag"></span>
 		</div>
-		<div class="content" v-html="item.html" v-bind:class="{ important: item.important }"></div>
+		<div class="content" v-bind:class="{ important: item.important }">
+			<div v-if="item.title" v-html="item.title" class="newCaption"></div>
+			<div v-html="item.html"></div>
+			<a onclick="return openBrowser(this);" v-if="item.link" v-bind:href="item.link">link</a> 
+		</div>
 	</div>
 </div>
 <div class="stats">
