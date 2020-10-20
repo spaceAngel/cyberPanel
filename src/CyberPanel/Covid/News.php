@@ -30,7 +30,9 @@ class News {
 				);
 			}
 		}
-
+		usort($articles, function($a, $b) {
+			return $b['microtime'] <=> $a['microtime'];
+		});
 		return $articles;
 	}
 }

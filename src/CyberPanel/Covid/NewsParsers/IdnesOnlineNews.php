@@ -25,6 +25,9 @@ class IdnesOnlineNews implements Parser {
 				'content' => trim($new->textContent),
 				'html' => $html,
 				'flag' => $flag,
+				'microtime' => $this->humanToMicrotime(
+					trim($new->parentNode->childNodes[3]->textContent)
+				),
 				'important' => (bool)strpos(
 					$new->ownerDocument->saveHTML($new->parentNode),
 					'o-c3'
@@ -32,6 +35,11 @@ class IdnesOnlineNews implements Parser {
 			];
 		}
 		return $rslt;
+	}
+
+	protected function humanToMicrotime(string $human) : int {
+		$date = new \DateTime($human);
+		return $date->getTimestamp();
 	}
 
 	protected function cleanTwitter(string $html) : string {
