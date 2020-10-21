@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	socket.registerHandler('covid', covidWidget.handle);
 	setInterval( function() {socket.send('covid', 123);}, 5 * 60 * 1000);
 	setTimeout( function() {socket.send('covid', 123);}, 2000);
+	setTimeout( function() {socket.send('covid', 123);}, 8000);
 	
 	lockScreenImage.init();
 

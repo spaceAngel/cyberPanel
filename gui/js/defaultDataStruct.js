@@ -72,7 +72,8 @@ var defaultDataStruct = {
 			tests: 0,
 			hospitalised: 0,
 			deaths: 0,
-		}
+		},
+		hospitalCapacities: []
 	},
 	noSleep: false,
 	fullScreen: false,
