@@ -15,30 +15,43 @@ class IdnesOnlineNews implements Parser {
 		$news = $parser->query('//div[contains(@class, "event")]');
 		$rslt = [];
 		foreach ($news as $new) {
-			$html = trim($new->ownerDocument->saveHTML($new));
-			$html = $this->cleanTwitter($html);
-			$html = $this->makeLinksClickable($html);
-			$flag = $new->ownerDocument->saveHTML($new->parentNode->childNodes[5]->childNodes[0]);
-			$flag = substr($flag, 0, 4) == '<img' ? $flag : '';
-			$rslt[] = [
-				'time' => trim($new->parentNode->childNodes[3]->textContent),
-				'content' => trim($new->textContent),
-				'html' => $html,
-				'flag' => $flag,
-				'microtime' => $this->humanToMicrotime(
-					trim($new->parentNode->childNodes[3]->textContent)
-				),
-				'important' => (bool)strpos(
-					$new->ownerDocument->saveHTML($new->parentNode),
-					'o-c3'
-				),
-			];
+			$item = $this->parseItem($new);
+			if (!empty($rslt) && $rslt[count($rslt) - 1]['microtime'] < $item['microtime']) {
+				$item['microtime'] = $this->humanToMicrotime(
+					trim($new->parentNode->childNodes[3]->textContent), TRUE
+				);
+			}
+			$rslt[] = $item;
 		}
 		return $rslt;
 	}
 
-	protected function humanToMicrotime(string $human) : int {
+	protected function parseItem($new) {
+		$html = trim($new->ownerDocument->saveHTML($new));
+		$html = $this->cleanTwitter($html);
+		$html = $this->makeLinksClickable($html);
+		$flag = $new->ownerDocument->saveHTML($new->parentNode->childNodes[5]->childNodes[0]);
+		$flag = substr($flag, 0, 4) == '<img' ? $flag : '';
+		return [
+			'time' => trim($new->parentNode->childNodes[3]->textContent),
+			'content' => trim($new->textContent),
+			'html' => $html,
+			'flag' => $flag,
+			'microtime' => $this->humanToMicrotime(
+				trim($new->parentNode->childNodes[3]->textContent)
+			),
+			'important' => (bool)strpos(
+				$new->ownerDocument->saveHTML($new->parentNode),
+				'o-c3'
+			),
+		];
+	}
+
+	protected function humanToMicrotime(string $human, bool $dayBefore = FALSE) : int {
 		$date = new \DateTime($human);
+		if ($dayBefore) {
+			$date->modify('-1 day');
+		}
 		return $date->getTimestamp();
 	}
 
