@@ -42,6 +42,36 @@
 					max-width:    -moz-calc(100% - 20px);
 					max-width:         calc(100% - 20px);
 				}
+				
+				.o-art {
+					img {
+						width: 200px;
+						float: left;
+						display: block;
+						margin-top: 10px;
+					}
+					.cell {
+						width: -webkit-calc(100% - 220px);
+						width:    -moz-calc(100% - 220px);
+						width:         calc(100% - 220px);
+						float: left;
+						padding-left: 20px;
+						
+						h3 {
+							margin: 0px;
+						}
+					}
+				}
+				
+				a {
+					display: inline-block;
+					background-color: @colorMain;
+					font-weight: bold;
+					text-decoration: none;
+					color: @colorReversed;
+					.borderRadius(8px);
+					padding: 4px;
+				}
 			}
 			.important {
 				border-right: 1px dotted red;
