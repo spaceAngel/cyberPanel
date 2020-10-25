@@ -14,6 +14,7 @@
 			<i class="fas fa-music fa-3x"  v-bind:class="{active: currentPanel == 7}"  v-on:click="currentPanel = 7"></i>
 			<i class="fas fa-viruses fa-3x"  v-bind:class="{active: currentPanel == 8}"  v-on:click="currentPanel = 8"></i>
 			<i class="fas fa-hospital-user fa-3x"  v-bind:class="{active: currentPanel == 9}"  v-on:click="currentPanel = 9"></i>
+			<i class="fas fa-sync fa-3x"  v-bind:class="{active: currentPanel == 10}"  v-on:click="currentPanel = 10"></i>
 	</div>
 
 	<div class="box swiper" id="mainSwipingPanel">
@@ -26,6 +27,7 @@
 		<div v-show="currentPanel == 7"><!--(bake mainpanel/lastfmTrackInfo.html)--></div>
 		<div v-show="currentPanel == 8" class="covid"><!--(bake mainpanel/covid.html)--></div>
 		<div v-show="currentPanel == 9"><!--(bake mainpanel/covidHospitals.html)--></div>
+		<div v-show="currentPanel == 10"><!--(bake mainpanel/ping.html)--></div>
 	</div>
 	<!--(bake media.html)-->
 </div>

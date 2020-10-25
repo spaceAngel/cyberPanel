@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	socket.registerHandler('keyboard', keyboardWidget.handle);
 	socket.registerHandler('media',  mediaWidget.handle);
 	socket.registerHandler('downloads',  downloadsWidget.handle);
+	socket.registerHandler('ping',  pingWidget.handle);
 	
 	setInterval(function() {
 		socket.sendMultiple([
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			{command:'media', parameters:[]},
 			{command:'systeminfo', parameters:[]},
 			{command:'downloads', parameters:[]},
+			{command:'ping', parameters:[]},
 		]);
 	}, 1000);
 
@@ -50,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	socket.registerHandler('covid', covidWidget.handle);
 	setInterval( function() {socket.send('covid', 123);}, 5 * 60 * 1000);
-	setTimeout( function() {socket.send('covid', 123);}, 2000);
 	setTimeout( function() {socket.send('covid', 123);}, 8000);
 	
 	lockScreenImage.init();
