@@ -5,29 +5,33 @@
 
 <div class="main">
 	<div class="box taskbar">
-			<i class="fas fa-icons fa-3x" v-bind:class="{active: currentPanel == 1}" v-on:click="currentPanel = 1"></i>
-			<i class="fas fa-list fa-3x"  v-bind:class="{active: currentPanel == 2}"  v-on:click="currentPanel = 2"></i>
-			<i class="fas fa-chart-line fa-3x"  v-bind:class="{active: currentPanel == 3}"  v-on:click="currentPanel = 3"></i>
-			<i class="fas fa-info-circle fa-3x"  v-bind:class="{active: currentPanel == 4}"  v-on:click="currentPanel = 4"></i>
-			<i class="fas fa-calculator fa-3x"  v-bind:class="{active: currentPanel == 5}"  v-on:click="currentPanel = 5"></i>
-			<i class="fas fa-download fa-3x"  v-bind:class="{active: currentPanel == 6}"  v-on:click="currentPanel = 6"></i>
-			<i class="fas fa-music fa-3x"  v-bind:class="{active: currentPanel == 7}"  v-on:click="currentPanel = 7"></i>
-			<i class="fas fa-viruses fa-3x"  v-bind:class="{active: currentPanel == 8}"  v-on:click="currentPanel = 8"></i>
-			<i class="fas fa-hospital-user fa-3x"  v-bind:class="{active: currentPanel == 9}"  v-on:click="currentPanel = 9"></i>
-			<i class="fas fa-sync fa-3x"  v-bind:class="{active: currentPanel == 10}"  v-on:click="currentPanel = 10"></i>
+		<template v-for="pane, key in config.panes">
+			<i v-if="pane == 'macros'" class="fas fa-icons fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'processes'" class="fas fa-list fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'loadgraphs'" class="fas fa-chart-line fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'sysinfo'" class="fas fa-info-circle fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'numkeyboard'" class="fas fa-calculator fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'downloads'" class="fas fa-download fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'music'" class="fas fa-music fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'covid'" class="fas fa-viruses fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'hospitals'" class="fas fa-hospital-user fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'ping'" class="fas fa-sync fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+		</template>
 	</div>
 
 	<div class="box swiper" id="mainSwipingPanel">
-		<div v-show="currentPanel == 1"><!--(bake mainpanel/macros.html)--></div>
-		<div v-show="currentPanel == 2"><!--(bake mainpanel/processGrid.html)--></div>
-		<div v-show="currentPanel == 3"><!--(bake mainpanel/graph.html)--></div>
-		<div v-show="currentPanel == 4" class="sysinfo"><!--(bake mainpanel/sysinfo.html)--></div>
-		<div v-show="currentPanel == 5"><!--(bake mainpanel/keyboard.html)--></div>
-		<div v-show="currentPanel == 6" class="downloads"><!--(bake mainpanel/downloads.html)--></div>
-		<div v-show="currentPanel == 7"><!--(bake mainpanel/lastfmTrackInfo.html)--></div>
-		<div v-show="currentPanel == 8" class="covid"><!--(bake mainpanel/covid.html)--></div>
-		<div v-show="currentPanel == 9"><!--(bake mainpanel/covidHospitals.html)--></div>
-		<div v-show="currentPanel == 10"><!--(bake mainpanel/ping.html)--></div>
+		<template v-for="pane, key in config.panes">
+			<div v-if="pane == 'macros'" v-show="currentPanel == key"><!--(bake mainpanel/macros.html)--></div>
+			<div v-if="pane == 'processes'" v-show="currentPanel == key"><!--(bake mainpanel/processGrid.html)--></div>
+			<div v-if="pane == 'loadgraphs'" v-show="currentPanel == key"><!--(bake mainpanel/graph.html)--></div>
+			<div v-if="pane == 'sysinfo'" v-show="currentPanel == key" class="sysinfo"><!--(bake mainpanel/sysinfo.html)--></div>
+			<div v-if="pane == 'numkeyboard'" v-show="currentPanel == key"><!--(bake mainpanel/keyboard.html)--></div>
+			<div v-if="pane == 'downloads'" v-show="currentPanel == key" class="downloads"><!--(bake mainpanel/downloads.html)--></div>
+			<div v-if="pane == 'music'" v-show="currentPanel == key"><!--(bake mainpanel/lastfmTrackInfo.html)--></div>
+			<div v-if="pane == 'covid'" v-show="currentPanel == key" class="covid"><!--(bake mainpanel/covid.html)--></div>
+			<div v-if="pane == 'hospitals'" v-show="currentPanel == key"><!--(bake mainpanel/covidHospitals.html)--></div>
+			<div v-if="pane == 'ping'" v-show="currentPanel == key"><!--(bake mainpanel/ping.html)--></div>
+		</template>
 	</div>
 	<!--(bake media.html)-->
 </div>

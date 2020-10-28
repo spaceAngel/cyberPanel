@@ -13,15 +13,15 @@ var mainPanelWidget = {
 
 	swipeRight: function() {
 		cyberPanel.currentPanel++;
-		if (cyberPanel.currentPanel > mainPanelWidget.getPanelsCount()) {
-			cyberPanel.currentPanel = 1;
+		if (cyberPanel.currentPanel == mainPanelWidget.getPanelsCount()) {
+			cyberPanel.currentPanel = 0;
 		}
 	},
 
 	swipeLeft: function() {
 		cyberPanel.currentPanel--;
-		if (cyberPanel.currentPanel == 0) {
-			cyberPanel.currentPanel = mainPanelWidget.getPanelsCount();
+		if (cyberPanel.currentPanel < 0) {
+			cyberPanel.currentPanel = mainPanelWidget.getPanelsCount() - 1;
 		}
 	},
 
