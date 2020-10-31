@@ -7,10 +7,29 @@
 		padding:11px 20px;
 		border-right: 1px dotted @colorBorder;
 		margin:0px;
+		
+		.notification {
+			display:inline-block;
+			background-color:@colorMain;
+			color:@colorFontReversed;
+			top: 11px;
+			font-size:20px;
+			width:21px;
+			text-align:center;
+			padding:2px;
+			.borderRadius(8px);
+			position:relative;
+			margin-right:-20px;
+			top:-29px;
+			left:-5px;
+			
+		}
 	}
 	
 	.active {
 		background-color:@colorMain;
 		color:@colorFontReversed;
 	}
+	
+	
 }
