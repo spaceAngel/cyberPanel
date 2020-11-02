@@ -15,7 +15,9 @@
 				<span class="notification" v-if="downloads.length > 0"><% downloads.length %></span>
 			</i>
 			<i v-if="pane == 'music'" class="fas fa-music fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-			<i v-if="pane == 'covid'" class="fas fa-viruses fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'covid'" class="fas fa-viruses fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key" data-tabId="covidNews">
+				<span class="notification" v-if="covidWidget.unread > 0" v-html="covidWidget.unread"></span>
+			</i>
 			<i v-if="pane == 'hospitals'" class="fas fa-hospital-user fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
 			<i v-if="pane == 'ping'" class="fas fa-sync fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
 		</template>

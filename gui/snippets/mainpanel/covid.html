@@ -6,7 +6,7 @@
 		</div>
 		<div class="content" v-bind:class="{ important: item.important }">
 			<div v-if="item.title" v-html="item.title" class="newCaption"></div>
-			<div v-html="item.html"></div>
+			<div v-html="item.html" class="js-newContent"></div>
 			<a onclick="return openBrowser(this);" v-if="item.link" v-bind:href="item.link">link</a> 
 		</div>
 	</div>
