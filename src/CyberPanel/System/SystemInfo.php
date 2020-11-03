@@ -21,11 +21,6 @@ class SystemInfo {
 		return self::$instance;
 	}
 
-	public function getTempGpu() : int {
-		$temp = Executer::execAndGetResponse(GraphicNvidia::CMD_TEMP);
-		return (int)$temp == $temp ? (int)$temp : 0;
-	}
-
 	public function getTempCpu() {
 		$temps = explode("\n", Executer::execAndGetResponse(SystemInfoCommands::CMD_TEMP_CPU));
 		return $temps[count($temps) - 1];
@@ -111,16 +106,18 @@ class SystemInfo {
 		return Executer::execAndGetResponse(SystemInfoCommands::CMD_DISTRO);
 	}
 
-	public function getGpuLoad() : string {
-		return Executer::execAndGetResponse(GraphicNvidia::CMD_LOAD);
-	}
+	public function getGpuInfo() : array {
+		$raw = Executer::execAndGetResponse(GraphicNvidia::CMD_GETINFO);
+		$values = explode(',', $raw);
+		return [
+			'temperature' => (int)$values[0] == $values[0] ? (int)$values[0] : 0,
+			'load' => $values[1],
+			'memory' => [
+				'total' => $values[2],
+				'free' => $values[3],
+			],
+		];
 
-	public function getGpuMemoryFree() : string {
-		return Executer::execAndGetResponse(GraphicNvidia::CMD_MEMORY_FREE);
-	}
-
-	public function getGpuMemoryTotal() : string {
-		return Executer::execAndGetResponse(GraphicNvidia::CMD_MEMORY_TOTAL);
 	}
 
 	private function convertTpsGtoKilobytes(string $gbs) : int {

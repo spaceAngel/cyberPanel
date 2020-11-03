@@ -8,9 +8,10 @@ use CyberPanel\Configuration\Configuration;
 
 class SystemInfoCommand extends BaseCommand {
 	public function run() : array {
+		$gpu = SystemInfo::getInstance()->getGpuInfo();
 		return [
 			'temperatures' => [
-				'gpu' => SystemInfo::getInstance()->getTempGpu(),
+				'gpu' => $gpu['temperature'],
 				'cpu' => SystemInfo::getInstance()->getTempCpu(),
 				'limits' => [
 					'cpu' => Configuration::getInstance()->getSystemLimits()->getTempCpu(),
@@ -22,10 +23,10 @@ class SystemInfoCommand extends BaseCommand {
 			'processes' => SystemInfo::getInstance()->getProcessList(),
 			'locked' => Systeminfo::getInstance()->isLockedScreen(),
 			'gpu' => [
-				'load' => Systeminfo::getInstance()->getGpuLoad(),
+				'load' => $gpu['load'],
 				'memory' => [
-					'free' => Systeminfo::getInstance()->getGpuMemoryFree(),
-					'total' => Systeminfo::getInstance()->getGpuMemoryTotal()
+					'free' => $gpu['memory']['free'],
+					'total' => $gpu['memory']['total'],
 				]
 			]
 		];
