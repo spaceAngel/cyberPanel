@@ -4,6 +4,7 @@ namespace CyberPanel\System;
 
 use CyberPanel\System\ShellCommands\SystemInfo as SystemInfoCommands;
 use CyberPanel\System\ShellCommands\GraphicNvidia;
+use CyberPanel\DataStructs\GpuSystemInfo;
 
 class SystemInfo {
 
@@ -106,18 +107,15 @@ class SystemInfo {
 		return Executer::execAndGetResponse(SystemInfoCommands::CMD_DISTRO);
 	}
 
-	public function getGpuInfo() : array {
+	public function getGpuInfo() : GpuSystemInfo {
 		$raw = Executer::execAndGetResponse(GraphicNvidia::CMD_GETINFO);
 		$values = explode(',', $raw);
-		return [
-			'temperature' => (int)$values[0] == $values[0] ? (int)$values[0] : 0,
-			'load' => $values[1],
-			'memory' => [
-				'total' => $values[2],
-				'free' => $values[3],
-			],
-		];
-
+		$gpu = new GpuSystemInfo();
+		$gpu->setTemperature((int)$values[0] == $values[0] ? (int)$values[0] : 0);
+		$gpu->setLoad((int)$values[1]);
+		$gpu->setMemoryFree($values[3]);
+		$gpu->setMemoryTotal($values[2]);
+		return $gpu;
 	}
 
 	private function convertTpsGtoKilobytes(string $gbs) : int {

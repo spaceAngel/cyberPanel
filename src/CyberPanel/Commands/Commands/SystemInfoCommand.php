@@ -11,7 +11,7 @@ class SystemInfoCommand extends BaseCommand {
 		$gpu = SystemInfo::getInstance()->getGpuInfo();
 		return [
 			'temperatures' => [
-				'gpu' => $gpu['temperature'],
+				'gpu' => $gpu->getTemperature(),
 				'cpu' => SystemInfo::getInstance()->getTempCpu(),
 				'limits' => [
 					'cpu' => Configuration::getInstance()->getSystemLimits()->getTempCpu(),
@@ -23,10 +23,10 @@ class SystemInfoCommand extends BaseCommand {
 			'processes' => SystemInfo::getInstance()->getProcessList(),
 			'locked' => Systeminfo::getInstance()->isLockedScreen(),
 			'gpu' => [
-				'load' => $gpu['load'],
+				'load' => $gpu->getLoad(),
 				'memory' => [
-					'free' => $gpu['memory']['free'],
-					'total' => $gpu['memory']['total'],
+					'free' => $gpu->getMemoryFree(),
+					'total' => $gpu->getMemoryTotal(),
 				]
 			]
 		];
