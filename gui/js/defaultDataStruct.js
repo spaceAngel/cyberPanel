@@ -79,6 +79,5 @@ var defaultDataStruct = {
 	fullScreen: false,
 	loaded: false,
 	sound: false,
-	ping: new Array(),
 	currentPanel: 7
 };

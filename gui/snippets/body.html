@@ -19,7 +19,9 @@
 				<span class="notification" v-if="covidWidget.unread > 0" v-html="covidWidget.unread"></span>
 			</i>
 			<i v-if="pane == 'hospitals'" class="fas fa-hospital-user fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-			<i v-if="pane == 'ping'" class="fas fa-sync fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'ping'" class="fas fa-sync fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
+				<span class="notification alert" v-if="pingWidget.disconnected || pingWidget.time > 500">!</span>
+			</i>
 		</template>
 	</div>
 
