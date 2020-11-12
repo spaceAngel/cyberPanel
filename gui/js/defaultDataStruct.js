@@ -12,11 +12,7 @@ var defaultDataStruct = {
 		},
 		temperatures: {
 			cpu: 100,
-			gpu: 100,
-			limits: {
-				cpu: 30,
-				gpu: 30
-			}
+			gpu: 100
 		},
 		processes: [],
 		locked: true,

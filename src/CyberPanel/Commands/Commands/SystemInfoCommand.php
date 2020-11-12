@@ -13,10 +13,6 @@ class SystemInfoCommand extends BaseCommand {
 			'temperatures' => [
 				'gpu' => $gpu->getTemperature(),
 				'cpu' => SystemInfo::getInstance()->getTempCpu(),
-				'limits' => [
-					'cpu' => Configuration::getInstance()->getSystemLimits()->getTempCpu(),
-					'gpu' => Configuration::getInstance()->getSystemLimits()->getTempGpu(),
-				] ,
 			],
 			'cpuload' => SystemInfo::getInstance()->getCpuLoad(),
 			'memory' => SystemInfo::getInstance()->getMemory(),

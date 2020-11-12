@@ -1,8 +1,10 @@
 <?php
 
+use \CyberPanel\Configuration\Configuration;
+
 return '
 var config = {
-	lastfmApiKey: "' . \CyberPanel\Configuration\Configuration::getInstance()->getLastFmApiKey() . '",
+	lastfmApiKey: "' . Configuration::getInstance()->getLastFmApiKey() . '",
 	panes: [
 		"macros",
 		"processes",
@@ -14,6 +16,14 @@ var config = {
 		"music",
 		"covid",
 		"hospitals"
-	]
+	],
+	hwLimits: {
+		cpu: {
+			temperature: ' . Configuration::getInstance()->getSystemLimits()->getTempCpu() . '
+		},
+		gpu: {
+			temperature: ' . Configuration::getInstance()->getSystemLimits()->getTempGpu() . '
+		}
+	}
 };
 ';
