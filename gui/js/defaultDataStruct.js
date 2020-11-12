@@ -32,11 +32,6 @@ var defaultDataStruct = {
 		distro: '',
 		uptime: ''
 	},
-	keyboard: {
-		numlock: 'off',
-		capslock: 'off',
-		scrolllock:'off'
-	},
 	media: {
 		volume: 50,
 		muted: false,
