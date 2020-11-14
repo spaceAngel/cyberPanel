@@ -68,12 +68,6 @@ module.exports = function(grunt) {
 				src: "*",
 				dest: 'build/webfonts'
 			},
-			svg: {
-				expand: true,
-				cwd: 'gui/svg',
-				src: "*",
-				dest: 'build/svg'
-			},
 			fonts: {
 				expand: true,
 				cwd: 'gui/fonts',
