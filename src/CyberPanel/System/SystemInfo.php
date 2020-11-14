@@ -10,6 +10,8 @@ class SystemInfo {
 
 	private $skipStorageFormats = ['tmpfs', 'udev', 'devtmpfs', 'squashfs', 'iso9660'];
 
+	private $skipMountPoints = ['/boot/efi'];
+
 	private static $instance;
 
 	private function __construct() {
@@ -33,7 +35,12 @@ class SystemInfo {
 		array_shift($disks);
 		foreach ($disks as $diskRaw) {
 			$disk = preg_split("/[\s,]+/", $diskRaw);
-			if (empty($disk[0]) || in_array($disk[0], $this->skipStorageFormats)) continue;
+			if (
+				empty($disk[0])
+				|| in_array($disk[0], $this->skipStorageFormats)
+				|| in_array($disk[1], $this->skipMountPoints)
+			) continue;
+
 			$rslt[] = [
 				'caption' => $disk[1],
 				'size' => $disk[2],
