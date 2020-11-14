@@ -3,12 +3,14 @@
 		<link rel="StyleSheet" href="css/app.min.css"/>
 		<link rel="StyleSheet" href="css/libs.min.css"/>
 
- 		<meta charset="utf-8">
- 		 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-touch-fullscreen" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="viewport" content="initial-scale=1,user-scalable=no,viewport-fit=cover">
+		<title>cyberPanel</title>
+
+		<meta charset="utf-8"/>
+
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="apple-touch-fullscreen" content="yes"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+		<meta name="viewport" content="initial-scale=1,user-scalable=no,viewport-fit=cover"/>
 	</head>
 	<body >
 		<div id="cyberPanel">
@@ -16,7 +18,7 @@
 			<div class="header"> 	<!--(bake snippets/header.html)-->	</div>
 			<div class="body">		<!--(bake snippets/body.html)-->	</div>
 			<div class="lockScreen" v-show="systemInfo.locked">
-				<img v-bind:src="'data:' + lockScreen.type + ';base64,' + lockScreen.binary" >
+				<img v-bind:src="'data:' + lockScreen.type + ';base64,' + lockScreen.binary" />
 			</div>
 		</div>
 
