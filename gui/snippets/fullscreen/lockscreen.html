@@ -1,0 +1,3 @@
+<div class="lockScreen" v-show="systemInfo.locked">
+	<img v-bind:src="'data:' + lockScreen.type + ';base64,' + lockScreen.binary" />
+</div>

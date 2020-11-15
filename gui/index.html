@@ -13,13 +13,13 @@
 		<meta name="viewport" content="initial-scale=1,user-scalable=no,viewport-fit=cover"/>
 	</head>
 	<body >
+		
 		<div id="cyberPanel">
-			<!--(bake snippets/splashscreen.html)-->	
+			<!--(bake snippets/fullscreen/splashscreen.html)-->
+			<!--(bake snippets/fullscreen/lockscreen.html)-->
 			<div class="header"> 	<!--(bake snippets/header.html)-->	</div>
 			<div class="body">		<!--(bake snippets/body.html)-->	</div>
-			<div class="lockScreen" v-show="systemInfo.locked">
-				<img v-bind:src="'data:' + lockScreen.type + ';base64,' + lockScreen.binary" />
-			</div>
+				
 		</div>
 
 		<script src="js/libs.min.js" type="text/javascript"></script>
