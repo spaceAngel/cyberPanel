@@ -15,8 +15,8 @@
 	<i class="fa fa-2x icon fa-bell" id="icoSound" v-if="sound" v-on:click="toggleSound()"></i>
 	<i class="fa fa-2x icon fa-bell-slash icon-off" id="icoSound" v-if="!sound" v-on:click="toggleSound()"></i>
 	
-	<i class="fa fa-2x icon fa-unlock" v-if="noSleep" v-on:click="toggleNoSleep()"></i>
-	<i class="fa fa-2x icon fa-lock icon-off" v-if="!noSleep" v-on:click="toggleNoSleep()"></i>
+	<i class="fa fa-2x icon fa-unlock" v-if="noSleep || fullScreen" v-on:click="toggleNoSleep()"></i>
+	<i class="fa fa-2x icon fa-lock icon-off" v-if="!noSleep && !fullScreen" v-on:click="toggleNoSleep()"></i>
 	
 	<i class="fa fa-2x icon fa-arrows-alt icon-off" v-if="!fullScreen" v-on:click="toggleFullScreen()"></i>
 	<i class="fa fa-2x icon fa-compress-arrows-alt" v-if="fullScreen" v-on:click="toggleFullScreen()"></i>

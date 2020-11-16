@@ -5,7 +5,7 @@ var environment = {
 	wakeLock: null,
 
 	noSleepEnable: function() {
-	 stayAwakeModule.enable();return;
+	 stayAwakeModule.setEnabled();return;
 
 		navigator.getWakeLock("screen").then(function(wakeLock) {
 			environment.wakeLock = wakeLock.createRequest();
@@ -16,7 +16,7 @@ var environment = {
 	},
 
 	noSleepDisable: function() {
-		stayAwakeModule.disable();return;
+		stayAwakeModule.setDisabled();return;
 		if (environment.wakeLock !== null) {
 			environment.wakeLock.cancel();
 		} else {
