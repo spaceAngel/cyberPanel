@@ -1,4 +1,5 @@
 var defaultDataStruct = {
+	disconnected: false,
 	datetime: {
 		date: '',
 		time: '',

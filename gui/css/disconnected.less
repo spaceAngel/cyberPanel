@@ -1,0 +1,41 @@
+.disconnected {
+
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right:0px;
+	bottom:0px;
+	z-index:900;
+
+	.cover {
+		width: 100%;
+		height: 100%;
+		background-color: @colorReversed;
+		opacity: 0.5;
+	}
+
+	.messageOuter {
+		position: absolute;
+		top:250px;
+		left:0px;
+		right:0px;
+		z-index:901;
+		text-align:center;
+
+		.message {
+			margin-left:auto;
+			margin-right: auto;
+			background-color: @colorReversed ;
+			padding:30px;
+			width:280px;
+			border:2px solid red;
+			color:red;
+			text-transform: uppercase;
+			font-size:28px;
+			.borderRadius(20px);
+			.text {
+				animation: alert 2s linear infinite;
+			}
+		}	
+	}
+}

@@ -6,7 +6,22 @@ var socket = {
 	open: function() {
 		socket.conn = new WebSocket('ws://' + window.location.hostname + ':8081');
 		socket.conn.onmessage = this.onMessage;
-		socket.conn.onclose = this.handleDisconnect;
+		socket.conn.addEventListener('error', function (event) {
+			cyberPanel.disconnected = true;
+			setTimeout(function() {
+				if (cyberPanel.disconnected) {
+					if (cyberPanel.noSleep) {
+						cyberPanel.toggleNoSleep()
+					}
+					if (cyberPanel.fullScreen) {
+						cyberPanel.toggleFullScreen();
+					}
+				}
+			}, 60000);
+		});
+		socket.conn.onclose = function() {
+			socket.handleDisconnect();
+		}
 		socket.conn.sendmessage = async function(msg) {
 			this.send(msg);
 		};
@@ -40,6 +55,7 @@ var socket = {
 	onMessage: function(rawData) {
 		var data = (JSON.parse(rawData.data));
 		if (socket.handlers[data.command] !== undefined) {
+			cyberPanel.disconnected = false;
 			socket.handlers[data.command](data.response);
 		}
 	},
