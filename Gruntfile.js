@@ -80,6 +80,12 @@ module.exports = function(grunt) {
 				src: "*",
 				dest: 'build/sounds'
 			},
+			errorpages: {
+				expand: true,
+				cwd: 'gui/errors',
+				src: "*",
+				dest: 'build/errors'
+			}, 
 		},
 			
 		watch: {

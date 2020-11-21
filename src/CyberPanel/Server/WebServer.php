@@ -2,13 +2,15 @@
 
 namespace CyberPanel\Server;
 
-use  React\Http\Message\Response;;
+use  React\Http\Message\Response;
 use React\EventLoop\Factory;
 use React\Http\Server;
 use Psr\Http\Message\ServerRequestInterface;
 use CyberPanel\Server\Utils\Mime;
 
 class WebServer  {
+
+	const PAGE_NOTFOUND = 'errors/notfound.html';
 
 	protected $port;
 
@@ -38,11 +40,9 @@ class WebServer  {
 				file_get_contents($file)
 			);
 		} elseif ($uri == '/config.js') {
-			return new Response(
-				200,
-				[Mime::getContentType($uri)],
-				include __DIR__ . '/tpl/config.js.php'
-			);
+			return $this->handleConfigJs();
+		} else {
+			return $this->handleErrorNotFound();
 		}
 	}
 
@@ -51,6 +51,23 @@ class WebServer  {
 			$file = 'index.html';
 		}
 		return realpath($this->baseDir . $file);
+	}
+
+	protected function handleConfigJs() : Response {
+		return new Response(
+			200,
+			[Mime::getContentType('/config.js')],
+			include __DIR__ . '/tpl/config.js.php'
+		);
+	}
+
+	protected function handleErrorNotFound() : Response {
+		$page = $this->getFullFilePath(self::PAGE_NOTFOUND);
+		return new Response(
+			404,
+			[Mime::getContentType($page)],
+			file_get_contents($page)
+		);
 	}
 
 
