@@ -18,6 +18,11 @@ class WebServer  {
 
 	protected $baseDir = 'build/';
 
+	protected $publicFiles = [
+		'/css/app.min.css',
+		'/fonts/logo.ttf'
+	];
+
 	public function __construct(int $port = 8082) {
 		$this->port = $port;
 	}
@@ -34,21 +39,31 @@ class WebServer  {
 
 	protected function handleRequest(ServerRequestInterface $request) : Response {
 		$uri = $request->getUri()->getPath();
-		$authorized = SecurityManager::getInstance()->checkHttpAccess($request);
+		$isAccessible = $this->isAccessable($request, $uri);
 		$file = $this->getFullFilePath($uri);
-		if (file_exists($file) && $authorized) {
+		if (file_exists($file) && $isAccessible) {
 			return new Response(
 				200,
 				[Mime::getContentType($file)],
 				file_get_contents($file)
 			);
-		} elseif ($uri == '/config.js' && $authorized) {
+		} elseif ($uri == '/config.js' && $isAccessible) {
 			return $this->handleConfigJs();
-		} elseif ($uri == '/unauthorized' || !$authorized) {
+		} elseif ($uri == '/unauthorized' || !$isAccessible) {
 			return $this->handleErrorUnauthorized();
 		} else {
 			return $this->handleErrorNotFound();
 		}
+	}
+
+	public function isAccessable(
+		ServerRequestInterface $request,
+		string $uri
+	) : bool {
+		return (
+			SecurityManager::getInstance()->checkHttpAccess($request)
+			|| in_array($uri, $this->publicFiles)
+		);
 	}
 
 	protected function getFullFilePath(string $file) : string {
