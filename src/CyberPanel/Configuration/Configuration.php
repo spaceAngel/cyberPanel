@@ -14,6 +14,8 @@ class Configuration {
 
 	private string $lastFmApiKey;
 
+	private array $clients;
+
 	private function __construct() {
 		$this->systemLimits  = new SystemLimits();
 	}
@@ -49,4 +51,16 @@ class Configuration {
 	public function setLastFmApiKey(string $apiKey) : void {
 		$this->lastFmApiKey = $apiKey;
 	}
+
+	public function setClients(array $clients) : void {
+		$this->clients = $clients;
+	}
+
+	public function getClients() : array {
+		return array_merge(
+			$this->clients,
+			['127.0.0.1']
+		);
+	}
 }
+

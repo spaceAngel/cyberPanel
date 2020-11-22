@@ -5,6 +5,7 @@ namespace CyberPanel;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use CyberPanel\Commands\CommandParser;
+use CyberPanel\Security\SecurityManager;
 
 class WsServer implements MessageComponentInterface {
 	protected $clients;
@@ -12,11 +13,16 @@ class WsServer implements MessageComponentInterface {
 		$this->clients = new \SplObjectStorage ();
 	}
 
-	public function onOpen(ConnectionInterface $conn) {
+	public function onOpen(ConnectionInterface $connection) {
 		// Store the new connection to send messages to later
-		$this->clients->attach ( $conn );
-
-		echo "New connection! ({$conn->resourceId})\n";
+		if (!SecurityManager::getInstance()->checkSocketAccess($connection)) {
+			echo "Unauthorized connection [{$connection->remoteAddress}]\n";
+			$connection->send('unauthorized');
+			$connection->close();
+		} else {
+			$this->clients->attach($connection);
+			echo "New connection! ({$connection->resourceId})\n";
+		}
 	}
 
 	/**

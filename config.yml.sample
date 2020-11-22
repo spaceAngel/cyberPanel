@@ -21,3 +21,5 @@ macros:
      icon: fa-envelope
    - caption: eclipse
      icon: fa-code
+clients:
+    - 192.168.0.2

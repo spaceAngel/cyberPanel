@@ -53,6 +53,10 @@ var socket = {
 	},
 
 	onMessage: function(rawData) {
+		if (rawData.data == 'unauthorized') {
+			location.href = 'unauthorized';
+		}
+
 		var data = (JSON.parse(rawData.data));
 		if (socket.handlers[data.command] !== undefined) {
 			cyberPanel.disconnected = false;

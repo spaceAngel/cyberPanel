@@ -7,10 +7,12 @@ use React\EventLoop\Factory;
 use React\Http\Server;
 use Psr\Http\Message\ServerRequestInterface;
 use CyberPanel\Server\Utils\Mime;
+use CyberPanel\Security\SecurityManager;
 
 class WebServer  {
 
 	const PAGE_NOTFOUND = 'errors/notfound.html';
+	const PAGE_UNAUTHORIZED = 'errors/unauthorized.html';
 
 	protected $port;
 
@@ -32,15 +34,18 @@ class WebServer  {
 
 	protected function handleRequest(ServerRequestInterface $request) : Response {
 		$uri = $request->getUri()->getPath();
+		$authorized = SecurityManager::getInstance()->checkHttpAccess($request);
 		$file = $this->getFullFilePath($uri);
-		if (file_exists($file)) {
+		if (file_exists($file) && $authorized) {
 			return new Response(
 				200,
 				[Mime::getContentType($file)],
 				file_get_contents($file)
 			);
-		} elseif ($uri == '/config.js') {
+		} elseif ($uri == '/config.js' && $authorized) {
 			return $this->handleConfigJs();
+		} elseif ($uri == '/unauthorized' || !$authorized) {
+			return $this->handleErrorUnauthorized();
 		} else {
 			return $this->handleErrorNotFound();
 		}
@@ -70,5 +75,12 @@ class WebServer  {
 		);
 	}
 
-
+	protected function handleErrorUnauthorized() : Response {
+		$page = $this->getFullFilePath(self::PAGE_UNAUTHORIZED);
+		return new Response(
+			401,
+			[Mime::getContentType($page)],
+			file_get_contents($page)
+		);
+	}
 }
