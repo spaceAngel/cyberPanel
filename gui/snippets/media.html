@@ -1,31 +1,31 @@
-<div class="box mediapanel" id="mediaPanel">
-		<div class="content">
-			<div class="player">
-				<div class="currentsong">
-					&nbsp;<% media.currentsong.name %>
-				</div>
-				<div class="controls">
-					<i class="fa fa-2x button fa-play" onclick="mediaWidget.play()" v-if="!media.playing"></i>
-					<i class="fa fa-2x button fa-pause" onclick="mediaWidget.pause()" v-if="media.playing"></i>
-					<i class="fa fa-2x button fa-stop" onclick="mediaWidget.stop()"></i>
-					<i class="fa fa-2x button fa-fast-backward" onclick="mediaWidget.previous()"></i>
-					<i class="fa fa-2x button fa-fast-forward" onclick="mediaWidget.next()"></i>
-				</div>
-				<div class="bar" v-if="media.currentsong">
-					<div class="full" v-bind:style="{width: media.position * 100  / media.length + '%' }"></div>
-				</div>
+<div class="box mediaPanel" id="mediaPanel">
+	<div class="content">
+		<div class="player">
+			<div class="currentsong">
+				&nbsp;<% media.currentsong.name %>
 			</div>
-			<div class="volume">
-				<div class="bar">
-					<div class="full" v-bind:style="{width: media.volume + '%' }"></div>
-				</div>
-				<div class="controls">
-					<i class="fas fa-2x button fa-volume-down" onclick="mediaWidget.volumeDown()"></i>
-					<i class="fas fa-2x button fa-volume-up" onclick="mediaWidget.volumeUp()"></i>
-					<i class="fas fa-2x button fa-volume-mute" onclick="mediaWidget.volumeUnmute()" v-if="media.muted" ></i>
-					<i class="fas fa-2x button fa-volume-off" onclick="mediaWidget.volumeMute()" v-if="!media.muted" ></i>
-				</div>
+			<div class="controls">
+				<i class="fa fa-2x button fa-play" onclick="mediaWidget.play()" v-if="!media.playing"></i>
+				<i class="fa fa-2x button fa-pause" onclick="mediaWidget.pause()" v-if="media.playing"></i>
+				<i class="fa fa-2x button fa-stop" onclick="mediaWidget.stop()"></i>
+				<i class="fa fa-2x button fa-fast-backward" onclick="mediaWidget.previous()"></i>
+				<i class="fa fa-2x button fa-fast-forward" onclick="mediaWidget.next()"></i>
 			</div>
-			<div class="clear"></div>
+			<div class="bar" v-if="media.currentsong">
+				<div class="full" v-bind:style="{width: media.position * 100  / media.length + '%' }"></div>
+			</div>
 		</div>
-	</div>	
+		<div class="volume">
+			<div class="bar">
+				<div class="full" v-bind:style="{width: media.volume + '%' }"></div>
+			</div>
+			<div class="controls">
+				<i class="fas fa-2x button fa-volume-down" onclick="mediaWidget.volumeDown()"></i>
+				<i class="fas fa-2x button fa-volume-up" onclick="mediaWidget.volumeUp()"></i>
+				<i class="fas fa-2x button fa-volume-mute" onclick="mediaWidget.volumeUnmute()" v-if="media.muted" ></i>
+				<i class="fas fa-2x button fa-volume-off" onclick="mediaWidget.volumeMute()" v-if="!media.muted" ></i>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
