@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			{command:'downloads', parameters:[]},
 			{command:'ping', parameters:[]},
 		]);
-	}, 1000);
+	}, 900);
 
 	setInterval(function() {
 		socket.sendMultiple([
