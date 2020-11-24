@@ -17,6 +17,14 @@ var config = {
 		"covid",
 		"hospitals"
 	],
+	sidebar: [
+		"time",
+		"temperatures",
+		"cpu",
+		"memory",
+		"keyboard",
+		"date"
+	],
 	hwLimits: {
 		cpu: {
 			temperature: ' . Configuration::getInstance()->getSystemLimits()->getTempCpu() . '

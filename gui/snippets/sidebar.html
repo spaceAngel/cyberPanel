@@ -1,8 +1,10 @@
 <div class="side">
-	<!--(bake sidebar/time.html)-->
-	<!--(bake sidebar/date.html)-->
-	<!--(bake sidebar/keyboard.html)-->
-	<!--(bake sidebar/temperature.html)-->
-	<!--(bake sidebar/cpu.html)-->
-	<!--(bake sidebar/memory.html)-->	
+	<template v-for="box, key in config.sidebar">
+		<template v-if="box == 'time'"><!--(bake sidebar/time.html)--></template>
+		<template v-if="box == 'date'"><!--(bake sidebar/date.html)--></template>
+		<template v-if="box == 'keyboard'"><!--(bake sidebar/keyboard.html)--></template>
+		<template v-if="box == 'temperatures'"><!--(bake sidebar/temperature.html)--></template>
+		<template v-if="box == 'cpu'"><!--(bake sidebar/cpu.html)--></template>
+		<template v-if="box == 'memory'"><!--(bake sidebar/memory.html)--></template>
+	</template>	
 </div>
