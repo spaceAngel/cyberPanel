@@ -15,6 +15,7 @@ class CovidCommand extends BaseCommand {
 
 	protected $hospitalCapacities;
 
+
 	public function __construct(string $invokingCommand, array $parameters = []) {
 		parent::__construct($invokingCommand, $parameters);
 		$this->news = new News();
