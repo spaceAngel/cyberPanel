@@ -56,7 +56,10 @@ var defaultDataStruct = {
 	covid: {
 		news: [],
 		stats: {
-			pes: 0,
+			pes: {
+				score: 0,
+				level: 1
+			},
 			cases: {
 				yesterday: 0,
 				total: 0
