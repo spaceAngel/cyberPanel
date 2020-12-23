@@ -57,8 +57,14 @@ var defaultDataStruct = {
 		news: [],
 		stats: {
 			pes: {
-				score: 0,
-				level: 1
+				official: {
+					score: 0,
+					level: 1
+				},
+				current: {
+					score: 0,
+					level: 1
+				}
 			},
 			cases: {
 				yesterday: 0,

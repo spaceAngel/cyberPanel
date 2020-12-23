@@ -10,6 +10,10 @@ class Summary {
 
 	const URL_MZCR_PES = 'https://share.uzis.cz/s/BRfppYFpNTddAy4/download?path=%2F&files=pes_CR.csv';
 
+	const URL_MZCR_PES_OFFICIAL = 'https://onemocneni-aktualne.mzcr.cz/pes';
+
+	CONST REGEXP_MZCR_PES_OFFICIAL = '/html/body/main/div[3]/div/div[1]/div[2]/div/div[2]/table/tbody/tr[2]/td/p/span';
+
 	protected array $levels = [
 		1 => 20,
 		2 => 40,
@@ -20,14 +24,22 @@ class Summary {
 	// phpcs::enable
 
 	public function getStats() : array {
+
+		$officialPes = $this->getOfficialPesLevel();
 		$raw = file_get_contents(self::URL_MZCR_STATS);
 		$json = json_decode($raw);
 		$data = $json->data[0];
 		$pesScore = $this->getPes();
 		return [
 			'pes' => [
-				'score' => $pesScore,
-				'level' => $this->getPesLevel($pesScore),
+				'current' => [
+					'score' => $pesScore,
+					'level' => $this->getPesLevel($pesScore),
+				],
+				'official' => [
+					'score' => $this->levels[$officialPes],
+					'level' => $officialPes,
+				]
 			],
 			'cases' => [
 				'yesterday' => $data->potvrzene_pripady_vcerejsi_den,
@@ -55,6 +67,15 @@ class Summary {
 				return $pes;
 			}
 		}
+	}
+
+	protected function getOfficialPesLevel() : int {
+		$dom = new \DOMDocument();
+		$dom->loadHTMLFile(self::URL_MZCR_PES_OFFICIAL, LIBXML_NOERROR);
+		$parser = new \DOMXPath($dom);
+		$actualLevel = $parser->query(self::REGEXP_MZCR_PES_OFFICIAL);
+		$text = $actualLevel[0]->textContent;
+		return (int)substr($text, 8, 1);
 	}
 
 }
