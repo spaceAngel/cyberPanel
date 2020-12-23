@@ -7,6 +7,7 @@ use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
 use CyberPanel\WsServer as CyberpanelSocketServer;
 use CyberPanel\Server\WebServer;
+use CyberPanel\Logging\Log;
 
 class CyberPanel {
 
@@ -23,6 +24,8 @@ class CyberPanel {
 	private function __construct() {
 		$this->init();
 		$this->handleInfoSwitches();
+		$this->checkForLogingSettings();
+		Log::info('Starting CyberPanel version %s', [$this->getVersion()]);
 		if ($this->isRunningAsDaemon()) {
 			$this->daemonize();
 		}
@@ -40,8 +43,14 @@ class CyberPanel {
 		return self::$instance;
 	}
 
+	private function checkForLogingSettings() {
+		if ($this->isRunningWithSwitch('v', 'verbose')) {
+			Log::enableConsoleOutput();
+		}
+	}
+
 	private function handleInfoSwitches() {
-		if ($this->isRunningWithSwitch('v', 'version')) {
+		if ($this->isRunningWithSwitch('V', 'version')) {
 			$this->println($this->getVersion());
 			exit();
 		}
@@ -56,15 +65,14 @@ class CyberPanel {
 			),
 			$this->getPort()
 		);
-
+		Log::info('Starting socket server on port %s', [$this->getPort()]);
 		$this->socketServer->run();
-
 	}
 
 	private function runWebServer() {
 		$this->webServer = new WebServer();
+		Log::info('Starting webserver');
 		$this->webServer->run();
-
 	}
 
 	private function getPort() : int {
@@ -83,8 +91,8 @@ class CyberPanel {
 
 	private function init() : void {
 		$this->options = getopt(
-			'p::d::v::h::',
-			['port::', 'daemonise', 'version', 'help']
+			'p::d::v::h::V::',
+			['port::', 'daemonise', 'version', 'help', 'verbose']
 		);
 	}
 

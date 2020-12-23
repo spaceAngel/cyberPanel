@@ -8,6 +8,8 @@ use React\Http\Server;
 use Psr\Http\Message\ServerRequestInterface;
 use CyberPanel\Server\Utils\Mime;
 use CyberPanel\Security\SecurityManager;
+use CyberPanel\Logging\Log;
+use React\Http\Client\Request;
 
 class WebServer  {
 
@@ -42,17 +44,13 @@ class WebServer  {
 		$isAccessible = $this->isAccessable($request, $uri);
 		$file = $this->getFullFilePath($uri);
 		if (file_exists($file) && $isAccessible) {
-			return new Response(
-				200,
-				[Mime::getContentType($file)],
-				file_get_contents($file)
-			);
+			return $this->handleGetFile($file, $request);
 		} elseif ($uri == '/config.js' && $isAccessible) {
-			return $this->handleConfigJs();
+			return $this->handleConfigJs($request);
 		} elseif ($uri == '/unauthorized' || !$isAccessible) {
-			return $this->handleErrorUnauthorized();
+			return $this->handleErrorUnauthorized($file, $request);
 		} else {
-			return $this->handleErrorNotFound();
+			return $this->handleErrorNotFound($request);
 		}
 	}
 
@@ -66,6 +64,24 @@ class WebServer  {
 		);
 	}
 
+	protected function handleGetFile(
+		string $file,
+		ServerRequestInterface $request
+	) : Response {
+		Log::info(
+			'HTTP GET 200 %s %s',
+			[
+				$request->getUri()->getPath(),
+				$request->getServerParams()['REMOTE_ADDR']
+			]
+		);
+		return new Response(
+			200,
+			[Mime::getContentType($file)],
+			file_get_contents($file)
+		);
+	}
+
 	protected function getFullFilePath(string $file) : string {
 		if ($file == '/') {
 			$file = 'index.html';
@@ -73,7 +89,11 @@ class WebServer  {
 		return realpath($this->baseDir . $file);
 	}
 
-	protected function handleConfigJs() : Response {
+	protected function handleConfigJs(ServerRequestInterface $request) : Response {
+		Log::info(
+			'HTTP GET 200 config.js %s',
+			[ $request->getServerParams()['REMOTE_ADDR'] ]
+		);
 		return new Response(
 			200,
 			[Mime::getContentType('/config.js')],
@@ -81,7 +101,16 @@ class WebServer  {
 		);
 	}
 
-	protected function handleErrorNotFound() : Response {
+	protected function handleErrorNotFound(
+		ServerRequestInterface $request
+	) : Response {
+		Log::error(
+			'HTTP GET 404 %s %s',
+			[
+				$request->getUri()->getPath(),
+				$request->getServerParams()['REMOTE_ADDR']
+			]
+		);
 		$page = $this->getFullFilePath(self::PAGE_NOTFOUND);
 		return new Response(
 			404,
@@ -90,8 +119,19 @@ class WebServer  {
 		);
 	}
 
-	protected function handleErrorUnauthorized() : Response {
+	protected function handleErrorUnauthorized(
+		string $file,
+		ServerRequestInterface $request
+	) : Response {
+
 		$page = $this->getFullFilePath(self::PAGE_UNAUTHORIZED);
+		Log::warn(
+			'HTTP GET 401 %s %s',
+			[
+				$file,
+				$request->getServerParams()['REMOTE_ADDR']
+			]
+		);
 		return new Response(
 			401,
 			[Mime::getContentType($page)],

@@ -6,6 +6,7 @@ use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use CyberPanel\Commands\CommandParser;
 use CyberPanel\Security\SecurityManager;
+use CyberPanel\Logging\Log;
 
 class WsServer implements MessageComponentInterface {
 	protected $clients;
@@ -16,12 +17,12 @@ class WsServer implements MessageComponentInterface {
 	public function onOpen(ConnectionInterface $connection) {
 		// Store the new connection to send messages to later
 		if (!SecurityManager::getInstance()->checkSocketAccess($connection)) {
-			echo "Unauthorized connection [{$connection->remoteAddress}]\n";
+			Log::warn('Unauthorized client %s', [$connection->remoteAddress]);
 			$connection->send('unauthorized');
 			$connection->close();
 		} else {
 			$this->clients->attach($connection);
-			echo "New connection! ({$connection->resourceId})\n";
+			Log::info('Client %s connected', [$connection->remoteAddress]);
 		}
 	}
 
@@ -44,8 +45,7 @@ class WsServer implements MessageComponentInterface {
 	public function onClose(ConnectionInterface $conn) {
 		// The connection is closed, remove it, as we can no longer send it messages
 		$this->clients->detach($conn);
-
-		echo "Connection {$conn->resourceId} has disconnected\n";
+		Log::info('Client %s diconnected', [$conn->remoteAddress]);
 	}
 
 	public function onError(ConnectionInterface $conn, \Exception $e) {
