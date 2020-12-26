@@ -119,9 +119,11 @@ class SystemInfo {
 		$values = explode(',', $raw);
 		$gpu = new GpuSystemInfo();
 		$gpu->setTemperature((int)$values[0] == $values[0] ? (int)$values[0] : 0);
-		$gpu->setLoad((int)$values[1]);
-		$gpu->setMemoryFree($values[3]);
-		$gpu->setMemoryTotal($values[2]);
+		if (count($values) == 4) {
+			$gpu->setLoad((int)$values[1]);
+			$gpu->setMemoryFree($values[3]);
+			$gpu->setMemoryTotal($values[2]);
+		}
 		return $gpu;
 	}
 

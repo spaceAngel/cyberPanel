@@ -52,21 +52,22 @@
 			<span class="label">Model:</span>
 			<span class="value"><% hwInfo.gpu %></span>
 		</div>
-		<div class="row">
-			<span class="label">Temp:</span>
-			<span class="value"><% systemInfo.temperatures.gpu %> &#176;C</span>
+		<div v-if="systemInfo.gpu.load != null">
+			<div class="row">
+				<span class="label">Temp:</span>
+				<span class="value"><% systemInfo.temperatures.gpu %> &#176;C</span>
+			</div>
+			<div class="row">
+				<span class="label">Usage:</span>
+				<span class="value"><% systemInfo.gpu.load %> %</span>
+			</div>
+			<div class="row">
+				<span class="label">Memory free:</span>
+				<span class="value">
+					<% systemInfo.gpu.memory.free %> / <% systemInfo.gpu.memory.total %>
+				</span>
+			</div>
 		</div>
-		<div class="row">
-			<span class="label">Usage:</span>
-			<span class="value"><% systemInfo.gpu.load %> %</span>
-		</div>
-		<div class="row">
-			<span class="label">Memory free:</span>
-			<span class="value">
-				<% systemInfo.gpu.memory.free %> / <% systemInfo.gpu.memory.total %>
-			</span>
-		</div>
-		
 		
 	</div>
 </div>

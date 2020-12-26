@@ -5,12 +5,12 @@ namespace CyberPanel\DataStructs;
 
 class GpuSystemInfo {
 
-	private int $temperature;
-	private int $load;
+	private ?int $temperature;
+	private ?int $load = NULL;
 	private $memoryFree;
 	private $memoryTotal;
 
-	public function getLoad() : int {
+	public function getLoad() : ?int {
 		return $this->load;
 	}
 
