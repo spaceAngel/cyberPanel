@@ -2,6 +2,8 @@
 
 namespace CyberPanel\Covid\Stats;
 
+use CyberPanel\Logging\Log;
+
 class Summary {
 
 	// phpcs:disable Generic.Files.LineLength
@@ -71,11 +73,15 @@ class Summary {
 
 	protected function getOfficialPesLevel() : int {
 		$dom = new \DOMDocument();
-		$dom->loadHTMLFile(self::URL_MZCR_PES_OFFICIAL, LIBXML_NOERROR);
-		$parser = new \DOMXPath($dom);
-		$actualLevel = $parser->query(self::REGEXP_MZCR_PES_OFFICIAL);
-		$text = $actualLevel[0]->textContent;
-		return (int)substr($text, 8, 1);
+		if ($dom->loadHTMLFile(self::URL_MZCR_PES_OFFICIAL, LIBXML_NOERROR)) {
+			$parser = new \DOMXPath($dom);
+			$actualLevel = $parser->query(self::REGEXP_MZCR_PES_OFFICIAL);
+			$text = $actualLevel[0]->textContent;
+			return (int)substr($text, 8, 1);
+		} else {
+			Log::error('Cannot load PES score from %s', [self::URL_MZCR_PES_OFFICIAL]);
+			return 0;
+		}
 	}
 
 }

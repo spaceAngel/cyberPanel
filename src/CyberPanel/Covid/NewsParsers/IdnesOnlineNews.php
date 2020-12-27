@@ -3,6 +3,7 @@
 namespace CyberPanel\Covid\NewsParsers;
 
 use \DOMDocument;
+use CyberPanel\Logging\Log;
 
 class IdnesOnlineNews implements Parser {
 
@@ -10,20 +11,24 @@ class IdnesOnlineNews implements Parser {
 
 	public function getNews() : array {
 		$dom = new DOMDocument();
-		$dom->loadHTMLFile(self::URL_IDNES, LIBXML_NOERROR);
-		$parser = new \DOMXPath($dom);
-		$news = $parser->query('//div[contains(@class, "event")]');
-		$rslt = [];
-		foreach ($news as $new) {
-			$item = $this->parseItem($new);
-			if (!empty($rslt) && $rslt[count($rslt) - 1]['microtime'] < $item['microtime']) {
-				$item['microtime'] = $this->humanToMicrotime(
-					trim($new->parentNode->childNodes[3]->textContent), TRUE
-				);
+		if ($dom->loadHTMLFile(self::URL_IDNES, LIBXML_NOERROR)) {
+			$parser = new \DOMXPath($dom);
+			$news = $parser->query('//div[contains(@class, "event")]');
+			$rslt = [];
+			foreach ($news as $new) {
+				$item = $this->parseItem($new);
+				if (!empty($rslt) && $rslt[count($rslt) - 1]['microtime'] < $item['microtime']) {
+					$item['microtime'] = $this->humanToMicrotime(
+						trim($new->parentNode->childNodes[3]->textContent), TRUE
+					);
+				}
+				$rslt[] = $item;
 			}
-			$rslt[] = $item;
+			return $rslt;
+		} else {
+			Log::error('Error during contacting IdnesNews on URL: %s', [self::URL_IDNES]);
+			return [];
 		}
-		return $rslt;
 	}
 
 	protected function parseItem($new) {
