@@ -1,0 +1,20 @@
+Application for usage of tablet wit browser as info panel / macro command / media command. 
+
+It contains two parts - linux daemon, which act both as simple webserver (for serving gui) 
+and socket server (for handling / retrivieng commands and serving data to web-base gui);
+and web based (HTML/ JavaScript / CSS) gui served by the daemon (webserver).
+
+Daemon needs configuration file for running - config.yml (you can simply copy commented config.yml.sample), which contains:
+ - definitions of macros for macro tab
+ - hw limits - temperature (in Celsium degrees), cpu/gpu load (in %), RAM / GPU memory utilization (in %)
+ - used main panels and their order
+ - used right-panel widgets and their order
+
+Application can be started with multiple switches:
+ -h, --help		print this help
+ -v, --version		print application version
+ 
+ -V, --verbose		print log output into console
+ -d, --daemonize	run as daemon - send running app onto background and detach from current terminal
+ -p=PORT, --port=PORT	set integer value of PORT as port for socket server (if default 8081 is in use)
+

@@ -54,6 +54,10 @@ class CyberPanel {
 			$this->println($this->getVersion());
 			exit();
 		}
+		if ($this->isRunningWithSwitch('h', 'help')) {
+			echo $this->getHelp();
+			exit();
+		}
 	}
 
 	private function runSocketServer() {
@@ -113,6 +117,10 @@ class CyberPanel {
 
 	private function println(string $str) : void {
 		echo $str . "\n";
+	}
+
+	private function getHelp() : string {
+		return file_get_contents(__DIR__ . '/help.txt');
 	}
 
 }
