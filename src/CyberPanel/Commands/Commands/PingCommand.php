@@ -29,16 +29,22 @@ class PingCommand extends BaseCommand {
 	public function run() : array {
 		$lastTouch = microtime(TRUE) - filemtime(self::$file);
 		clearstatcache();
-		$output = file(self::$file);
+		$output = file_exists(self::$file) ? file(self::$file) : [];
+		$output = is_array($output) ? $output : [];
 		$output = array_slice($output, -10);
+
 		$parsed = [];
 		preg_match(self::REGEXP_PARSE_TIMEOUT, $output[count($output) - 1], $parsed);
 
-		$output = implode('', $output);
+		if (count($parsed) >= 2 && $parsed[2] == 's') {
+			$time = (float)$parsed[1] * 1000;
+		} elseif (count($parsed) >= 2) {
+			$time = (float)$parsed[1];
+		}
 		return [
-			'pings' => $output,
+			'pings' => implode('', $output),
 			'disconnected' => $lastTouch > self::TIMEOUT_MARK_AS_DISCONNECT,
-			'time' => $parsed[2] == 's' ? (float)$parsed[1] * 1000 : (float)$parsed[1],
+			'time' => !empty($time) ? $time : 9999
 		];
 	}
 
