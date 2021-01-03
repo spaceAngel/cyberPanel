@@ -57,6 +57,7 @@ class IdnesOnlineNews implements Parser {
 	}
 
 	protected function humanToMicrotime(string $human, bool $dayBefore = FALSE) : int {
+		$human = str_replace('O', '0', $human);
 		$date = new \DateTime($human);
 		if ($dayBefore) {
 			$date->modify('-1 day');
