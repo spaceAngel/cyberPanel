@@ -3,32 +3,36 @@
 namespace CyberPanel\Covid\NewsParsers;
 
 use \DOMDocument;
+use CyberPanel\Exceptions\RemoteContentNotDownloadedException;
 use CyberPanel\Logging\Log;
+use CyberPanel\Utils\WebDownloader;
 
 class IdnesOnlineNews implements Parser {
 
 	const URL_IDNES = 'https://www.idnes.cz/koronavirus/online';
 
 	public function getNews() : array {
-		$dom = new DOMDocument();
-		if ($dom->loadHTMLFile(self::URL_IDNES, LIBXML_NOERROR)) {
-			$parser = new \DOMXPath($dom);
-			$news = $parser->query('//div[contains(@class, "event")]');
-			$rslt = [];
-			foreach ($news as $new) {
-				$item = $this->parseItem($new);
-				if (!empty($rslt) && $rslt[count($rslt) - 1]['microtime'] < $item['microtime']) {
-					$item['microtime'] = $this->humanToMicrotime(
-						trim($new->parentNode->childNodes[3]->textContent), TRUE
-					);
-				}
-				$rslt[] = $item;
-			}
-			return $rslt;
-		} else {
+		$dom = new DOMDocument('1.0', 'UTF-8');
+		try {
+			$html = WebDownloader::download(self::URL_IDNES);
+		} catch (RemoteContentNotDownloadedException $e) {
 			Log::error('Error during contacting IdnesNews on URL: %s', [self::URL_IDNES]);
 			return [];
 		}
+		$dom->loadHTML('<?xml encoding="UTF-8">' . $html, LIBXML_NOERROR);
+		$parser = new \DOMXPath($dom);
+		$news = $parser->query('//div[contains(@class, "event")]');
+		$rslt = [];
+		foreach ($news as $new) {
+			$item = $this->parseItem($new);
+			if (!empty($rslt) && $rslt[count($rslt) - 1]['microtime'] < $item['microtime']) {
+				$item['microtime'] = $this->humanToMicrotime(
+					trim($new->parentNode->childNodes[3]->textContent), TRUE
+				);
+			}
+			$rslt[] = $item;
+		}
+		return $rslt;
 	}
 
 	protected function parseItem($new) {
@@ -43,7 +47,7 @@ class IdnesOnlineNews implements Parser {
 			'html' => $html,
 			'flag' => $flag,
 			'microtime' => $this->humanToMicrotime(
-				trim($new->parentNode->childNodes[3]->textContent)
+				trim((string)$new->parentNode->childNodes[3]->textContent)
 			),
 			'important' => (bool)strpos(
 				$new->ownerDocument->saveHTML($new->parentNode),

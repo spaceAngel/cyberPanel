@@ -3,6 +3,8 @@
 namespace CyberPanel\Covid\Stats;
 
 use CyberPanel\Logging\Log;
+use CyberPanel\Utils\WebDownloader;
+use CyberPanel\Exceptions\RemoteContentNotDownloadedException;
 
 class Summary {
 
@@ -28,7 +30,12 @@ class Summary {
 	public function getStats() : array {
 
 		$officialPes = $this->getOfficialPesLevel();
-		$raw = file_get_contents(self::URL_MZCR_STATS);
+		try {
+			$raw = WebDownloader::download(self::URL_MZCR_STATS);
+		} catch (RemoteContentNotDownloadedException $e) {
+			Log::error('Cannot load COVID summanry data from %s', [self::URL_MZCR_STATS]);
+			$raw = '{}';
+		}
 		$json = json_decode($raw);
 		$data = $json->data[0];
 		$pesScore = $this->getPes();
@@ -54,7 +61,12 @@ class Summary {
 	}
 
 	protected function getPes() : int {
-		$csv = file_get_contents(self::URL_MZCR_PES);
+		try {
+			$csv = WebDownloader::download(self::URL_MZCR_PES);
+		} catch (RemoteContentNotDownloadedException $e) {
+			Log::error('Cannot load current PES score from %s', [self::URL_MZCR_PES]);
+			return 0;
+		}
 		$csv = explode("\n", $csv);
 		$header = str_getcsv($csv[0], ';');
 		$header = array_flip($header);
@@ -73,15 +85,18 @@ class Summary {
 
 	protected function getOfficialPesLevel() : int {
 		$dom = new \DOMDocument();
-		if ($dom->loadHTMLFile(self::URL_MZCR_PES_OFFICIAL, LIBXML_NOERROR)) {
-			$parser = new \DOMXPath($dom);
-			$actualLevel = $parser->query(self::REGEXP_MZCR_PES_OFFICIAL);
-			$text = $actualLevel[0]->textContent;
-			return (int)substr($text, 8, 1);
-		} else {
-			Log::error('Cannot load PES score from %s', [self::URL_MZCR_PES_OFFICIAL]);
+		try {
+			$html = WebDownloader::download(self::URL_MZCR_PES_OFFICIAL);
+		} catch (RemoteContentNotDownloadedException $€) {
+			Log::error('Cannot load PES level from %s', [self::URL_MZCR_PES_OFFICIAL]);
 			return 0;
 		}
+		$dom->loadHTML($html, LIBXML_NOERROR);
+		$parser = new \DOMXPath($dom);
+		$actualLevel = $parser->query(self::REGEXP_MZCR_PES_OFFICIAL);
+		$text = $actualLevel[0]->textContent;
+		return (int)substr($text, 8, 1);
+
 	}
 
 }
