@@ -17,7 +17,7 @@ use CyberPanel\Commands\Commands\CovidCommand;
 use CyberPanel\Commands\Commands\OpenInBrowserCommand;
 use CyberPanel\Commands\Commands\PingCommand;
 
-class CommandParser {
+class CommandResolver {
 
 	private static $instance;
 
@@ -40,7 +40,7 @@ class CommandParser {
 		$this->registerCommand('ping', PingCommand::class);
 	}
 
-	public static function getInstance() : CommandParser {
+	public static function getInstance() : self {
 		if (empty(self::$instance)) {
 			self::$instance = new self();
 		}

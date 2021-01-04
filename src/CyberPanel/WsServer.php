@@ -4,9 +4,9 @@ namespace CyberPanel;
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-use CyberPanel\Commands\CommandParser;
 use CyberPanel\Security\SecurityManager;
 use CyberPanel\Logging\Log;
+use CyberPanel\Commands\CommandResolver;
 
 class WsServer implements MessageComponentInterface {
 	protected $clients;
@@ -30,7 +30,7 @@ class WsServer implements MessageComponentInterface {
 	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 */
 	public function onMessage(ConnectionInterface $conn, $msg) {
-		$commands = CommandParser::getInstance()->parse(
+		$commands = CommandResolver::getInstance()->parse(
 			json_decode($msg)
 		);
 
