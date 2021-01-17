@@ -76,7 +76,12 @@
 	<h2>Storages</h2>
 	<div v-for="storage in hwInfo.storages" class="block">
 		<div class="row">
-			<h3><i class="fas fa-hdd"></i><% storage.caption %></h3>
+			<div class="col">
+				<h3><i class="fas fa-hdd"></i><% storage.caption %></h3>
+			</div>
+			<div class="col">
+				<div class="bar"><div class="full" v-bind:style="{width: (Number(storage.used * 100 / storage.size).toFixed(1)) + '%' }"></div></div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col">
