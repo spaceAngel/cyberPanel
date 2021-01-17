@@ -12,7 +12,7 @@ class Summary {
 
 	const URL_MZCR_STATS = 'https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/zakladni-prehled.json';
 
-	const URL_MZCR_PES = 'https://share.uzis.cz/s/62bR5mfK3DjL2Xs/download?path=%2F&files=pes_CR_verze2.csv';
+	const URL_MZCR_PES = 'https://share.uzis.cz/s/BRfppYFpNTddAy4/download?path=%2F&files=pes_CR_verze2.csv';
 
 	const URL_MZCR_PES_OFFICIAL = 'https://onemocneni-aktualne.mzcr.cz/pes';
 
