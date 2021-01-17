@@ -13,7 +13,8 @@ class DownloadsCommand extends BaseCommand{
 				'filename' => $download->getFilename(),
 				'bytesReceived' => $download->getDownloaded(),
 				'bytesTotal' => $download->getTotal(),
-				'estimatedEndTime' => $download->getEstimatedEndTime(),
+				'estimatedInterval' => $download->getCalculatedInterval(),
+				'speed' => $download->getCalculatedSpeed(),
 			];
 		}
 		return [

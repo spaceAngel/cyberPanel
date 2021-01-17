@@ -8,10 +8,10 @@
 				<% download.bytesReceived / 1024| bytesToHuman %> / <% download.bytesTotal / 1024 | bytesToHuman %>
 			</div>
 			<div class="w33">
-				<% (Date.parse(download.estimatedEndTime) - (new Date)) | milisecondsToHuman %>
+				<% download.estimatedInterval * 1000| milisecondsToHuman %>
 			</div>
 			<div class="w33">
-				<% (download.bytesTotal - download.bytesReceived) / (Date.parse(download.estimatedEndTime) - (new Date)) | bytesToHuman %> / s
+				<% download.speed | bytesToHuman %> / s 
 			</div>
 		</div>
 	</div>

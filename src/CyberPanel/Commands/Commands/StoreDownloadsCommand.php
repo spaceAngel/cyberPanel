@@ -17,7 +17,7 @@ class StoreDownloadsCommand extends BaseCommand{
 			$download->setTotal($parameter->bytesTotal);
 			$download->setDownloaded($parameter->bytesReceived);
 			$download->setEstimatedEndTime(
-				empty($parameter->estimatedEndTime) ? NULL : $parameter->estimatedEndTime
+				new \DateTime($parameter->estimatedEndTime ?? NULL )
 			);
 			self::$storedDownloads[] = $download;
 		}
