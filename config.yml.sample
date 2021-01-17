@@ -11,6 +11,7 @@ macros:
    - caption: chrome
      icon: fa-chrome
      command: chromium
+   - delimiter: yes
    - caption: files
      icon: fa-folder
      command: krusader

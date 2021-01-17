@@ -13,6 +13,7 @@ class LoadMacrosCommand extends BaseCommand {
 				'caption' => $macro->getCaption(),
 				'icon' => $macro->getIcon(),
 				'hash' => $macro->getHash(),
+				'isDelimiter' => $macro->getIsDelimiter(),
 			];
 		}
 		return [ 'macros' => $macros];

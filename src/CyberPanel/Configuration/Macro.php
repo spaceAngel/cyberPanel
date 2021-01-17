@@ -10,6 +10,8 @@ class Macro {
 
 	private $command;
 
+	private bool $isDelimiter = FALSE;
+
 	public function getIcon() {
 		return $this->icon;
 	}
@@ -41,4 +43,12 @@ class Macro {
 		return $this;
 	}
 
+	public function getIsDelimiter() : bool {
+		return $this->isDelimiter;
+	}
+
+	public function setisDelimiter(bool $isDelimiter = TRUE) : self {
+		$this->isDelimiter = $isDelimiter;
+		return $this;
+	}
 }
