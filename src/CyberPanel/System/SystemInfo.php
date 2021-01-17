@@ -5,6 +5,7 @@ namespace CyberPanel\System;
 use CyberPanel\System\ShellCommands\SystemInfo as SystemInfoCommands;
 use CyberPanel\System\ShellCommands\GraphicNvidia;
 use CyberPanel\DataStructs\System\GpuSystemInfo;
+use CyberPanel\DataStructs\System\MemoryInfo;
 
 class SystemInfo {
 
@@ -56,12 +57,12 @@ class SystemInfo {
 
 	}
 
-	public function getMemory() {
+	public function getMemory() : MemoryInfo {
 		$memory = explode(' ', Executer::execAndGetResponse(SystemInfoCommands::CMD_MEMORY));
-		return [
-			'total' => $memory[0],
-			'used' => $memory[1],
-		];
+		$memoryInfo = new MemoryInfo();
+		$memoryInfo->setUsed($memory[1]);
+		$memoryInfo->setTotal($memory[0]);
+		return $memoryInfo;
 	}
 
 	public function getProcessList() : array {
