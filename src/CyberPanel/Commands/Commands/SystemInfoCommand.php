@@ -18,7 +18,8 @@ class SystemInfoCommand extends BaseCommand {
 			'cpuload' => SystemInfo::getInstance()->getCpuLoad(),
 			'memory' => [
 				'used' => $memory->getUsed(),
-				'total' => $memory->getTotal()
+				'total' => $memory->getTotal(),
+				'load' => $memory->getLoad()
 			],
 			'processes' => SystemInfo::getInstance()->getProcessList(),
 			'locked' => Systeminfo::getInstance()->isLockedScreen(),

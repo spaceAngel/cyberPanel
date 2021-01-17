@@ -23,4 +23,9 @@ class MemoryInfo {
 		$this->used = $used;
 	}
 
+	public function getLoad() : float {
+		return $this->getUsed() * 100 / $this->getTotal();
+	}
+
+
 }

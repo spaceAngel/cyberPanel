@@ -4,7 +4,7 @@
 			<span><% systemInfo.memory.used  | bytesToHuman %></span> 
 			/ <span><% systemInfo.memory.total | bytesToHuman %></span>
 		<div class="bar">
-			<div class="full" v-bind:style="{width: systemInfo.memory.used  * 100/ systemInfo.memory.total + '%'}"></div>
+			<div class="full" v-bind:style="{width: systemInfo.memory.load + '%'}"></div>
 		</div>
 	</div>
 </div>

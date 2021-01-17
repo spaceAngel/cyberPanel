@@ -9,7 +9,8 @@ var defaultDataStruct = {
 		cpuLoad: 40,
 		memory: {
 			used: 100,
-			total: 1000
+			total: 1000,
+			load: 11
 		},
 		temperatures: {
 			cpu: 100,
