@@ -1,7 +1,7 @@
 <?php
 
 
-namespace CyberPanel\DataStructs;
+namespace CyberPanel\DataStructs\System;
 
 class GpuSystemInfo {
 

@@ -4,7 +4,7 @@ namespace CyberPanel\System;
 
 use CyberPanel\System\ShellCommands\SystemInfo as SystemInfoCommands;
 use CyberPanel\System\ShellCommands\GraphicNvidia;
-use CyberPanel\DataStructs\GpuSystemInfo;
+use CyberPanel\DataStructs\System\GpuSystemInfo;
 
 class SystemInfo {
 
