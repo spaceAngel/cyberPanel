@@ -3,12 +3,12 @@
 namespace CyberPanel\Commands\Commands;
 
 use CyberPanel\Commands\BaseCommand;
-use CyberPanel\Configuration\Configuration;
+use CyberPanel\Macros\MacroManager;
 
 class LoadMacrosCommand extends BaseCommand {
 	public function run() : array {
 		$macros = [];
-		foreach (Configuration::getInstance()->getMacroList()->getMacros() as $macro) {
+		foreach (MacroManager::getInstance()->getMacros() as $macro) {
 			$macros[] = [
 				'caption' => $macro->getCaption(),
 				'icon' => $macro->getIcon(),

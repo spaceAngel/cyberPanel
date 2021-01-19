@@ -1,6 +1,6 @@
 <?php
 
-namespace CyberPanel\Configuration;
+namespace CyberPanel\Macros;
 
 class Macro {
 

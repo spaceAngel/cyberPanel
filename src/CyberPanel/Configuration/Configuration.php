@@ -8,8 +8,6 @@ class Configuration {
 
 	private $configuration;
 
-	private $macroList;
-
 	private $systemLimits;
 
 	private string $lastFmApiKey;
@@ -26,18 +24,6 @@ class Configuration {
 			ConfigurationLoader::load(self::$instance);
 		}
 		return self::$instance;
-	}
-
-	public function genMacros() : array {
-		return $this->configuration['macros'];
-	}
-
-	public function addMacroList(MacroList $macroList) {
-		$this->macroList = $macroList;
-	}
-
-	public function getMacroList() : MacroList {
-		return $this->macroList;
 	}
 
 	public function getSystemLimits() : SystemLimits {
