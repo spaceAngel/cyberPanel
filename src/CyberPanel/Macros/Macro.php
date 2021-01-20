@@ -12,6 +12,8 @@ class Macro {
 
 	private bool $isDelimiter = FALSE;
 
+	private ?string $iconImage = NULL;
+
 	public function getIcon() {
 		return $this->icon;
 	}
@@ -50,5 +52,14 @@ class Macro {
 	public function setisDelimiter(bool $isDelimiter = TRUE) : self {
 		$this->isDelimiter = $isDelimiter;
 		return $this;
+	}
+
+	public function setIconImage(string $iconImage) : self {
+		$this->iconImage = $iconImage;
+		return $this;
+	}
+
+	public function getIconImage() : ?string {
+		return $this->iconImage;
 	}
 }

@@ -19,12 +19,24 @@ class MacroParser {
 	public function parse(array $data) : Macro {
 		$macro = new Macro();
 		if (array_key_exists('delimiter', $data)) {
-			$macro->setisDelimiter();
+			$macro->setIsDelimiter();
 		} else {
 			if (array_key_exists('caption', $data)) $macro->setCaption($data['caption']);
 			if (array_key_exists('command', $data)) $macro->setCommand($data['command']);
 			if (array_key_exists('icon', $data)) $macro->setIcon($data['icon']);
+			if (empty($macro->getIcon())) {
+				$this->loadIcon($macro);
+			}
 		}
+
 		return $macro;
+	}
+
+	public function loadIcon(Macro $macro) {
+		$iconBinary = MacroIconLoader::loadIcon($macro->getCommand());
+		if (!empty($iconBinary)) {
+			$macro->setIconImage($iconBinary);
+		}
+
 	}
 }

@@ -1,6 +1,8 @@
 <template v-for="macro in macros">
 	<div class="icon" data-hash="" v-on:click="runMacro(macro.hash)" v-if="!macro.isDelimiter">
-		<i class="fa fa-4x" v-bind:class="[macro.icon]"></i> <br/>
+		<i class="fa fa-4x" v-bind:class="[macro.icon]" v-if="macro.icon"></i> 
+		<img v-if="macro.iconImage" v-bind:src="'data:' +macro.iconImage" style="border-color:1px solid blue;"/>
+		<br/>
 		<span data-templatePlaceholder="caption" class="caption"><% macro.caption %></span>
 	</div>
 	<div v-if="macro.isDelimiter"></div>
