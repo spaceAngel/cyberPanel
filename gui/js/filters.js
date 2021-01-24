@@ -18,7 +18,7 @@ Vue.filter('milisecondsToHuman', function (value) {
 	var minutes = Math.floor(value / 60000);
 	var seconds = ((value % 60000) / 1000).toFixed(0);
 	var hours = 0;
-	if (minutes > 60) {
+	if (minutes >= 60) {
 		hours = Math.floor(minutes / 60)
 		minutes = minutes % 60;
 	}
