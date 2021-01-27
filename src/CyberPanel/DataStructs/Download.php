@@ -44,7 +44,7 @@ class Download {
 	}
 
 	public function getRemain() : int {
-		return $this->getTotal() - $this->getDownloaded();
+		return ($this->getTotal() - $this->getDownloaded()) / 1024;
 	}
 
 	public function getCalculatedSpeed() : int {
