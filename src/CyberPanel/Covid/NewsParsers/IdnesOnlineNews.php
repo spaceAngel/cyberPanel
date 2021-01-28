@@ -6,6 +6,7 @@ use \DOMDocument;
 use CyberPanel\Exceptions\RemoteContentNotDownloadedException;
 use CyberPanel\Logging\Log;
 use CyberPanel\Utils\WebDownloader;
+use CyberPanel\Utils\DateTime;
 
 class IdnesOnlineNews implements Parser {
 
@@ -26,7 +27,7 @@ class IdnesOnlineNews implements Parser {
 		foreach ($news as $new) {
 			$item = $this->parseItem($new);
 			if (!empty($rslt) && $rslt[count($rslt) - 1]['microtime'] < $item['microtime']) {
-				$item['microtime'] = $this->humanToMicrotime(
+				$item['microtime'] = DateTime::humanToMicrotime(
 					trim($new->parentNode->childNodes[3]->textContent), TRUE
 				);
 			}
@@ -46,7 +47,7 @@ class IdnesOnlineNews implements Parser {
 			'content' => trim($new->textContent),
 			'html' => $html,
 			'flag' => $flag,
-			'microtime' => $this->humanToMicrotime(
+			'microtime' => DateTime::humanToMicrotime(
 				trim((string)$new->parentNode->childNodes[3]->textContent)
 			),
 			'important' => (bool)strpos(
@@ -54,15 +55,6 @@ class IdnesOnlineNews implements Parser {
 				'o-c3'
 			),
 		];
-	}
-
-	protected function humanToMicrotime(string $human, bool $dayBefore = FALSE) : int {
-		$human = str_replace('O', '0', $human);
-		$date = new \DateTime($human);
-		if ($dayBefore) {
-			$date->modify('-1 day');
-		}
-		return $date->getTimestamp();
 	}
 
 	protected function cleanTwitter(string $html) : string {
