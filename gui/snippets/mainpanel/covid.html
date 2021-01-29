@@ -3,6 +3,7 @@
 		<div class="time">
 			<% item.time %>
 			<span class="flag" v-html="item.flag"></span>
+			<img v-if="item.logo"  v-bind:src="item.logo"/>
 		</div>
 		<div class="content" v-bind:class="{ important: item.important }">
 			<div v-if="item.title" v-html="item.title" class="newCaption"></div>
