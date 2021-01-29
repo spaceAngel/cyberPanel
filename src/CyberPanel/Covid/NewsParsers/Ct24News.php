@@ -18,14 +18,12 @@ class Ct24News implements Parser {
 	// phpcs:enable
 
 	public function getNews() : array {
-
 		try {
 			$html = WebDownloader::download(self::URL, self::POST_PARAMS);
 		} catch (RemoteContentNotDownloadedException $e) {
 			Log::error('Error during contacting IdnesNews on URL: %s', [self::URL_IDNES]);
 			return [];
 		}
-
 		$dom = new DOMDocument('1.0', 'UTF-8');
 		$dom->loadHTML('<?xml encoding="UTF-8">' . $html, LIBXML_NOERROR);
 		$parser = new \DOMXPath($dom);
