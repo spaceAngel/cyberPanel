@@ -2,10 +2,10 @@
 
 namespace CyberPanel\Covid;
 
-
 use CyberPanel\Covid\NewsParsers\IdnesOnlineNews;
 use CyberPanel\Covid\NewsParsers\Parser;
 use CyberPanel\Covid\NewsParsers\RssNews;
+use CyberPanel\Covid\NewsParsers\Ct24News;
 
 class News {
 
@@ -17,6 +17,7 @@ class News {
 		$this->parsers = [
 			new RssNews(self::URL_RSS_ECDC),
 			new IdnesOnlineNews(),
+			new Ct24News()
 		];
 	}
 
