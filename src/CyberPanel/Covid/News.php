@@ -34,6 +34,20 @@ class News {
 		usort($articles, function($a, $b) {
 			return $b['microtime'] <=> $a['microtime'];
 		});
-		return $articles;
+		return $this->filterUnique($articles);
+	}
+
+	protected function filterUnique(array $articles) {
+		$texts = [];
+		$rslt = [];
+		foreach ($articles as $article) {
+			$plainText = strip_tags($article['html']);
+			$plainText = trim($plainText);
+			if (!in_array($plainText, $texts)) {
+				$rslt[] = $article;
+				$texts[] = $plainText;
+			}
+		}
+		return $rslt;
 	}
 }
