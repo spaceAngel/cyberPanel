@@ -42,6 +42,9 @@ class Ct24News implements Parser {
 					'microtime' => DateTime::humanToMicrotime($new->textContent),
 					'logo' => self::LOGO_URL,
 					];
+					if ($article['microtime'] > time()) {
+						$article['microtime']  = DateTime::humanToMicrotime($new->textContent, TRUE);
+					}
 					break;
 				case 1:
 					$article['html'] = $new->textContent;
