@@ -24,6 +24,11 @@ class Ct24News implements Parser {
 			Log::error('Error during contacting IdnesNews on URL: %s', [self::URL_IDNES]);
 			return [];
 		}
+
+		return $this->parseNews($html);
+	}
+
+	protected function parseNews(string $html) : array {
 		$dom = new DOMDocument('1.0', 'UTF-8');
 		$dom->loadHTML('<?xml encoding="UTF-8">' . $html, LIBXML_NOERROR);
 		$parser = new \DOMXPath($dom);
@@ -33,9 +38,9 @@ class Ct24News implements Parser {
 			switch ($key % 2) {
 				case 0:
 					$article = [
-						'time' => $new->textContent,
-						'microtime' => DateTime::humanToMicrotime($new->textContent),
-						'logo' => self::LOGO_URL,
+					'time' => $new->textContent,
+					'microtime' => DateTime::humanToMicrotime($new->textContent),
+					'logo' => self::LOGO_URL,
 					];
 					break;
 				case 1:
