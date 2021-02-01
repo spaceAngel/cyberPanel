@@ -26,7 +26,7 @@ class IdnesOnlineNews implements Parser {
 		$rslt = [];
 		foreach ($news as $new) {
 			$item = $this->parseItem($new);
-			if (!empty($rslt) && $rslt[count($rslt) - 1]['microtime'] < $item['microtime']) {
+			if (time() < $item['microtime']) {
 				$item['microtime'] = DateTime::humanToMicrotime(
 					trim($new->parentNode->childNodes[3]->textContent), TRUE
 				);
