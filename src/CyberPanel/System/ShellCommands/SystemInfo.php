@@ -19,7 +19,7 @@ interface SystemInfo {
 
 	const CMD_CPUNAME = 'lshw -short 2> /dev/null |grep -e processor|sed -E "s/[0-9\/ ]* processor[ ]*/ /g"';
 
-	const CMD_GPUNAME = 'lshw -short 2> /dev/null |grep -e display|sed -E "s/[0-9\/ ]* display[ ]*/ /g"';
+	const CMD_GPUNAME = 'lshw -short 2> /dev/null |grep -e display|sed -E "s/[0-9\/\. ]* display[ ]*/ /g"';
 
 	const CMD_KERNELVERSION = 'uname -r';
 
