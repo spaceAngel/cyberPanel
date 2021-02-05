@@ -42,13 +42,14 @@ class SystemInfo {
 				|| in_array($disk[1], $this->skipMountPoints)
 			) continue;
 
-			$rslt[] = [
+			$rslt[$disk[1]] = [
 				'caption' => $disk[1],
 				'size' => $disk[2],
 				'available' => $disk[3],
 				'used' => $disk[4],
 			];
 		}
+		sort($rslt);
 		return $rslt;
 	}
 
