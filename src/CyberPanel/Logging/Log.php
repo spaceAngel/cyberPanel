@@ -9,7 +9,7 @@ use Monolog\Formatter\LineFormatter;
 class Log {
 
 	const FORMAT_LOG = "%datetime% | %level_name% | %message% \n";
-	const FORMAT_DATETIME = 'Y-n-j H:i:s';
+	const FORMAT_DATETIME = 'Y-m-d H:i:s';
 
 	protected static self $instance;
 
