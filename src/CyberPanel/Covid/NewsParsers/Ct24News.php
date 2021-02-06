@@ -21,7 +21,7 @@ class Ct24News implements Parser {
 		try {
 			$html = WebDownloader::download(self::URL, self::POST_PARAMS);
 		} catch (RemoteContentNotDownloadedException $e) {
-			Log::error('Error during contacting IdnesNews on URL: %s', [self::URL_IDNES]);
+			Log::error('Error during contacting CT24 News on URL: %s', [self::URL]);
 			return [];
 		}
 
