@@ -30,7 +30,7 @@
 		</div>
 		<div class="row">
 			<span class="label">Temp:</span>
-			<span class="value"><% systemInfo.temperatures.cpu %> &#176;C</span>
+			<span class="value" v-bind:class="{alert: systemInfo.temperatures.cpu > config.hwLimits.cpu.temperature}"><% systemInfo.temperatures.cpu %> &#176;C</span>
 		</div>
 	</div>
 	
@@ -55,7 +55,7 @@
 		<div v-if="systemInfo.gpu.load != null">
 			<div class="row">
 				<span class="label">Temp:</span>
-				<span class="value"><% systemInfo.temperatures.gpu %> &#176;C</span>
+				<span class="value" v-bind:class="{alert: systemInfo.temperatures.gpu > config.hwLimits.gpu.temperature}"><% systemInfo.temperatures.gpu %> &#176;C</span>
 			</div>
 			<div class="row">
 				<span class="label">Usage:</span>
