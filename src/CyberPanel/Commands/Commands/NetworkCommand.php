@@ -5,8 +5,9 @@ namespace CyberPanel\Commands\Commands;
 use CyberPanel\Commands\BaseCommand;
 use CyberPanel\System\Executer;
 use CyberPanel\System\ShellCommands\Applications;
+use CyberPanel\System\Network;
 
-class PingCommand extends BaseCommand {
+class NetworkCommand extends BaseCommand {
 
 	const PING_HOST = '8.8.8.8';
 	const TIMEOUT_MARK_AS_DISCONNECT = 1.7;
@@ -27,6 +28,25 @@ class PingCommand extends BaseCommand {
 	}
 
 	public function run() : array {
+		if (empty($this->parameters)) {
+			return $this->handlePing();
+		} else {
+			return $this->handleIps();
+		}
+	}
+
+	protected function handleIps() : array {
+		return [
+			'ip' => [
+				'local' => Network::getInstance()->getLocalIp(),
+				'public' => Network::getInstance()->getPublicIp(),
+				'gateway' => Network::getInstance()->getGatewayIp(),
+				'dns' => Network::getInstance()->getDnsIp(),
+			]
+		];
+	}
+
+	protected function handlePing() {
 		$lastTouch = microtime(TRUE) - filemtime(self::$file);
 		clearstatcache();
 		$output = file_exists(self::$file) ? file(self::$file) : [];
@@ -44,8 +64,9 @@ class PingCommand extends BaseCommand {
 		return [
 			'pings' => implode('', $output),
 			'disconnected' => $lastTouch > self::TIMEOUT_MARK_AS_DISCONNECT,
-			'time' => !empty($time) ? $time : 9999
+			'time' => !empty($time) ? $time : 9999,
 		];
+
 	}
 
 }

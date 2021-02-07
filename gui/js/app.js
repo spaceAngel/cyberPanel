@@ -1,4 +1,4 @@
-/* global Vue, socket, dateTimeWidget, keyboardWidget, systemInfoWidget, hwInfoWidget, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget, graph, lockScreenImage */
+/* global Vue, socket, networkWidget, dateTimeWidget, keyboardWidget, systemInfoWidget, hwInfoWidget, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget, graph, lockScreenImage */
 var cyberPanel;
 var mixins = [];
 
@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	socket.registerHandler('keyboard', keyboardWidget.handle);
 	socket.registerHandler('media',  mediaWidget.handle);
 	socket.registerHandler('downloads',  downloadsWidget.handle);
-	socket.registerHandler('ping',  pingWidget.handle);
-	
+	socket.registerHandler('network',  networkWidget.handle);
+
 	setInterval(function() {
 		socket.sendMultiple([
 			{command:'datetime', parameters:[]},
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			{command:'media', parameters:[]},
 			{command:'systeminfo', parameters:[]},
 			{command:'downloads', parameters:[]},
-			{command:'ping', parameters:[]},
+			{command:'network', parameters:[]},
 		]);
 	}, 900);
 
@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			{command:'hwinfo', parameters:[]},
 		]);
 	}, 30000);
+
+	setTimeout( function() {socket.send('network', 123);}, 1000);
+	setInterval( function() {socket.send('network', 123);}, 20 * 1000);
 
 	setTimeout( function() {
 		socket.sendMultiple([

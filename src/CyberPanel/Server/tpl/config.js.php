@@ -10,7 +10,7 @@ var config = {
 		"processes",
 		"sysinfo",
 		"loadgraphs",
-		"ping",
+		"network",
 		"numkeyboard",
 		"downloads",
 		"music",

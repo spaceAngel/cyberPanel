@@ -1,5 +1,45 @@
-<div class="ping" v-html="networkWidget.pings">
-	
-	
-	
+<div class="network">
+	<div class="ping" v-html="networkWidget.pings">
+	</div>
+	<div class="ips">
+		<div class="row">
+			<div class="symbol">
+				<i class="fas fa-desktop"></i>
+			</div>
+			<div class="info">
+				<div class="label">Local IP</div>
+				<div class="value" v-html="networkWidget.ip.local"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="symbol">
+				<i class="fas fa-globe-americas"></i>
+			</div>
+			<div class="info">
+				<div class="label">Public IP</div>
+				<div class="value" v-html="networkWidget.ip.public"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="symbol">
+				<i class="fas fa-database"></i>
+			</div>
+			<div class="info">
+				<div class="label">DNS</div>
+				<div class="value" v-html="networkWidget.ip.dns"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="symbol">
+				<i class="fas fa-network-wired"></i>
+			</div>
+			<div class="info">
+				<div class="label">Gateway</div>
+				<div class="value" v-html="networkWidget.ip.gateway"></div>
+			</div>
+		</div>
+	</div>
 </div>

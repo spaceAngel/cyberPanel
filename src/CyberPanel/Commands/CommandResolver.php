@@ -15,7 +15,7 @@ use CyberPanel\Commands\Commands\DownloadsCommand;
 use CyberPanel\Commands\Commands\StoreDownloadsCommand;
 use CyberPanel\Commands\Commands\CovidCommand;
 use CyberPanel\Commands\Commands\OpenInBrowserCommand;
-use CyberPanel\Commands\Commands\PingCommand;
+use CyberPanel\Commands\Commands\NetworkCommand;
 
 class CommandResolver {
 
@@ -37,7 +37,7 @@ class CommandResolver {
 		$this->registerCommand('storeDownloads', StoreDownloadsCommand::class);
 		$this->registerCommand('covid', CovidCommand::class);
 		$this->registerCommand('openbrowser', OpenInBrowserCommand::class);
-		$this->registerCommand('ping', PingCommand::class);
+		$this->registerCommand('network', NetworkCommand::class);
 	}
 
 	public static function getInstance() : self {

@@ -19,8 +19,8 @@
 				<span class="notification" v-if="covidWidget.unread > 0" v-html="covidWidget.unread"></span>
 			</i>
 			<i v-if="pane == 'hospitals'" class="fas fa-hospital-user fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-			<i v-if="pane == 'ping'" class="fas fa-globe fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
-				<span class="notification alert" v-if="pingWidget.disconnected || pingWidget.time > 500">!</span>
+			<i v-if="pane == 'network'" class="fas fa-globe fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
+				<span class="notification alert" v-if="networkWidget.disconnected || networkWidget.time > 500">!</span>
 			</i>
 		</template>
 	</div>
@@ -36,7 +36,7 @@
 			<div v-if="pane == 'music'" v-show="currentPanel == key"><!--(bake mainpanel/lastfmTrackInfo.html)--></div>
 			<div v-if="pane == 'covid'" v-show="currentPanel == key" class="covid"><!--(bake mainpanel/covid.html)--></div>
 			<div v-if="pane == 'hospitals'" v-show="currentPanel == key"><!--(bake mainpanel/covidHospitals.html)--></div>
-			<div v-if="pane == 'ping'" v-show="currentPanel == key"><!--(bake mainpanel/ping.html)--></div>
+			<div v-if="pane == 'network'" v-show="currentPanel == key"><!--(bake mainpanel/network.html)--></div>
 		</template>
 	</div>
 	<!--(bake media.html)-->

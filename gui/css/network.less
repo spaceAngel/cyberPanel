@@ -1,4 +1,44 @@
-.ping {
-	padding:15px;
-	font-size: 140%;
+.network {
+	width:100%;
+
+	.ping {
+		padding: 15px;
+		font-size: 140%;
+		float: left;
+		width: calc(100% - 340px);
+	}
+
+	.ips {
+		border-left: 1px dotted @colorBorder;
+		float: left;
+		width: 270px;
+		font-size: 20px;
+
+		.row {
+
+			clear:both;
+			padding-top: 25px;
+
+			.symbol {
+				float: left;
+				padding: 0px;
+				font-size:45px;
+				margin: 0px 25px 0px 25px;
+				width: 50px;
+				text-align: center;
+			}
+
+			.info {
+				float: left;
+			}
+
+			.label {
+				font-weight: bold;
+			}
+
+			.value {
+				font-size:130%;
+			}
+		}
+	}
 }
