@@ -1,4 +1,4 @@
-/* global cyberPanel, sound, graph */
+/* global cyberPanel, sound */
 var hwInfoWidget = {
 	handle: function(data) {
 		cyberPanel.hwInfo = data;

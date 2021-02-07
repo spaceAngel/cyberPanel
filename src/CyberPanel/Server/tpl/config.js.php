@@ -9,7 +9,6 @@ var config = {
 		"macros",
 		"processes",
 		"sysinfo",
-		"loadgraphs",
 		"network",
 		"numkeyboard",
 		"downloads",

@@ -1,4 +1,4 @@
-/* global cyberPanel, sound, graph */
+/* global cyberPanel, sound */
 var networkWidget = {
 	pings: '',
 	time:0,

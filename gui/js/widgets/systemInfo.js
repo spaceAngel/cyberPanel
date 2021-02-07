@@ -1,4 +1,4 @@
-/* global cyberPanel, sound, graph */
+/* global cyberPanel, sound, config */
 var systemInfoWidget = {
 	handle: function(data) {
 		cyberPanel.systemInfo = data;
@@ -8,10 +8,5 @@ var systemInfoWidget = {
 		) {
 			sound.playAlert();
 		}
-
-		graph.updateCpuLoad(cyberPanel.systemInfo.cpuload);
-		graph.updateCpuTemp(cyberPanel.systemInfo.temperatures.cpu);
-		graph.updateGpuTemp(cyberPanel.systemInfo.temperatures.gpu);
-		graph.refresh();
 	},
 };
