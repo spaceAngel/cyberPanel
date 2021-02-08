@@ -42,6 +42,7 @@ class NetworkCommand extends BaseCommand {
 				'public' => Network::getInstance()->getPublicIp(),
 				'gateway' => Network::getInstance()->getGatewayIp(),
 				'dns' => Network::getInstance()->getDnsIp(),
+				'mac' => Network::getInstance()->getMac(),
 			]
 		];
 	}

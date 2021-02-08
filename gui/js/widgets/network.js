@@ -5,6 +5,7 @@ var networkWidget = {
 	disconnected:false,
 	ip: {
 		local: '',
+		mac: '',
 		public: '',
 		gateway: '',
 		dns: ''

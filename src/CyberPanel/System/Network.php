@@ -35,4 +35,8 @@ class Network {
 		return Executer::execAndGetResponse(NetworkCommands::CMD_IP_DNS);
 	}
 
+	public function getMac() : string {
+		return Executer::execAndGetResponse(NetworkCommands::CMD_MAC);
+	}
+
 }
