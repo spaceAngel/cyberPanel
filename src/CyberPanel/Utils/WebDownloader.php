@@ -14,6 +14,8 @@ class WebDownloader {
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
 		curl_setopt($curl, CURLOPT_HEADER, FALSE);
 		curl_setopt($curl, CURLOPT_ENCODING, '');
+		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 2);
+
 		if ($postParams != NULL) {
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_SSL_CIPHER_LIST, 'DEFAULT@SECLEVEL=1');
