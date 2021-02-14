@@ -27,8 +27,11 @@ class IdnesOnlineNews implements Parser {
 		foreach ($news as $new) {
 			$item = $this->parseItem($new);
 			if (time() < $item['microtime']) {
+				$time = $this->fixTimeString(
+					trim($new->parentNode->childNodes[3]->textContent)
+				);
 				$item['microtime'] = DateTime::humanToMicrotime(
-					trim($new->parentNode->childNodes[3]->textContent), TRUE
+					$time, TRUE
 				);
 			}
 			$rslt[] = $item;
@@ -42,19 +45,24 @@ class IdnesOnlineNews implements Parser {
 		$html = $this->makeLinksClickable($html);
 		$flag = $new->ownerDocument->saveHTML($new->parentNode->childNodes[5]->childNodes[0]);
 		$flag = substr($flag, 0, 4) == '<img' ? $flag : '';
+		$time = $this->fixTimeString(
+			trim($new->parentNode->childNodes[3]->textContent)
+		);
 		return [
-			'time' => trim($new->parentNode->childNodes[3]->textContent),
+			'time' => $time,
 			'content' => trim($new->textContent),
 			'html' => $html,
 			'flag' => $flag,
-			'microtime' => DateTime::humanToMicrotime(
-				trim((string)$new->parentNode->childNodes[3]->textContent)
-			),
+			'microtime' => DateTime::humanToMicrotime($time),
 			'important' => (bool)strpos(
 				$new->ownerDocument->saveHTML($new->parentNode),
 				'o-c3'
 			),
 		];
+	}
+
+	protected function fixTimeString(string $time) : string {
+		return str_replace('%', '0', $time);
 	}
 
 	protected function cleanTwitter(string $html) : string {
