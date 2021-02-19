@@ -2,74 +2,80 @@
 
 namespace CyberPanel\Covid\Stats;
 
-use CyberPanel\System\Executer;
-use CyberPanel\System\ShellCommands\Applications;
+use CyberPanel\Utils\WebDownloader;
 
 class HospitalCapacities {
 
-	const URL = 'https://www.hlidacstatu.cz/KapacitaNemocnicData/last';
-
-	protected static $lastFile;
+	const URL = 'https://dip.mzcr.cz/api/v1/kapacity-intenzivni-pece-vlna-2.csv';
 
 	protected $regions = [
-		'HKK' => 'Královohradecký',
-		'JHC' => 'Jihočeský',
-		'JHM' => 'Jihomoravský',
-		'KVK' => 'Karlovarský',
-		'LBK' => 'Liberecký',
-		'MSK' => 'Moravskoslezký',
-		'OLK' => 'Olomoucký',
-		'PAK' => 'Pardubický',
-		'PHA' => 'Praha',
-		'PLK' => 'Plzeňský',
-		'STC' => 'Středočeský',
-		'ULK' => 'Ústecký',
-		'VYS' => 'Vysočina',
-		'ZLK' => 'Zlínský',
+		'CZ052' => 'Královohradecký',
+		'CZ031' => 'Jihočeský',
+		'CZ064' => 'Jihomoravský',
+		'CZ041' => 'Karlovarský',
+		'CZ051' => 'Liberecký',
+		'CZ080' => 'Moravskoslezký',
+		'CZ071' => 'Olomoucký',
+		'CZ053' => 'Pardubický',
+		'CZ010' => 'Praha',
+		'CZ032' => 'Plzeňský',
+		'CZ020' => 'Středočeský',
+		'CZ042' => 'Ústecký',
+		'CZ063' => 'Vysočina',
+		'CZ072' => 'Zlínský',
 	];
 
 	public function getCapacities() : array {
-
 		$rslt = [];
-		if (file_exists(self::$lastFile )) {
-			$raw = file_get_contents(self::$lastFile);
-			$json = json_decode($raw);
-			if (!empty($json[0]->hospitals)) {
-				$this->parseIntoHospitals($json, 0, $rslt);
-			}
-		}
-
-		self::$lastFile = tempnam(sys_get_temp_dir(), '');
-		Executer::execAndGetResponse(
-			sprintf(Applications::CMD_DOWNLOAD_FILE, self::$lastFile, self::URL)
+		$file = explode("\n", WebDownloader::download(self::URL));
+		$headers = array_flip(
+			str_getcsv(array_shift($file), ',')
 		);
+		$file = array_reverse($file);
 
-		ksort($rslt);
-		return $rslt;
+		foreach ($file as $row) {
+			if (empty($row)) continue;
+			$regionRow = str_getcsv($row, ',');
+			if (!isset($date)) {
+				$date = $regionRow[0];
+			}
+
+			if ($regionRow[0] != $date) {
+				ksort($rslt);
+				return $rslt;
+			}
+			$regionName = $this->getRegionName($regionRow[1]);
+			$rslt[$regionName] = $this->parseRow($regionRow, $headers);
+		}
+		return [];
 	}
 
-	protected function parseIntoHospitals(array $data, int $row, array &$rslt) : void {
-		foreach ($data[$row]->hospitals as $item) {
-			$region = $this->getRegionName($item->region);
-			if (!array_key_exists($region, $rslt)) {
-				$rslt[$region] = [];
-			}
-			if (!array_key_exists($row, $rslt[$region])) {
-				$rslt[$region][$row] = $this->getEmptyStruct();
-			}
-			$rslt[$region][$row]['upv']['total'] += $item->UPV_celkem;
-			$rslt[$region][$row]['upv']['free'] += $item->UPV_volna;
-			$rslt[$region][$row]['icu']['total'] += $item->AROJIP_luzka_celkem;
-			$rslt[$region][$row]['icu']['free']['covid'] += $item->AROJIP_luzka_covid;
-			$rslt[$region][$row]['icu']['free']['noncovid'] += $item->AROJIP_luzka_necovid;
-			$rslt[$region][$row]['standard']['total'] += $item->Standard_luzka_s_kyslikem_celkem;
-			// phpcs:disable Generic.Files.LineLength
-			$rslt[$region][$row]['standard']['free']['covid'] += $item->Standard_luzka_s_kyslikem_covid;
-			$rslt[$region][$row]['standard']['free']['noncovid'] += $item->Standard_luzka_s_kyslikem_necovid;
-			// phpcs:enable
-			$rslt[$region][$row]['nurses'] += $item->Sestry_AROJIP_celkem;
-			$rslt[$region][$row]['doctors'] += $item->Lekari_AROJIP_celkem;
-		}
+
+	protected function parseRow(array $row, array $headers) : array {
+		return [
+			'upv' => [
+				'total' => $row[$headers['upv_kapacita_celkem']],
+				'free' => $row[$headers['upv_kapacita_volna']],
+			],
+			'icu' => [
+				'total' => $row[$headers['luzka_aro_jip_kapacita_celkem']],
+				'free' => [
+					'covid' => $row[$headers['luzka_aro_jip_kapacita_volna_covid_pozitivni']],
+					'noncovid' => $row[$headers['luzka_aro_jip_kapacita_volna_covid_negativni']],
+				],
+			],
+			'standard' => [
+				'total' => $row[$headers['luzka_standard_kyslik_kapacita_celkem']],
+				'free' => [
+					// phpcs:disable Generic.Files.LineLength
+					'covid' => $row[$headers['luzka_standard_kyslik_kapacita_volna_covid_pozitivni']],
+					'noncovid' => $row[$headers['luzka_standard_kyslik_kapacita_volna_covid_negativni']],
+					// phpcs:enable
+				],
+			],
+			'nurses' => 0,
+			'doctors' => 0,
+		];
 	}
 
 	protected function getRegionName(string $code) : string {
@@ -79,28 +85,4 @@ class HospitalCapacities {
 		return $code;
 	}
 
-	protected function getEmptyStruct() : array {
-		return [
-			'upv' => [
-				'total' => 0,
-				'free' => 0,
-			],
-			'icu' => [
-				'total' => 0,
-				'free' => [
-					'covid' => 0,
-					'noncovid' => 0,
-				]
-			],
-			'standard' => [
-				'total' => 0,
-				'free' => [
-					'covid' => 0,
-					'noncovid' => 0,
-				]
-			],
-			'nurses' => 0,
-			'doctors' => 0,
-		];
-	}
 }
