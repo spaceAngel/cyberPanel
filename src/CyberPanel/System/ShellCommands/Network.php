@@ -5,7 +5,7 @@ namespace CyberPanel\System\ShellCommands;
 interface Network {
 
 	//phpcs:disable Generic.Files.LineLength
-	const CMD_IP_LOCAL = "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'";
+	const CMD_IP_LOCAL = "ip route get 1.1.1.1 | grep -oP 'src \K\S+'";
 
 	const CMD_IP_PUBLIC = 'curl -4 ipinfo.io/ip --silent';
 
@@ -13,7 +13,7 @@ interface Network {
 
 	const CMD_IP_DNS = 'systemd-resolve --status |grep "Current DNS" | grep -Eo "([0-9]*\.){3}[0-9]*"';
 
-	const CMD_MAC = 'ifconfig |grep ether |grep -Eo "([0-9a-z]*\:){5}[0-9a-z]*"';
+	const CMD_MAC = "cat /sys/class/net/$(ip route show default | awk '/default/ {print $5}')/address";
 	// phpcs:enable
 
 }
