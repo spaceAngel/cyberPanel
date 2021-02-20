@@ -54,22 +54,22 @@ class HospitalCapacities {
 	protected function parseRow(array $row, array $headers) : array {
 		return [
 			'upv' => [
-				'total' => $row[$headers['upv_kapacita_celkem']],
-				'free' => $row[$headers['upv_kapacita_volna']],
+				'total' => (int)$row[$headers['upv_kapacita_celkem']],
+				'free' => (int)$row[$headers['upv_kapacita_volna']],
 			],
 			'icu' => [
-				'total' => $row[$headers['luzka_aro_jip_kapacita_celkem']],
+				'total' => (int)$row[$headers['luzka_aro_jip_kapacita_celkem']],
 				'free' => [
-					'covid' => $row[$headers['luzka_aro_jip_kapacita_volna_covid_pozitivni']],
-					'noncovid' => $row[$headers['luzka_aro_jip_kapacita_volna_covid_negativni']],
+					'covid' => (int)$row[$headers['luzka_aro_jip_kapacita_volna_covid_pozitivni']],
+					'noncovid' => (int)$row[$headers['luzka_aro_jip_kapacita_volna_covid_negativni']],
 				],
 			],
 			'standard' => [
-				'total' => $row[$headers['luzka_standard_kyslik_kapacita_celkem']],
+				'total' => (int)$row[$headers['luzka_standard_kyslik_kapacita_celkem']],
 				'free' => [
 					// phpcs:disable Generic.Files.LineLength
-					'covid' => $row[$headers['luzka_standard_kyslik_kapacita_volna_covid_pozitivni']],
-					'noncovid' => $row[$headers['luzka_standard_kyslik_kapacita_volna_covid_negativni']],
+					'covid' => (int)$row[$headers['luzka_standard_kyslik_kapacita_volna_covid_pozitivni']],
+					'noncovid' => (int)$row[$headers['luzka_standard_kyslik_kapacita_volna_covid_negativni']],
 					// phpcs:enable
 				],
 			],
