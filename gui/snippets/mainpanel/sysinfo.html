@@ -80,7 +80,7 @@
 				<h3><i class="fas fa-hdd"></i><% storage.caption %></h3>
 			</div>
 			<div class="col">
-				<div class="bar"><div class="full" v-bind:style="{width: (Number(storage.used * 100 / storage.size).toFixed(1)) + '%' }"></div></div>
+				<div class="bar"><div class="full" v-bind:style="{width: (Number(storage.available * 100 / storage.size).toFixed(1)) + '%' }"></div></div>
 			</div>
 		</div>
 		<div class="row">
