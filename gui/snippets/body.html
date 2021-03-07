@@ -8,7 +8,9 @@
 		<template v-for="pane, key in config.panes">
 			<i v-if="pane == 'macros'" class="fas fa-icons fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
 			<i v-if="pane == 'processes'" class="far fa-window-restore fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-			<i v-if="pane == 'sysinfo'" class="fas fa-laptop fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'sysinfo'" class="fas fa-laptop fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
+				<span class="notification alert" v-if="systemInfoWidget.alert">!</span>
+			</i>
 			<i v-if="pane == 'numkeyboard'" class="fas fa-calculator fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
 			<i v-if="pane == 'downloads'" class="fas fa-download fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
 				<span class="notification" v-if="downloads.length > 0"><% downloads.length %></span>

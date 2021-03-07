@@ -1,5 +1,8 @@
 /* global cyberPanel, sound, config */
 var systemInfoWidget = {
+
+	alert: false,
+
 	handle: function(data) {
 		cyberPanel.systemInfo = data;
 		if (
@@ -7,6 +10,9 @@ var systemInfoWidget = {
 			|| config.hwLimits.gpu.temperature < cyberPanel.systemInfo.temperatures.gpu
 		) {
 			sound.playAlert();
+			systemInfoWidget.alert = true;
+		} else {
+			systemInfoWidget.alert = false;
 		}
 	},
 };
