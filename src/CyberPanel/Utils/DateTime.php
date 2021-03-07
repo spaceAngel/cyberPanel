@@ -22,4 +22,8 @@ class DateTime {
 		}
 		return $date->getTimestamp();
 	}
+
+	public static function microtimeToHuman(int $timestamp = NULL) : string {
+		return date('Y-m-d H:i', $timestamp);
+	}
 }

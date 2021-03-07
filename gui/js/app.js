@@ -1,4 +1,4 @@
-/* global Vue, socket, networkWidget, dateTimeWidget, keyboardWidget, systemInfoWidget, hwInfoWidget, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget, lockScreenImage */
+/* global Vue, socket, networkWidget, dateTimeWidget, keyboardWidget, systemInfoWidget, hwInfoWidget, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget, lockScreenImage, fileManager */
 var cyberPanel;
 var mixins = [];
 
@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	socket.registerHandler('downloads',  downloadsWidget.handle);
 	socket.registerHandler('network',  networkWidget.handle);
 
+	fileManager.init();
 	setInterval(function() {
 		socket.sendMultiple([
 			{command:'datetime', parameters:[]},

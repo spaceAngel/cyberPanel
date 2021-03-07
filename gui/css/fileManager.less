@@ -1,0 +1,51 @@
+.fileManager {
+	min-height:520px;
+	.files {
+		margin-top: -44px;
+		tbody {
+			tr:last-of-type td{
+				height:34px;
+			}
+			tr:first-of-type td{
+				padding-top:14px;
+			}
+		}
+
+		td.dir {
+			text-align:center;
+		}
+		td.filesize {
+			text-align:right;
+			padding-right: 15px;
+		}
+		
+		td.mode {
+			font-family:monospace;
+			font-size:22px;
+		}
+	}
+
+	.filename {
+		width:500px;
+		overflow:clip;
+	}
+
+	.statusbar {
+		position:sticky;
+		top: calc(100%  - 37px);
+		background-color:@colorBackgroundBox;
+		height:32px;
+		overflow:clip;
+		z-index:999;
+		font-weight: bold;
+		font-size:120%;
+		border-top:2px solid @colorMain;
+		padding-left:20px;
+		padding-top:2px;
+		clear:both;
+		span {
+			display:inline-block;
+			margin-right:50px;
+		}
+	}
+}

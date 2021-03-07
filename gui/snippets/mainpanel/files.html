@@ -1,0 +1,30 @@
+<div class="fileManager" id="fileManager">
+	<div class="statusbar">
+		<span class="path"><% fileManager.path %></span>
+		<span class="count"><% fileManager.files.length %> item(s)</span>
+	</div>
+	<div class="files">
+		<table class="data" >
+			<thead>
+				<tr>
+					<th>Filename</th>
+					<th>Size</th>
+					<th>Perm</th>
+					<th>Mtime</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="file in fileManager.files" v-on:click="fileManager.open(file.name)">
+					<td>
+						<div class="filename"><% file.name %></div>
+					</td>
+					<td v-bind:class="file.isdir ? 'dir' : 'filesize'"><% file.size %></td>
+					<td class="mode"><% file.mode %></td>
+					<td><% file.mtime %></td>
+				</tr>
+				<tr><td colspan="4">&nbsp;</td></tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>

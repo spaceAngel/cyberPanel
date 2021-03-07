@@ -14,7 +14,8 @@ var config = {
 		"downloads",
 		"music",
 		"covid",
-		"hospitals"
+		"hospitals",
+		"files"
 	],
 	sidebar: [
 		"time",
