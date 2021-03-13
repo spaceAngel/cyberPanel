@@ -1,4 +1,4 @@
-/* global cyberPanel */
+/* global cyberPanel, socket */
 var covidWidget = {
 
 	readNews: [],
@@ -13,7 +13,7 @@ var covidWidget = {
 				if (!covidWidget.readNews.includes(elm.innerHTML)) {
 					covidWidget.unread++;
 				}
-			} 
+			}
 			if (
 				document.querySelectorAll("[data-tabId='covidNews']")[0].className.includes('active')
 			) {
@@ -31,6 +31,12 @@ var covidWidget = {
 
 		var target = document.querySelectorAll("[data-tabId='covidNews']")[0];
 		observer.observe(target, { attributes : true, attributeFilter : ['class'] });
+
+		document.getElementById('covid').addEventListener('swiped-down', function(e) {
+			if (document.getElementById('covidNews').scrollTop == 0) {
+				socket.send('covid', 123);
+			}
+		});
 	},
 
 	markAllAsRead : function() {
