@@ -81,5 +81,5 @@ var defaultDataStruct = {
 	fullScreen: false,
 	loaded: false,
 	sound: false,
-	currentPanel: 7
+	currentPanel: localStorage.currentPanel ? localStorage.currentPanel : 1
 };

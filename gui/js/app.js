@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		delimiters: ['<%', '%>'],
 		mounted: function() {
 			setTimeout(function() {cyberPanel.loaded = true;}, 2500);
+		},
+		watch: {
+			currentPanel(currentPanel) {
+				localStorage.currentPanel = currentPanel;
+			}
 		}
 	});
 
