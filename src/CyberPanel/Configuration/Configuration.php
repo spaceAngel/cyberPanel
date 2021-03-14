@@ -16,6 +16,8 @@ class Configuration {
 
 	private array $sidebarWidgets = [];
 
+	private array $mainPanels = [];
+
 	private function __construct() {
 		$this->systemLimits  = new SystemLimits();
 	}
@@ -57,6 +59,14 @@ class Configuration {
 
 	public function setSidebarWidgets(array $sidebarWidgets = []) : void {
 		$this->sidebarWidgets = $sidebarWidgets;
+	}
+
+	public function getMainPanels() : array {
+		return $this->mainPanels;
+	}
+
+	public function setMainPanels(array $mainPanels = []) : void {
+		$this->mainPanels = $mainPanels;
 	}
 }
 

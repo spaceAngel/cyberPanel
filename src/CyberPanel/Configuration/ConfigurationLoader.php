@@ -24,6 +24,7 @@ class ConfigurationLoader {
 		$configuration->setLastFmApiKey($yaml['keys']['lastfm']);
 		$configuration->setClients($yaml['clients']);
 		$configuration->setSidebarWidgets($yaml['sidebar']);
+		$configuration->setMainPanels($yaml['mainpanel']);
 	}
 
 	private static function parseMacro(array $data) : Macro {

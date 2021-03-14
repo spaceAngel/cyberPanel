@@ -31,3 +31,14 @@ sidebar:
     - memory
     - keyboard
     - date
+mainpanel:
+    - macros
+    - processes
+    - sysinfo
+    - network
+    - numkeyboard
+    - downloads
+    - music
+    - covid
+    - hospitals
+    - files
