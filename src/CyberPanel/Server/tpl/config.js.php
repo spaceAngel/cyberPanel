@@ -2,6 +2,11 @@
 
 use \CyberPanel\Configuration\Configuration;
 
+$sidebar = [];
+foreach (Configuration::getInstance()->getSidebarWidgets() as $widget) {
+	$sidebar[] = sprintf('"%s"', $widget);
+}
+
 return '
 var config = {
 	lastfmApiKey: "' . Configuration::getInstance()->getLastFmApiKey() . '",
@@ -17,14 +22,7 @@ var config = {
 		"hospitals",
 		"files"
 	],
-	sidebar: [
-		"time",
-		"temperatures",
-		"cpu",
-		"memory",
-		"keyboard",
-		"date"
-	],
+	sidebar: [' . implode(',', $sidebar). '],
 	hwLimits: {
 		cpu: {
 			temperature: ' . Configuration::getInstance()->getSystemLimits()->getTempCpu() . '

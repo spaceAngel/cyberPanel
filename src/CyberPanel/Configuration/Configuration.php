@@ -14,6 +14,8 @@ class Configuration {
 
 	private array $clients;
 
+	private array $sidebarWidgets = [];
+
 	private function __construct() {
 		$this->systemLimits  = new SystemLimits();
 	}
@@ -47,6 +49,14 @@ class Configuration {
 			$this->clients,
 			['127.0.0.1']
 		);
+	}
+
+	public function getSidebarWidgets() : array {
+		return $this->sidebarWidgets;
+	}
+
+	public function setSidebarWidgets(array $sidebarWidgets = []) : void {
+		$this->sidebarWidgets = $sidebarWidgets;
 	}
 }
 

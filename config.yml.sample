@@ -24,3 +24,10 @@ macros:
      icon: fa-code
 clients:
     - 192.168.0.2
+sidebar:
+    - time
+    - temperatures
+    - cpu
+    - memory
+    - keyboard
+    - date

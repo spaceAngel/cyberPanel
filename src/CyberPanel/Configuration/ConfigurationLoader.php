@@ -23,6 +23,7 @@ class ConfigurationLoader {
 		$configuration->getSystemLimits()->setTempGpu($temperaturesLimits['gpu']);
 		$configuration->setLastFmApiKey($yaml['keys']['lastfm']);
 		$configuration->setClients($yaml['clients']);
+		$configuration->setSidebarWidgets($yaml['sidebar']);
 	}
 
 	private static function parseMacro(array $data) : Macro {
