@@ -5,6 +5,7 @@ namespace CyberPanel\Commands\Commands;
 use CyberPanel\Commands\BaseCommand;
 use CyberPanel\System\SystemInfo;
 use CyberPanel\Configuration\Configuration;
+use CyberPanel\Utils\Miscellaneous;
 
 class SystemInfoCommand extends BaseCommand {
 	public function run() : array {
@@ -20,8 +21,8 @@ class SystemInfoCommand extends BaseCommand {
 				'frequency' => SystemInfo::getInstance()->getCpuFrequency(),
 			],
 			'memory' => [
-				'used' => $memory->getUsed(),
-				'total' => $memory->getTotal(),
+				'used' => $this->formatMemory($memory->getUsed()),
+				'total' => $this->formatMemory($memory->getTotal()),
 				'load' => $memory->getLoad()
 			],
 			'processes' => SystemInfo::getInstance()->getProcessList(),
@@ -34,5 +35,13 @@ class SystemInfoCommand extends BaseCommand {
 				]
 			]
 		];
+	}
+
+	protected function formatMemory(int $bytes) : array {
+		return [
+			'bytes' => $bytes,
+			'human' => Miscellaneous::bytesToHuman($bytes)
+		];
+
 	}
 }

@@ -1,8 +1,8 @@
 <div class="box">
 	<div class="title"><i class="fas fa-memory"></i>Memory</div>
 	<div class="content">
-			<span><% systemInfo.memory.used  | bytesToHuman %></span> 
-			/ <span><% systemInfo.memory.total | bytesToHuman %></span>
+			<span><% systemInfo.memory.used.human %></span> 
+			/ <span><% systemInfo.memory.total.human %></span>
 		<div class="bar">
 			<div class="full" v-bind:style="{width: systemInfo.memory.load + '%'}"></div>
 		</div>

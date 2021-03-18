@@ -13,7 +13,7 @@ interface SystemInfo {
 
 	const CMD_CPU_FREQUENCY = "lscpu | grep MHz | head -n 1 | awk '{print $3}'";
 
-	const CMD_MEMORY = "free | awk '/Mem:/ { print sprintf(\"%u %u\",$2, $3+$5) }' ";
+	const CMD_MEMORY = "free -b| awk '/Mem:/ { print $2, $3 }' ";
 
 	const CMD_PROCESSLIST = 'top -bn1 -c -o %MEM -w 180 |tail -n +7 | awk  \'{print $2"|"$6"|"$7"|"$9"|"$12" "$13" "$14" "$15}\' ';
 
