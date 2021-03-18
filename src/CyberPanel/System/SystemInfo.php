@@ -55,7 +55,12 @@ class SystemInfo {
 
 	public function getCpuLoad() {
 		return round(Executer::execAndGetResponse(SystemInfoCommands::CMD_CPU_LOAD), 2);
+	}
 
+	public function getCpuFrequency() : int {
+		return round(
+			Executer::execAndGetResponse(SystemInfoCommands::CMD_CPU_FREQUENCY)
+		);
 	}
 
 	public function getMemory() : MemoryInfo {

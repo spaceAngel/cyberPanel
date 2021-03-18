@@ -6,7 +6,10 @@ var defaultDataStruct = {
 		holiday: ''
 	},
 	systemInfo: {
-		cpuLoad: 40,
+		cpu: {
+			load: 40,
+			frequency: 1000
+		},
 		memory: {
 			used: 100,
 			total: 1000,

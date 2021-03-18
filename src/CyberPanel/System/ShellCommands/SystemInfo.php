@@ -11,6 +11,8 @@ interface SystemInfo {
 
 	const CMD_CPU_LOAD = "awk -v a=\"$(awk '/cpu /{print $2+$4,$2+$4+$5}' /proc/stat; sleep 0.2)\" '/cpu /{split(a,b,\" \"); print 100*($2+$4-b[1])/($2+$4+$5-b[2])}'  /proc/stat";
 
+	const CMD_CPU_FREQUENCY = "lscpu | grep MHz | head -n 1 | awk '{print $3}'";
+
 	const CMD_MEMORY = "free | awk '/Mem:/ { print sprintf(\"%u %u\",$2, $3+$5) }' ";
 
 	const CMD_PROCESSLIST = 'top -bn1 -c -o %MEM -w 180 |tail -n +7 | awk  \'{print $2"|"$6"|"$7"|"$9"|"$12" "$13" "$14" "$15}\' ';
