@@ -5,13 +5,13 @@
 		</div>
 		<div class="times">
 			<div class="w33">
-				<% download.bytesReceived / 1024| bytesToHuman %> / <% download.bytesTotal / 1024 | bytesToHuman %>
+				<% download.bytesReceived  %> / <% download.bytesTotal  %>
 			</div>
 			<div class="w33">
 				<% download.estimatedInterval * 1000| milisecondsToHuman %>
 			</div>
 			<div class="w33">
-				<% download.speed | bytesToHuman %> / s 
+				<% download.speed %> / s 
 			</div>
 		</div>
 	</div>

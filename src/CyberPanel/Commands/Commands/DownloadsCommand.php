@@ -3,6 +3,7 @@
 namespace CyberPanel\Commands\Commands;
 
 use CyberPanel\Commands\BaseCommand;
+use CyberPanel\Utils\Miscellaneous;
 
 class DownloadsCommand extends BaseCommand{
 
@@ -11,10 +12,10 @@ class DownloadsCommand extends BaseCommand{
 		foreach (StoreDownloadsCommand::getStoredDownloads() as $download) {
 			$rslt[] = [
 				'filename' => $download->getFilename(),
-				'bytesReceived' => $download->getDownloaded(),
-				'bytesTotal' => $download->getTotal(),
+				'bytesReceived' => Miscellaneous::bytesToHuman($download->getDownloaded()),
+				'bytesTotal' => Miscellaneous::bytesToHuman($download->getTotal()),
 				'estimatedInterval' => $download->getCalculatedInterval(),
-				'speed' => $download->getCalculatedSpeed(),
+				'speed' => Miscellaneous::bytesToHuman($download->getCalculatedSpeed() * 1024),
 			];
 		}
 		return [
