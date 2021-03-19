@@ -54,6 +54,10 @@ class Download {
 		return 0;
 	}
 
+	public function getDownloadedPercent() {
+		return 100 * ($this->getDownloaded() / $this->getTotal());
+	}
+
 	public function getCalculatedInterval() : int {
 		if (!empty($this->getEstimatedEndTime())) {
 			return (int)($this->getEstimatedEndTime()->getTimestamp() - time());

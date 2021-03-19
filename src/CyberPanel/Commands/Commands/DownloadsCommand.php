@@ -16,6 +16,7 @@ class DownloadsCommand extends BaseCommand{
 				'bytesTotal' => Miscellaneous::bytesToHuman($download->getTotal()),
 				'estimatedInterval' => $download->getCalculatedInterval(),
 				'speed' => Miscellaneous::bytesToHuman($download->getCalculatedSpeed() * 1024),
+				'downloaded' => $download->getDownloadedPercent(),
 			];
 		}
 		return [
