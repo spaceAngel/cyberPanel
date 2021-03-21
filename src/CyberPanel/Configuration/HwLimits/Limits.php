@@ -1,11 +1,8 @@
 <?php
 
-namespace CyberPanel\Configuration;
+namespace CyberPanel\Configuration\HwLimits;
 
-use CyberPanel\Configuration\HwLimits\Cpu;
-use CyberPanel\Configuration\HwLimits\Gpu;
-
-class SystemLimits {
+class Limits {
 
 	private Cpu $cpu;
 	private Gpu $gpu;

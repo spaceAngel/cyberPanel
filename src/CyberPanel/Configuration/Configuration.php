@@ -2,6 +2,8 @@
 
 namespace CyberPanel\Configuration;
 
+use CyberPanel\Configuration\HwLimits\Limits;
+
 class Configuration {
 
 	private static $instance;
@@ -19,7 +21,7 @@ class Configuration {
 	private array $mainPanels = [];
 
 	private function __construct() {
-		$this->systemLimits  = new SystemLimits();
+		$this->systemLimits  = new Limits();
 	}
 
 	public static function getInstance(): self {
@@ -30,7 +32,7 @@ class Configuration {
 		return self::$instance;
 	}
 
-	public function getSystemLimits() : SystemLimits {
+	public function getSystemLimits() : Limits {
 		return $this->systemLimits;
 	}
 
