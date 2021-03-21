@@ -6,6 +6,7 @@ use CyberPanel\System\ShellCommands\SystemInfo as SystemInfoCommands;
 use CyberPanel\System\ShellCommands\GraphicNvidia;
 use CyberPanel\DataStructs\System\GpuSystemInfo;
 use CyberPanel\DataStructs\System\MemoryInfo;
+use CyberPanel\Utils\Miscellaneous;
 
 class SystemInfo {
 
@@ -89,7 +90,9 @@ class SystemInfo {
 
 			$rslt[] = [
 				'cpu' => $cols[$header['%CPU']],
-				'memory' => (int)$cols[$header['RES']] - (int)$cols[$header['SHR']],
+				'memory' => Miscellaneous::bytesToHuman(
+					((int)$cols[$header['RES']] - (int)$cols[$header['SHR']]) * 1024
+				),
 				'user' => $cols[$header['USER']],
 				'cmd' => $cols[$header['COMMAND']],
 			];
