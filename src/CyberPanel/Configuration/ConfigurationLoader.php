@@ -18,13 +18,22 @@ class ConfigurationLoader {
 				self::parseMacro($macro)
 			);
 		}
-		$temperaturesLimits = $yaml['systemLimits']['temperatures'];
-		$configuration->getSystemLimits()->setTempCpu($temperaturesLimits['cpu']);
-		$configuration->getSystemLimits()->setTempGpu($temperaturesLimits['gpu']);
+		self::configureHwLimits($yaml['systemLimits'], $configuration);
 		$configuration->setLastFmApiKey($yaml['keys']['lastfm']);
 		$configuration->setClients($yaml['clients']);
 		$configuration->setSidebarWidgets($yaml['sidebar']);
 		$configuration->setMainPanels($yaml['mainpanel']);
+	}
+
+	private static function configureHwLimits(
+		array $yaml,
+		Configuration $configuration
+	) : void {
+		$cpu = $yaml['cpu'];
+		$gpu = $yaml['gpu'];
+		$configuration->getSystemLimits()->getCpu()->setTemperature($cpu['temperature']);
+		$configuration->getSystemLimits()->getGpu()->setTemperature($gpu['temperature']);
+
 	}
 
 	private static function parseMacro(array $data) : Macro {

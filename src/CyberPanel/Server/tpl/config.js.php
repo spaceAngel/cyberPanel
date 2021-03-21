@@ -19,10 +19,10 @@ var config = {
 	sidebar: [' . implode(',', $sidebar). '],
 	hwLimits: {
 		cpu: {
-			temperature: ' . Configuration::getInstance()->getSystemLimits()->getTempCpu() . '
+			temperature: ' . Configuration::getInstance()->getSystemLimits()->getCpu()->getTemperature() . '
 		},
 		gpu: {
-			temperature: ' . Configuration::getInstance()->getSystemLimits()->getTempGpu() . '
+			temperature: ' . Configuration::getInstance()->getSystemLimits()->getGpu()->getTemperature() . '
 		}
 	}
 };

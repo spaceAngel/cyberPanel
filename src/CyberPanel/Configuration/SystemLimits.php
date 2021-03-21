@@ -2,29 +2,25 @@
 
 namespace CyberPanel\Configuration;
 
+use CyberPanel\Configuration\HwLimits\Cpu;
+use CyberPanel\Configuration\HwLimits\Gpu;
+
 class SystemLimits {
 
-	const DEFAULT_TEMP_CPU = 25;
-	const DEFAULT_TEMP_GPU = 50;
+	private Cpu $cpu;
+	private Gpu $gpu;
 
-	private $tempCpu = self::DEFAULT_TEMP_CPU;
-
-	private $tempGpu = self::DEFAULT_TEMP_GPU;
-
-	public function getTempCpu() : int {
-		return $this->tempCpu;
+	public function __construct() {
+		$this->cpu = new Cpu();
+		$this->gpu = new Gpu();
 	}
 
-	public function getTempGpu() : int {
-		return $this->tempGpu;
+	public function getCpu() : Cpu {
+		return $this->cpu;
 	}
 
-	public function setTempCpu(int $tempCpu = self::DEFAULT_TEMP_CPU) {
-		$this->tempCpu = $tempCpu;
-	}
-
-	public function setTempGpu(int $tempGpu = self::DEFAULT_TEMP_GPU) {
-		$this->tempGpu = $tempGpu;
+	public function getGpu() : Gpu {
+		return $this->gpu;
 	}
 
 }

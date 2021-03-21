@@ -1,9 +1,11 @@
 keys:
     lastfm: <samplekey>
 systemLimits:
-    temperatures:
-        cpu: 26
-        gpu: 50
+systemLimits:
+    cpu:
+        temperature: 60
+    gpu:
+        temperature: 50
 macros:
    - caption: firefox
      icon: fa-firefox
