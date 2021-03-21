@@ -19,10 +19,12 @@ var config = {
 	sidebar: [' . implode(',', $sidebar). '],
 	hwLimits: {
 		cpu: {
-			temperature: ' . Configuration::getInstance()->getSystemLimits()->getCpu()->getTemperature() . '
+			temperature: ' . Configuration::getInstance()->getSystemLimits()->getCpu()->getTemperature() . ',
+			load: ' . Configuration::getInstance()->getSystemLimits()->getCpu()->getLoad() . '
 		},
 		gpu: {
-			temperature: ' . Configuration::getInstance()->getSystemLimits()->getGpu()->getTemperature() . '
+			temperature: ' . Configuration::getInstance()->getSystemLimits()->getGpu()->getTemperature() . ',
+			load: ' . Configuration::getInstance()->getSystemLimits()->getGpu()->getLoad() . '
 		}
 	}
 };

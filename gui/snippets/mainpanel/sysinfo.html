@@ -26,7 +26,7 @@
 		</div>
 		<div class="row">
 			<span class="label">Usage:</span>
-			<span class="value"><% systemInfo.cpu.load %> %</span>
+			<span class="value" v-bind:class="{alert: systemInfo.cpu.load > config.hwLimits.cpu.load}"><% systemInfo.cpu.load %> %</span>
 		</div>
 		<div class="row">
 			<span class="label">Frequency:</span>
@@ -63,7 +63,7 @@
 			</div>
 			<div class="row">
 				<span class="label">Usage:</span>
-				<span class="value"><% systemInfo.gpu.load %> %</span>
+				<span class="value" v-bind:class="{alert: systemInfo.gpu.load > config.hwLimits.gpu.load}"><% systemInfo.gpu.load %> %</span>
 			</div>
 			<div class="row">
 				<span class="label">Memory free:</span>

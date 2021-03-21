@@ -1,6 +1,8 @@
 <div class="box">
 	<div class="title"><i class="fas fa-microchip"></i>CPU</div>
 	<div class="content">
-		<div class="bar"><div class="full" v-bind:style="{width: systemInfo.cpu.load + '%' }"></div></div>
+		<div class="bar">
+			<div class="full"  v-bind:class="{alert: systemInfo.cpu.load > config.hwLimits.cpu.load}" v-bind:style="{width: systemInfo.cpu.load + '%' }"></div>
+		</div>
 	</div>
 </div>

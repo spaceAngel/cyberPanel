@@ -4,8 +4,10 @@ systemLimits:
 systemLimits:
     cpu:
         temperature: 60
+        load:75
     gpu:
         temperature: 50
+        load:80
 macros:
    - caption: firefox
      icon: fa-firefox
