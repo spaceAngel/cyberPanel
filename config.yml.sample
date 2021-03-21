@@ -8,6 +8,7 @@ systemLimits:
     gpu:
         temperature: 50
         load:80
+    memory: 14
 macros:
    - caption: firefox
      icon: fa-firefox

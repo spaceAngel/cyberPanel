@@ -46,7 +46,7 @@
 		</div>
 		<div class="row">
 			<span class="label">Used:</span>
-			<span class="value"><% systemInfo.memory.used.human %></span>
+			<span class="value" v-bind:class="{alert: systemInfo.memory.used.bytes > config.hwLimits.memory}"><% systemInfo.memory.used.human %></span>
 		</div>
 	</div>
 

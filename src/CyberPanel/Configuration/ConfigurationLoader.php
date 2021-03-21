@@ -35,6 +35,7 @@ class ConfigurationLoader {
 		$configuration->getSystemLimits()->getCpu()->setLoad($cpu['load']);
 		$configuration->getSystemLimits()->getGpu()->setTemperature($gpu['temperature']);
 		$configuration->getSystemLimits()->getGpu()->setLoad($gpu['load']);
+		$configuration->getSystemLimits()->setMemory($yaml['memory'] * 1024 * 1024 * 1024);
 
 	}
 

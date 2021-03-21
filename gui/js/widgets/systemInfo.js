@@ -10,6 +10,7 @@ var systemInfoWidget = {
 			|| config.hwLimits.gpu.temperature < cyberPanel.systemInfo.temperatures.gpu
 			|| config.hwLimits.cpu.load < cyberPanel.systemInfo.cpu.load
 			|| config.hwLimits.gpu.load < cyberPanel.systemInfo.gpu.load
+			|| config.hwLimits.memory < cyberPanel.systemInfo.memory.used.bytes
 		) {
 			sound.playAlert();
 			systemInfoWidget.alert = true;
