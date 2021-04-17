@@ -13,7 +13,7 @@ class Ct24News implements Parser {
 	// phpcs:disable Generic.Files.LineLength
 	const LOGO_URL = 'https://ct24.ceskatelevize.cz/sites/all/themes/custom/ct24/css/compiled/assets/images/logo-ct24-colored.png';
 	const URL = 'https://www.ceskatelevize.cz/sport/ajax/onlineReport/';
-	const POST_PARAMS = 'onlineReportId=1128&page=1';
+	const POST_PARAMS = 'onlineReportId=1129&page=1';
 	const XPATH = '//dl[contains(@class, "onlineReportContent")]/*[self::dt or self::dd]';
 	// phpcs:enable
 
