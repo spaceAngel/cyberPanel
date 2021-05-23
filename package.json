@@ -4,25 +4,26 @@
   "description": "webapp remote (specially over wifi from tablets) control panel for linux",
   "main": "index.js",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.0",
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "axios": "^0.20.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "swiped-events": "git+https://github.com/john-doherty/swiped-events.git",
-    "vue": "^2.6.11"
+    "vue": "^2.6.12"
   },
   "devDependencies": {
+    "coffeescript": "^2.5.1",
     "eslint": "^6.8.0",
-    "grunt": "^1.0.4",
+    "grunt": "^1.4.0",
     "grunt-bake": "^1.9.0",
     "grunt-concat-css": "^0.3.2",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^3.0.0",
-    "grunt-contrib-less": "^2.0.0",
+    "grunt-contrib-less": "^2.1.0",
     "grunt-contrib-uglify-es": "^3.3.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-phpcs": "^0.4.0",
     "grunt-phpmd": "^0.1.1",
-    "grunt-phpstan": "^0.2.0"
+    "grunt-phpstan": "^0.2.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
