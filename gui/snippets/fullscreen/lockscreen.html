@@ -8,4 +8,16 @@
 			<% datetime.time %>
 		</div>
 	</div>
+	<div class="media">
+		<div class="currentsong">
+			&nbsp;<% media.currentsong.name %>
+		</div>
+		<div class="controls">
+			<i class="fa fa-2x button fa-play" onclick="mediaWidget.play()" v-if="!media.playing"></i>
+			<i class="fa fa-2x button fa-pause" onclick="mediaWidget.pause()" v-if="media.playing"></i>
+			<i class="fa fa-2x button fa-stop" onclick="mediaWidget.stop()"></i>
+			<i class="fa fa-2x button fa-fast-backward" onclick="mediaWidget.previous()"></i>
+			<i class="fa fa-2x button fa-fast-forward" onclick="mediaWidget.next()"></i>
+		</div>
+	</div>
 </div>
