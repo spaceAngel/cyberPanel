@@ -55,7 +55,9 @@ class NetworkCommand extends BaseCommand {
 		$output = array_slice($output, -10);
 
 		$parsed = [];
-		preg_match(self::REGEXP_PARSE_TIMEOUT, $output[count($output) - 1], $parsed);
+		if (count($output) > 1) {
+			preg_match(self::REGEXP_PARSE_TIMEOUT, $output[count($output) - 1], $parsed);
+		}
 
 		if (count($parsed) >= 2 && $parsed[2] == 's') {
 			$time = (float)$parsed[1] * 1000;
