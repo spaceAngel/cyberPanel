@@ -1,3 +1,11 @@
 <div class="lockScreen" v-show="systemInfo.locked">
 	<img v-bind:src="'data:' + lockScreen.type + ';base64,' + lockScreen.binary" />
+	<div class="datetime">
+		<div class="date">
+			<% datetime.date %>
+		</div>
+		<div class="time">
+			<% datetime.time %>
+		</div>
+	</div>
 </div>
