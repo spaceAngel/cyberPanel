@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "chart.js": "^2.9.4",
     "swiped-events": "git+https://github.com/john-doherty/swiped-events.git",
     "vue": "^2.6.12"
