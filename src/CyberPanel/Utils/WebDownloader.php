@@ -6,6 +6,7 @@ use CyberPanel\Exceptions\RemoteContentNotDownloadedException;
 
 class WebDownloader {
 
+	protected const TIMEOUT = 4;
 
 	public static function download(string $url, string $postParams = NULL) : string {
 		$curl = curl_init();
@@ -14,7 +15,7 @@ class WebDownloader {
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
 		curl_setopt($curl, CURLOPT_HEADER, FALSE);
 		curl_setopt($curl, CURLOPT_ENCODING, '');
-		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 2);
+		curl_setopt($curl, CURLOPT_TIMEOUT, self::TIMEOUT);
 
 		if ($postParams != NULL) {
 			curl_setopt($curl, CURLOPT_POST, 1);

@@ -137,6 +137,17 @@ class SystemInfo {
 		return $gpu;
 	}
 
+	public function getChaseFanSpeed() : array {
+		$rslt = [];
+		$raw = Executer::execAndGetResponse(SystemInfoCommands::CMD_CHASE_FAN_SPEED);
+		$raw = explode("\n", $raw);
+		foreach ($raw as $line) {
+			$fan = explode(':', $line);
+			$rslt[$fan[0]] = $fan[1];
+		}
+		return $rslt;
+	}
+
 	private function convertTpsGtoKilobytes(string $gbs) : int {
 		return (int)((float)str_replace(
 			',', '.', $gbs

@@ -27,7 +27,8 @@ var defaultDataStruct = {
 				free: '10%',
 				total: '2%'
 			}
-		}
+		},
+		fans: []
 	},
 	hwInfo: {
 		storages: [],
@@ -43,7 +44,7 @@ var defaultDataStruct = {
 		currentsong: {
 			name: '',
 			title:'',
-			artist: ''	
+			artist: ''
 		},
 		length: 50,
 		position: 20,

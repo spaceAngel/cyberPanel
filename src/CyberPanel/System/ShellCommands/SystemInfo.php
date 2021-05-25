@@ -28,6 +28,8 @@ interface SystemInfo {
 	const CMD_DISTRO = 'lsb_release -a 2> /dev/null|grep Description |sed -E "s/Description:[ \t]*/ /g"';
 
 	const CMD_UPTIME = 'uptime -p';
+
+	const CMD_CHASE_FAN_SPEED = 'sensors | grep -i fan |awk "{print \$1 \$2}"';
 	// phpcs:enable
 
 }

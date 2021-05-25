@@ -25,6 +25,7 @@ class SystemInfoCommand extends BaseCommand {
 				'total' => $this->formatMemory($memory->getTotal()),
 				'load' => $memory->getLoad()
 			],
+			'fans' => SystemInfo::getInstance()->getChaseFanSpeed(),
 			'processes' => SystemInfo::getInstance()->getProcessList(),
 			'locked' => Systeminfo::getInstance()->isLockedScreen(),
 			'gpu' => [
@@ -33,7 +34,7 @@ class SystemInfoCommand extends BaseCommand {
 					'free' => $gpu->getMemoryFree(),
 					'total' => $gpu->getMemoryTotal(),
 				]
-			]
+			],
 		];
 	}
 

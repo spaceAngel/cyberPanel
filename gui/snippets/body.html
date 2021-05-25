@@ -7,7 +7,8 @@
 	<div class="box taskbar">
 		<template v-for="pane, key in config.panes">
 			<i v-if="pane == 'macros'" class="fas fa-icons fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-			<i v-if="pane == 'processes'" class="far fa-window-restore fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'processes'" class="fas fa-window-restore fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			<i v-if="pane == 'fans'" class="fas fa-fan fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
 			<i v-if="pane == 'sysinfo'" class="fas fa-laptop fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
 				<span class="notification alert" v-if="systemInfoWidget.alert">!</span>
 			</i>
@@ -32,6 +33,7 @@
 			<div v-if="pane == 'macros'" v-show="currentPanel == key"><!--(bake mainpanel/macros.html)--></div>
 			<div v-if="pane == 'processes'" v-show="currentPanel == key"><!--(bake mainpanel/processGrid.html)--></div>
 			<div v-if="pane == 'sysinfo'" v-show="currentPanel == key" class="sysinfo"><!--(bake mainpanel/sysinfo.html)--></div>
+			<div v-if="pane == 'fans'" v-show="currentPanel == key" class="fans"><!--(bake mainpanel/fans.html)--></div>
 			<div v-if="pane == 'numkeyboard'" v-show="currentPanel == key"><!--(bake mainpanel/keyboard.html)--></div>
 			<div v-if="pane == 'downloads'" v-show="currentPanel == key" class="downloads"><!--(bake mainpanel/downloads.html)--></div>
 			<div v-if="pane == 'music'" v-show="currentPanel == key"><!--(bake mainpanel/lastfmTrackInfo.html)--></div>

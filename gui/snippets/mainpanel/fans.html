@@ -1,0 +1,9 @@
+<div v-for="rpm, name in systemInfo.fans" class="fan">
+	<span class="label">
+		<i class="fas fa-fan"></i>
+		<% name %>:
+	</span>
+	<span class="value">
+		<% rpm %> RPM
+	</span> 
+</div>
