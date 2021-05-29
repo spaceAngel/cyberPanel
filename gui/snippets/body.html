@@ -5,27 +5,30 @@
 
 <div class="main">
 	<div class="box taskbar">
-		<template v-for="pane, key in config.panes">
-			<i v-if="pane == 'macros'" class="fas fa-icons fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-			<i v-if="pane == 'processes'" class="fas fa-window-restore fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-			<i v-if="pane == 'fans'" class="fas fa-fan fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-			<i v-if="pane == 'sysinfo'" class="fas fa-laptop fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
-				<span class="notification alert" v-if="systemInfoWidget.alert">!</span>
-			</i>
-			<i v-if="pane == 'numkeyboard'" class="fas fa-calculator fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-			<i v-if="pane == 'downloads'" class="fas fa-download fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
-				<span class="notification" v-if="downloads.length > 0"><% downloads.length %></span>
-			</i>
-			<i v-if="pane == 'music'" class="fas fa-music fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-			<i v-if="pane == 'covid'" class="fas fa-viruses fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key" data-tabId="covidNews">
-				<span class="notification" v-if="covidWidget.unread > 0" v-html="covidWidget.unread"></span>
-			</i>
-			<i v-if="pane == 'hospitals'" class="fas fa-hospital-user fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-			<i v-if="pane == 'network'" class="fas fa-globe fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
-				<span class="notification alert" v-if="networkWidget.disconnected || networkWidget.time > 500">!</span>
-			</i>
-			<i v-if="pane == 'files'" class="fas fa-folder-open fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-		</template>
+		<div class="taskbarInner">
+
+			<template v-for="pane, key in config.panes">
+				<i v-if="pane == 'macros'" class="fas fa-icons fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+				<i v-if="pane == 'processes'" class="fas fa-window-restore fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+				<i v-if="pane == 'fans'" class="fas fa-fan fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+				<i v-if="pane == 'sysinfo'" class="fas fa-laptop fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
+					<span class="notification alert" v-if="systemInfoWidget.alert">!</span>
+				</i>
+				<i v-if="pane == 'numkeyboard'" class="fas fa-calculator fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+				<i v-if="pane == 'downloads'" class="fas fa-download fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
+					<span class="notification" v-if="downloads.length > 0"><% downloads.length %></span>
+				</i>
+				<i v-if="pane == 'music'" class="fas fa-music fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+				<i v-if="pane == 'covid'" class="fas fa-viruses fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key" data-tabId="covidNews">
+					<span class="notification" v-if="covidWidget.unread > 0" v-html="covidWidget.unread"></span>
+				</i>
+				<i v-if="pane == 'hospitals'" class="fas fa-hospital-user fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+				<i v-if="pane == 'network'" class="fas fa-globe fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
+					<span class="notification alert" v-if="networkWidget.disconnected || networkWidget.time > 500">!</span>
+				</i>
+				<i v-if="pane == 'files'" class="fas fa-folder-open fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+			</template>
+		</div>
 	</div>
 
 	<div class="box swiper" id="mainSwipingPanel">
