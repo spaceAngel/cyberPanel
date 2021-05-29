@@ -17,5 +17,19 @@ var systemInfoWidget = {
 		} else {
 			systemInfoWidget.alert = false;
 		}
+
+		var fans = Object.values(cyberPanel.systemInfo.fans);
+		for (var i = 0; i < fans.length; i++) {
+			if (cyberPanel.fans.min[i] !== undefined) {
+				cyberPanel.fans.min[i] = Math.min(fans[i], cyberPanel.fans.min[i]);
+			} else {
+				cyberPanel.fans.min[i] = fans[i];
+			}
+			if (cyberPanel.fans.max[i] !== undefined) {
+				cyberPanel.fans.max[i] = Math.max(fans[i], cyberPanel.fans.max[i]);
+			} else {
+				cyberPanel.fans.max[i] = fans[i];
+			}
+		}
 	},
 };
