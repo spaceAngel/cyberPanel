@@ -4,18 +4,18 @@
 	<span class="value">min</span>
 	<span class="value">max</span>
 </div>
-<div v-for="rpm, name, key in systemInfo.fans" class="fan">
+<div v-for="fan, name in systemInfo.fans" class="fan">
 	<span class="label">
 		<i class="fas fa-fan"></i>
 		<% name %>:
 	</span>
 	<span class="value">
-		<% rpm %> RPM
+		<% fan.speed %> RPM
 	</span>
-	<span class="value" v-if="fans.min[key]">
-		<% fans.min[key] %> RPM
+	<span class="value" v-if="fan.min">
+		<% fan.min %> RPM
 	</span>
-	<span class="value" v-if="fans.max[key]">
-		<% fans.max[key] %> RPM
-	</span>  
+	<span class="value" v-if="fan.max">
+		<% fan.max %> RPM
+	</span>
 </div>

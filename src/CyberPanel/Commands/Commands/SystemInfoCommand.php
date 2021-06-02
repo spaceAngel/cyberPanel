@@ -25,7 +25,7 @@ class SystemInfoCommand extends BaseCommand {
 				'total' => $this->formatMemory($memory->getTotal()),
 				'load' => $memory->getLoad()
 			],
-			'fans' => SystemInfo::getInstance()->getChaseFanSpeed(),
+			'fans' => $this->getFans(),
 			'processes' => SystemInfo::getInstance()->getProcessList(),
 			'locked' => Systeminfo::getInstance()->isLockedScreen(),
 			'gpu' => [
@@ -36,6 +36,19 @@ class SystemInfoCommand extends BaseCommand {
 				]
 			],
 		];
+	}
+
+	protected function getFans() : array {
+		$rslt = [];
+		$fans = SystemInfo::getInstance()->getChaseFanSpeed();
+		foreach ($fans as $name => $fan) {
+			$rslt[$name] = [
+				'speed' => $fan->getSpeed(),
+				'min' => $fan->getMin(),
+				'max' => $fan->getMax(),
+			];
+		}
+		return $rslt;
 	}
 
 	protected function formatMemory(int $bytes) : array {

@@ -7,6 +7,7 @@ use CyberPanel\System\ShellCommands\GraphicNvidia;
 use CyberPanel\DataStructs\System\GpuSystemInfo;
 use CyberPanel\DataStructs\System\MemoryInfo;
 use CyberPanel\Utils\Miscellaneous;
+use CyberPanel\DataStructs\System\Fan;
 
 class SystemInfo {
 
@@ -15,6 +16,8 @@ class SystemInfo {
 	private $skipMountPoints = ['/boot/efi'];
 
 	private static $instance;
+
+	private array $fans = [];
 
 	private function __construct() {
 	}
@@ -138,14 +141,17 @@ class SystemInfo {
 	}
 
 	public function getChaseFanSpeed() : array {
-		$rslt = [];
+		$fans = [];
 		$raw = Executer::execAndGetResponse(SystemInfoCommands::CMD_CHASE_FAN_SPEED);
 		$raw = explode("\n", $raw);
 		foreach ($raw as $line) {
-			$fan = explode(':', $line);
-			$rslt[$fan[0]] = $fan[1];
+			$fanData = explode(':', $line);
+			$fan = $this->fans[$fanData[0]] ?? new Fan();
+			$fan->set($fanData[1]);
+			$fans[$fanData[0]] = $fan;
 		}
-		return $rslt;
+		$this->fans = $fans;
+		return $this->fans;
 	}
 
 	private function convertTpsGtoKilobytes(string $gbs) : int {

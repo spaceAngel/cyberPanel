@@ -5,10 +5,6 @@ var defaultDataStruct = {
 		time: '',
 		holiday: ''
 	},
-	fans: {
-		min: [],
-		max: []
-	},
 	systemInfo: {
 		cpu: {
 			load: 40,
