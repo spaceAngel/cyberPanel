@@ -46,6 +46,7 @@ class SystemInfoCommand extends BaseCommand {
 				'speed' => $fan->getSpeed(),
 				'min' => $fan->getMin(),
 				'max' => $fan->getMax(),
+				'utilisation' => $fan->getUtilisation()
 			];
 		}
 		return $rslt;

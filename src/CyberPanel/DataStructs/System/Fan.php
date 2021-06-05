@@ -28,4 +28,12 @@ class Fan {
 	public function getMin() : int {
 		return $this->min;
 	}
+
+	public function getUtilisation() : int {
+		if ($this->max - $this->min == 0) {
+			return 1;
+		} else {
+			return (int) (($this->speed - $this->min) * 100 / ($this->max - $this->min));
+		}
+	}
 }

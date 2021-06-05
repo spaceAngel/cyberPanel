@@ -1,11 +1,12 @@
 .fans {
 	margin-top: 20px;
 	padding-left: 50px;
-	
+
 	.header {
 		border-bottom: 1px dotted @colorBorder;
 		text-transform: uppercase;
 	}
+
 	.fan {
 		margin-bottom: 15px;
 		.label, .value {
@@ -13,7 +14,7 @@
 			font-size:27px;
 			text-align: right;
 		}
-		
+
 		.label {
 			width: 150px;
 			text-transform: uppercase;
@@ -21,10 +22,19 @@
 				margin-right:10px;
 			}
 		}
-		
+
 		.value {
 			width:150px;
 			margin-left:20px;
+		}
+
+		.graph {
+			width:185px;
+			padding-left: 10px;
+			.bar {
+				position:relative;
+				top:6px;
+			}
 		}
 	}
 }

@@ -3,6 +3,7 @@
 	<span class="value">current</span>
 	<span class="value">min</span>
 	<span class="value">max</span>
+	<span class="value">util</span>
 </div>
 <div v-for="fan, name in systemInfo.fans" class="fan">
 	<span class="label">
@@ -17,5 +18,8 @@
 	</span>
 	<span class="value" v-if="fan.max">
 		<% fan.max %> RPM
+	</span>
+	<span class="value graph" v-if="fan.speed">
+		<div class="bar"><div class="full" v-bind:style="{width: (Number(fan.utilisation)) + '%' }"></div></div>
 	</span>
 </div>
