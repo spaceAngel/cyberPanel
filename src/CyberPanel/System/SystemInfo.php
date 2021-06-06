@@ -11,9 +11,9 @@ use CyberPanel\DataStructs\System\Fan;
 
 class SystemInfo {
 
-	private $skipStorageFormats = ['tmpfs', 'udev', 'devtmpfs', 'squashfs', 'iso9660'];
+	private const SKIP_STORAGE_FORMATS = ['tmpfs', 'udev', 'devtmpfs', 'squashfs', 'iso9660', 'udf'];
 
-	private $skipMountPoints = ['/boot/efi'];
+	private const SKIP_MOUNT_POINTS = ['/boot/efi'];
 
 	private static $instance;
 
@@ -42,8 +42,8 @@ class SystemInfo {
 			$disk = preg_split("/[\s,]+/", $diskRaw);
 			if (
 				empty($disk[0])
-				|| in_array($disk[0], $this->skipStorageFormats)
-				|| in_array($disk[1], $this->skipMountPoints)
+				|| in_array($disk[0], self::SKIP_STORAGE_FORMATS)
+				|| in_array($disk[1], self::SKIP_MOUNT_POINTS)
 			) continue;
 
 			$rslt[$disk[1]] = [
