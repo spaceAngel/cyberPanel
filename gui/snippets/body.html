@@ -41,7 +41,7 @@
 			<div v-if="pane == 'downloads'" v-show="currentPanel == key" class="downloads"><!--(bake mainpanel/downloads.html)--></div>
 			<div v-if="pane == 'music'" v-show="currentPanel == key"><!--(bake mainpanel/lastfmTrackInfo.html)--></div>
 			<div v-if="pane == 'covid'" v-show="currentPanel == key" class="covid" id="covid"><!--(bake mainpanel/covid.html)--></div>
-			<div v-if="pane == 'hospitals'" v-show="currentPanel == key"><!--(bake mainpanel/covidHospitals.html)--></div>
+			<div v-if="pane == 'hospitals'" v-show="currentPanel == key" id="covidHospitals"><!--(bake mainpanel/covidHospitals.html)--></div>
 			<div v-if="pane == 'network'" v-show="currentPanel == key"><!--(bake mainpanel/network.html)--></div>
 			<div v-if="pane == 'files'" v-show="currentPanel == key"><!--(bake mainpanel/files.html)--></div>
 		</template>

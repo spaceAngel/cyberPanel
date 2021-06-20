@@ -5,9 +5,19 @@ var covidWidget = {
 	unread: 0,
 
 	init: async function() {
+		if (
+			!document.getElementById('covid')
+			|| !document.getElementById('covidHospitals')
+		) {
+			return;
+		}
+		socket.registerHandler('covid', covidWidget.handle);
+		setInterval( function() {socket.send('covid', 123);}, 5 * 60 * 1000);
+		setTimeout( function() {socket.send('covid', 123);}, 8000);
+
 		cyberPanel.$watch('covid.news', async function(newval) {
 			covidWidget.unread = 0;
-			for (var i = 0; i< newval.length; i++) { 
+			for (var i = 0; i< newval.length; i++) {
 				var elm = document.createElement('div');
 				elm.innerHTML = newval[i].html;
 				if (!covidWidget.readNews.includes(elm.innerHTML)) {
@@ -48,7 +58,7 @@ var covidWidget = {
 		}
 		covidWidget.unread = 0;
 	},
-	
+
 	handle: function(data) {
 		cyberPanel.covid = data;
 	},
