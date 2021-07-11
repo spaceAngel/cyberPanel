@@ -14,6 +14,23 @@ class DateTime {
 		return self::$holidays[$month][$day];
 	}
 
+	public static function secondsToHuman(int $value) : string {
+		$minutes = floor($value / 60);
+		$seconds = ($value % 60);
+		$hours = 0;
+		if ($minutes >= 60) {
+			$hours = floor($minutes / 60);
+			$minutes = $minutes % 60;
+		}
+		$rslt = '';
+		if ($hours > 0) {
+			$rslt .= (string)$hours . ':';
+		}
+		$rslt .= ($minutes < 10 ? '0' : '') . $minutes . ':';
+		$rslt .= ($seconds < 10 ? '0' : '') . $seconds;
+		return $rslt;
+	}
+
 	public static function humanToMicrotime(string $human, bool $dayBefore = FALSE) : int {
 		$human = str_replace('O', '0', $human);
 		$date = new \DateTime($human);
