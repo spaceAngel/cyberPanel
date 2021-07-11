@@ -17,6 +17,7 @@ use CyberPanel\Commands\Commands\CovidCommand;
 use CyberPanel\Commands\Commands\OpenInBrowserCommand;
 use CyberPanel\Commands\Commands\NetworkCommand;
 use CyberPanel\Commands\Commands\FileManagerCommand;
+use CyberPanel\Commands\Commands\UpsStateCommand;
 
 class CommandResolver {
 
@@ -40,6 +41,7 @@ class CommandResolver {
 		$this->registerCommand('openbrowser', OpenInBrowserCommand::class);
 		$this->registerCommand('network', NetworkCommand::class);
 		$this->registerCommand('files', FileManagerCommand::class);
+		$this->registerCommand('upsstatus', UpsStateCommand::class);
 	}
 
 	public static function getInstance() : self {

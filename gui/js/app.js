@@ -1,4 +1,8 @@
-/* global Vue, socket, networkWidget, dateTimeWidget, keyboardWidget, systemInfoWidget, hwInfoWidget, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget, lockScreenImage, fileManager */
+/*
+	global Vue, socket,
+		networkWidget, dateTimeWidget, keyboardWidget, systemInfoWidget, hwInfoWidget, macrosWidget, defaultDataStruct, mediaWidget, mainPanelWidget, lockScreenImage, fileManager,
+		upsStatus
+*/
 var cyberPanel;
 var mixins = [];
 
@@ -64,4 +68,5 @@ document.addEventListener('DOMContentLoaded', function() {
 	mainPanelWidget.init('mainSwipingPanel');
 	lastFmTrackInfo.init();
 	covidWidget.init();
+	upsStatus.init();
 });

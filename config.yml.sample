@@ -9,6 +9,8 @@ systemLimits:
         temperature: 50
         load:80
     memory: 14
+ups:
+    name: myups
 macros:
    - caption: firefox
      icon: fa-firefox
@@ -42,6 +44,7 @@ mainpanel:
     - sysinfo
     - fans
     - network
+    - upsstatus
     - numkeyboard
     - downloads
     - music

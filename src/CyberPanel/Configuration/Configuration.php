@@ -3,6 +3,7 @@
 namespace CyberPanel\Configuration;
 
 use CyberPanel\Configuration\HwLimits\Limits;
+use CyberPanel\Configuration\Misc\Ups;
 
 class Configuration {
 
@@ -16,12 +17,15 @@ class Configuration {
 
 	private array $clients;
 
+	private $ups;
+
 	private array $sidebarWidgets = [];
 
 	private array $mainPanels = [];
 
 	private function __construct() {
 		$this->systemLimits  = new Limits();
+		$this->ups = new Ups();
 	}
 
 	public static function getInstance(): self {
@@ -69,6 +73,10 @@ class Configuration {
 
 	public function setMainPanels(array $mainPanels = []) : void {
 		$this->mainPanels = $mainPanels;
+	}
+
+	public function getUps() : Ups {
+		return $this->ups;
 	}
 }
 

@@ -1,0 +1,52 @@
+<div class="battery"  v-if="upsStatus.data.charge">
+	<div class="cell-50 status">
+		<i v-if="upsStatus.data.charge > 95" class="fas fa-battery-full fa-6x"></i>
+		<i v-else-if="upsStatus.data.charge > 75" class="fas fa-battery-three-quarters fa-6x"></i>
+		<i v-else-if="upsStatus.data.charge > 50" class="fas fa-battery-half fa-6x"></i>
+		<i v-else-if="upsStatus.data.charge > 25" class="fas fa-battery-quarter fa-6x"></i>
+		<i v-else class="fas fa-battery-empty"></i>
+	</div>
+	<div class="cell-50">
+		<div class="row">
+			<span class="symbol">
+				<i class="fas fa-car-battery fa-3x"></i>
+			</span>
+			<span class="value"><% upsStatus.data.charge %> %</span>
+		</div>
+		<div class="row">
+			<span class="symbol">
+				<i class="fas fa-hourglass-half fa-3x"></i>
+			</span>
+			<span class="value"><% upsStatus.data.runtime.human %></span>
+		</div>
+	</div>
+</div>
+<div class="power"  v-if="upsStatus.data.load">
+	<div class="cell-50">
+		<span class="symbol">
+			<i class="fas fa-lightbulb fa-3x"></i>
+		</span>
+			
+			
+		<span class="value">
+			<% upsStatus.data.load.watts %> W
+			(<% upsStatus.data.load.util %>%)
+		</span>
+	</div>
+	
+	<div class="cell-50">
+		<span class="symbol">
+			<i class="fas fa-bolt fa-3x"></i>
+		</span>
+		<span class="value"><% upsStatus.data.power %> W</span>
+	</div>
+</div>
+
+<div class="noData" v-if="upsStatus.data.length == 0">
+	<div class="cell-50">
+		<i class="far fa-window-close fa-3x"></i>
+	</div>
+	<div class="cell-50">
+		 UPS not configured or not found
+	</div>
+</div>

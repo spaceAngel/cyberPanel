@@ -23,6 +23,9 @@ class ConfigurationLoader {
 		$configuration->setClients($yaml['clients']);
 		$configuration->setSidebarWidgets($yaml['sidebar']);
 		$configuration->setMainPanels($yaml['mainpanel']);
+		if (!empty($yaml['ups'])) {
+			self::configureUps($yaml['ups'], $configuration);
+		}
 	}
 
 	private static function configureHwLimits(
@@ -36,7 +39,13 @@ class ConfigurationLoader {
 		$configuration->getSystemLimits()->getGpu()->setTemperature($gpu['temperature']);
 		$configuration->getSystemLimits()->getGpu()->setLoad($gpu['load']);
 		$configuration->getSystemLimits()->setMemory($yaml['memory'] * 1024 * 1024 * 1024);
+	}
 
+	private static function configureUps(
+		array $yaml,
+		Configuration $configuration
+	) {
+		$configuration->getUps()->setName($yaml['name']);
 	}
 
 	private static function parseMacro(array $data) : Macro {

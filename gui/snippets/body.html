@@ -27,6 +27,7 @@
 					<span class="notification alert" v-if="networkWidget.disconnected || networkWidget.time > 500">!</span>
 				</i>
 				<i v-if="pane == 'files'" class="fas fa-folder-open fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+				<i v-if="pane == 'upsstatus'" class="fas fa-charging-station fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
 			</template>
 		</div>
 	</div>
@@ -44,6 +45,7 @@
 			<div v-if="pane == 'hospitals'" v-show="currentPanel == key" id="covidHospitals"><!--(bake mainpanel/covidHospitals.html)--></div>
 			<div v-if="pane == 'network'" v-show="currentPanel == key"><!--(bake mainpanel/network.html)--></div>
 			<div v-if="pane == 'files'" v-show="currentPanel == key"><!--(bake mainpanel/files.html)--></div>
+			<div v-if="pane == 'upsstatus'" v-show="currentPanel == key" id="upsStatus" class="upsStatus"><!--(bake mainpanel/upsStatus.html)--></div>
 		</template>
 	</div>
 	<!--(bake media.html)-->
