@@ -11,7 +11,9 @@ use CyberPanel\DataStructs\System\Fan;
 
 class SystemInfo {
 
-	private const SKIP_STORAGE_FORMATS = ['tmpfs', 'udev', 'devtmpfs', 'squashfs', 'iso9660', 'udf'];
+	private const SKIP_STORAGE_FORMATS = [
+		'tmpfs', 'udev', 'devtmpfs', 'squashfs', 'iso9660', 'udf'
+	];
 
 	private const SKIP_MOUNT_POINTS = ['/boot/efi'];
 
