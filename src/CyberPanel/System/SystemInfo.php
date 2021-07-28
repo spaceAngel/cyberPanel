@@ -110,7 +110,7 @@ class SystemInfo {
 	}
 
 	public function getGpuName() : string {
-		return Executer::execAndGetResponse(SystemInfoCommands::CMD_GPUNAME);
+		return Executer::execAndGetResponse(GraphicNvidia::CMD_GPUNAME);
 	}
 
 	public function getCpuName() : string {
