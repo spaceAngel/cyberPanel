@@ -8,6 +8,8 @@ use Ratchet\WebSocket\WsServer;
 use CyberPanel\WsServer as CyberpanelSocketServer;
 use CyberPanel\Server\WebServer;
 use CyberPanel\Logging\Log;
+use CyberPanel\Events\EventManager;
+use CyberPanel\Events\Events\Runtime\ApplicationStartedEvent;
 
 class CyberPanel {
 
@@ -25,6 +27,7 @@ class CyberPanel {
 		$this->init();
 		$this->handleInfoSwitches();
 		$this->checkForLogingSettings();
+		EventManager::getInstance()->event(new ApplicationStartedEvent());
 		Log::info('Starting CyberPanel version %s', [$this->getVersion()]);
 		if ($this->isRunningAsDaemon()) {
 			$this->daemonize();
