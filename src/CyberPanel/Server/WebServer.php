@@ -10,6 +10,8 @@ use CyberPanel\Server\Utils\Mime;
 use CyberPanel\Security\SecurityManager;
 use CyberPanel\Logging\Log;
 use React\Http\Client\Request;
+use CyberPanel\Events\EventManager;
+use CyberPanel\Events\Events\Terminal\UnauthorizedConnectionEvent;
 
 class WebServer  {
 
@@ -125,6 +127,9 @@ class WebServer  {
 	) : Response {
 
 		$page = $this->getFullFilePath(self::PAGE_UNAUTHORIZED);
+		EventManager::getInstance()->event(
+			new UnauthorizedConnectionEvent($request->getServerParams()['REMOTE_ADDR'])
+		);
 		Log::warn(
 			'HTTP GET 401 %s %s',
 			[
