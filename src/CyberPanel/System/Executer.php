@@ -11,7 +11,7 @@ class Executer {
 				return FALSE;
 
 			case 0 :
-				popen( "nohup $cmd &", 'r' );
+				popen( "nohup $($cmd) 2>&1  &", 'r' );
 				exit();
 
 			// return the child pid in father
