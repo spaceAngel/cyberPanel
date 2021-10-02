@@ -8,6 +8,7 @@ use CyberPanel\Voice\Listeners\TerminalConnections\TerminalConnectedListener;
 use CyberPanel\Voice\Listeners\TerminalConnections\TerminalDisconnectedListener;
 use CyberPanel\Voice\Listeners\TerminalConnections\TerminalUnauthorizedListener;
 use CyberPanel\Voice\Listeners\Hardware\CpuTemperatureWarnListener;
+use CyberPanel\Voice\Listeners\Hardware\GpuTemperatureWarnListener;
 
 class VoiceSubmodule {
 
@@ -23,6 +24,8 @@ class VoiceSubmodule {
 		EventManager::getInstance()->registerListener(TerminalConnectedListener::class);
 		EventManager::getInstance()->registerListener(TerminalDisconnectedListener::class);
 		EventManager::getInstance()->registerListener(TerminalUnauthorizedListener::class);
+
+		EventManager::getInstance()->registerListener(GpuTemperatureWarnListener::class);
 		EventManager::getInstance()->registerListener(CpuTemperatureWarnListener::class);
 	}
 
