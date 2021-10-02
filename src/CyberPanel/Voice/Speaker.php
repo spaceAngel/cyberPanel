@@ -15,7 +15,7 @@ class Speaker {
 
 	protected int $gain = 30;
 
-	protected string $voice = 'czech';
+	protected string $voice = 'cs+f2';
 
 	private function __construct() {
 	}
