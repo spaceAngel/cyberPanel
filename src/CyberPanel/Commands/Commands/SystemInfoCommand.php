@@ -8,6 +8,7 @@ use CyberPanel\Configuration\Configuration;
 use CyberPanel\Utils\Miscellaneous;
 use CyberPanel\Events\EventManager;
 use CyberPanel\Events\Events\Hardware\CpuTemperatureEvent;
+use CyberPanel\Events\Events\Hardware\GpuTemperatureEvent;
 
 class SystemInfoCommand extends BaseCommand {
 	public function run() : array {
@@ -41,6 +42,9 @@ class SystemInfoCommand extends BaseCommand {
 
 		EventManager::getInstance()->event(
 			new CpuTemperatureEvent($rslt['temperatures']['cpu'])
+		);
+		EventManager::getInstance()->event(
+			new GpuTemperatureEvent($rslt['temperatures']['gpu'])
 		);
 		return $rslt;
 	}
