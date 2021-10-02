@@ -7,6 +7,7 @@ use CyberPanel\Voice\Listeners\ApplicationStartedListener;
 use CyberPanel\Voice\Listeners\TerminalConnectedListener;
 use CyberPanel\Voice\Listeners\TerminalDisconnectedListener;
 use CyberPanel\Voice\Listeners\TerminalUnauthorizedListener;
+use CyberPanel\Voice\Listeners\Hardware\CpuTemperatureWarnListener;
 
 class VoiceSubmodule {
 
@@ -22,6 +23,7 @@ class VoiceSubmodule {
 		EventManager::getInstance()->registerListener(TerminalConnectedListener::class);
 		EventManager::getInstance()->registerListener(TerminalDisconnectedListener::class);
 		EventManager::getInstance()->registerListener(TerminalUnauthorizedListener::class);
+		EventManager::getInstance()->registerListener(CpuTemperatureWarnListener::class);
 	}
 
 }
