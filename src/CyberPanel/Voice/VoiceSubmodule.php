@@ -4,9 +4,9 @@ namespace CyberPanel\Voice;
 
 use CyberPanel\Events\EventManager;
 use CyberPanel\Voice\Listeners\ApplicationStartedListener;
-use CyberPanel\Voice\Listeners\TerminalConnectedListener;
-use CyberPanel\Voice\Listeners\TerminalDisconnectedListener;
-use CyberPanel\Voice\Listeners\TerminalUnauthorizedListener;
+use CyberPanel\Voice\Listeners\TerminalConnections\TerminalConnectedListener;
+use CyberPanel\Voice\Listeners\TerminalConnections\TerminalDisconnectedListener;
+use CyberPanel\Voice\Listeners\TerminalConnections\TerminalUnauthorizedListener;
 use CyberPanel\Voice\Listeners\Hardware\CpuTemperatureWarnListener;
 
 class VoiceSubmodule {
