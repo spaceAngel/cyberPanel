@@ -3,6 +3,8 @@
 namespace CyberPanel\Voice;
 
 use CyberPanel\System\Executer;
+use CyberPanel\Voice\TextTransformers\TransformerInterface;
+use CyberPanel\Voice\TextTransformers\CzechTransformer;
 
 class Speaker {
 
@@ -16,6 +18,10 @@ class Speaker {
 	protected int $gain = 30;
 
 	protected string $voice = 'cs+f2';
+
+	protected array $textTransformers = [
+		'cs+f2' => CzechTransformer::class
+	];
 
 	protected bool $enabled = TRUE;
 
@@ -73,6 +79,7 @@ class Speaker {
 		if (!$this->enabled) {
 			return;
 		}
+		$message = $this->transform($message, $this->voice);
 		$this->createPipeIfNotExists();
 		fwrite(
 			$this->pipe,
@@ -83,6 +90,19 @@ class Speaker {
 				$this->gain
 			)
 		);
+	}
+
+	protected function transform(string $text, string $voice) : string {
+		if (
+			array_key_exists($voice, $this->textTransformers)
+			&& array_key_exists(
+				TransformerInterface::class,
+				class_implements($this->textTransformers[$voice])
+			)
+		) {
+			$text = $this->textTransformers[$voice]::transform($text);
+		}
+		return $text;
 	}
 
 }
