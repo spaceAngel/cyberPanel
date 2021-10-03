@@ -17,6 +17,8 @@ class Speaker {
 
 	protected string $voice = 'cs+f2';
 
+	protected bool $enabled = TRUE;
+
 	private function __construct() {
 	}
 
@@ -52,6 +54,14 @@ class Speaker {
 		$this->gain = $gain;
 	}
 
+	public function setEnabled(bool $enabled) : void {
+		$this->enabled = $enabled;
+	}
+
+	public function getEnabled() : bool {
+		return $this->enabled;
+	}
+
 	public static function getInstance() : self {
 		if (empty(self::$instance)) {
 			self::$instance = new self();
@@ -60,6 +70,9 @@ class Speaker {
 	}
 
 	public function say(string $message, bool $always = FALSE) : void {
+		if (!$this->enabled) {
+			return;
+		}
 		$this->createPipeIfNotExists();
 		fwrite(
 			$this->pipe,

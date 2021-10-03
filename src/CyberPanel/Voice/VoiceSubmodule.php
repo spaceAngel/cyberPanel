@@ -9,6 +9,8 @@ use CyberPanel\Voice\Listeners\TerminalConnections\TerminalDisconnectedListener;
 use CyberPanel\Voice\Listeners\TerminalConnections\TerminalUnauthorizedListener;
 use CyberPanel\Voice\Listeners\Hardware\CpuTemperatureWarnListener;
 use CyberPanel\Voice\Listeners\Hardware\GpuTemperatureWarnListener;
+use CyberPanel\Commands\CommandResolver;
+use CyberPanel\Voice\Commands\EnableSpeakerCommand;
 
 class VoiceSubmodule {
 
@@ -17,9 +19,10 @@ class VoiceSubmodule {
 
 	public static function init() : void {
 		self::initListeners();
+		self::initCommands();
 	}
 
-	protected function initListeners() : void {
+	protected static function initListeners() : void {
 		EventManager::getInstance()->registerListener(ApplicationStartedListener::class);
 		EventManager::getInstance()->registerListener(TerminalConnectedListener::class);
 		EventManager::getInstance()->registerListener(TerminalDisconnectedListener::class);
@@ -28,5 +31,14 @@ class VoiceSubmodule {
 		EventManager::getInstance()->registerListener(GpuTemperatureWarnListener::class);
 		EventManager::getInstance()->registerListener(CpuTemperatureWarnListener::class);
 	}
+
+	protected static function initCommands() : void {
+		CommandResolver::getInstance()->registerCommand(
+			'speakerEnable',
+			EnableSpeakerCommand::class
+		);
+	}
+
+
 
 }

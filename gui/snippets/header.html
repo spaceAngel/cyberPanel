@@ -2,6 +2,9 @@
 	cyberpanel
 </div>
 <div class="statusbar">
+	<i class="fa fa-2x icon fa-volume-up" id="icoSpeaker" v-if="speaker.enabled" v-on:click="speaker.enable(false)"></i>
+	<i class="fa fa-2x icon fa-volume-mute icon-off" id="icoSpeaker" v-if="!speaker.enabled" v-on:click="speaker.enable(true)"></i>
+
 	<i class="fa fa-2x icon fa-bell" id="icoSound" v-if="sound" v-on:click="toggleSound()"></i>
 	<i class="fa fa-2x icon fa-bell-slash icon-off" id="icoSound" v-if="!sound" v-on:click="toggleSound()"></i>
 	
