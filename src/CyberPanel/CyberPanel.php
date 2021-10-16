@@ -66,16 +66,21 @@ class CyberPanel {
 	}
 
 	private function runSocketServer() {
-		$this->socketServer = IoServer::factory(
-			new HttpServer(
-				new WsServer(
-					new CyberpanelSocketServer()
-				)
-			),
-			$this->getPort()
-		);
-		Log::info('Starting socket server on port %s', [$this->getPort()]);
-		$this->socketServer->run();
+		try {
+			$this->socketServer = IoServer::factory(
+				new HttpServer(
+					new WsServer(
+						new CyberpanelSocketServer()
+					)
+				),
+				$this->getPort()
+			);
+			Log::info('Starting socket server on port %s', [$this->getPort()]);
+			$this->socketServer->run();
+		} catch (\RuntimeException $e) {
+			Log::error('Cannot run socket server. Port %s is already in use.', [$this->getPort()]);
+		}
+
 	}
 
 	private function runWebServer() {

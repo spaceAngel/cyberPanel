@@ -36,9 +36,13 @@ class WebServer  {
 		$server = new Server($loop, function (ServerRequestInterface $request) {
 			return $this->handleRequest($request);
 		});
-		$socket = new \React\Socket\Server('0.0.0.0:' . $this->port, $loop);
-		$server->listen($socket);
-		$loop->run();
+		try {
+			$socket = new \React\Socket\Server('0.0.0.0:' . $this->port, $loop);
+			$server->listen($socket);
+			$loop->run();
+		} catch (\RuntimeException $e) {
+			Log::error('Cannot run web server. Port %s is already in use.', [$this->port]);
+		}
 	}
 
 	protected function handleRequest(ServerRequestInterface $request) : Response {
