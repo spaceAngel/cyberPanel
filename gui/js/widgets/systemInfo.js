@@ -1,4 +1,4 @@
-/* global cyberPanel, sound, config */
+/* global cyberPanel, sound, config, hwInfoWidget */
 var systemInfoWidget = {
 
 	alert: false,
@@ -11,6 +11,7 @@ var systemInfoWidget = {
 			|| config.hwLimits.cpu.load < cyberPanel.systemInfo.cpu.load
 			|| config.hwLimits.gpu.load < cyberPanel.systemInfo.gpu.load
 			|| config.hwLimits.memory < cyberPanel.systemInfo.memory.used.bytes
+			|| hwInfoWidget.isStorageOverLimit()
 		) {
 			sound.playAlert();
 			systemInfoWidget.alert = true;

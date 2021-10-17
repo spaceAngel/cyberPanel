@@ -26,7 +26,8 @@ var config = {
 			temperature: ' . Configuration::getInstance()->getSystemLimits()->getGpu()->getTemperature() . ',
 			load: ' . Configuration::getInstance()->getSystemLimits()->getGpu()->getLoad() . '
 		},
-		memory: ' . Configuration::getInstance()->getSystemLimits()->getMemory() . '
+		memory: ' . Configuration::getInstance()->getSystemLimits()->getMemory() . ',
+		storage: ' . Configuration::getInstance()->getSystemLimits()->getStorage() . '
 	}
 };
 ';

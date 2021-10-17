@@ -9,6 +9,7 @@ systemLimits:
         temperature: 50
         load:80
     memory: 14
+    storage: 30
 ups:
     name: myups
 macros:
