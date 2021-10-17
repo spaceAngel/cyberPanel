@@ -8,6 +8,7 @@ use CyberPanel\DataStructs\System\GpuSystemInfo;
 use CyberPanel\DataStructs\System\MemoryInfo;
 use CyberPanel\Utils\Miscellaneous;
 use CyberPanel\DataStructs\System\Fan;
+use CyberPanel\DataStructs\System\Storage;
 
 class SystemInfo {
 
@@ -40,22 +41,36 @@ class SystemInfo {
 		$disks = explode("\n", Executer::execAndGetResponse(SystemInfoCommands::CMD_STORAGES));
 		$rslt = [];
 		array_shift($disks);
-		foreach ($disks as $diskRaw) {
-			$disk = preg_split("/[\s,]+/", $diskRaw);
-			if (
-				empty($disk[0])
-				|| in_array($disk[0], self::SKIP_STORAGE_FORMATS)
-				|| in_array($disk[1], self::SKIP_MOUNT_POINTS)
-			) continue;
-
-			$rslt[$disk[1]] = [
-				'caption' => $disk[1],
-				'size' => $disk[2],
-				'available' => $disk[3],
-				'used' => $disk[4],
-			];
+		foreach ($disks as $raw) {
+			$disk = $this->parseStorage($raw);
+			if ($disk) {
+				$rslt[$disk->getName()] = $disk;
+			}
 		}
-		sort($rslt);
+		usort(
+			$rslt,
+			function($a, $b) {
+				return strcmp($a->getName(), $b->getName());
+			}
+		);
+		return $rslt;
+	}
+
+	protected function parseStorage(string $raw) : ?Storage {
+		$disk = preg_split("/[\s,]+/", $raw);
+		if (
+			empty($disk[0])
+			|| in_array($disk[0], self::SKIP_STORAGE_FORMATS)
+			|| in_array($disk[1], self::SKIP_MOUNT_POINTS)
+		) {
+			return NULL;
+		}
+
+		$rslt = new Storage();
+		$rslt->setName($disk[1]);
+		$rslt->setSize($disk[2]);
+		$rslt->setUsed($disk[4]);
+		$rslt->setAvailable($disk[3]);
 		return $rslt;
 	}
 
