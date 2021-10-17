@@ -1,21 +1,26 @@
-<div v-for="download in downloads" class="download">
-	<div class="info">
-		<div class="name">
-			<% download.filename | filename%>
+<div v-if="downloads.length">
+	<div v-for="download in downloads" class="download">
+		<div class="info">
+			<div class="name">
+				<% download.filename | filename%>
+			</div>
+			<div class="times">
+				<div class="w33">
+					<% download.bytesReceived  %> / <% download.bytesTotal  %>
+				</div>
+				<div class="w33">
+					<% download.estimatedInterval * 1000| milisecondsToHuman %>
+				</div>
+				<div class="w33">
+					<% download.speed %> / s 
+				</div>
+			</div>
 		</div>
-		<div class="times">
-			<div class="w33">
-				<% download.bytesReceived  %> / <% download.bytesTotal  %>
-			</div>
-			<div class="w33">
-				<% download.estimatedInterval * 1000| milisecondsToHuman %>
-			</div>
-			<div class="w33">
-				<% download.speed %> / s 
-			</div>
+		<div class="state">
+			<div class="bar"><div class="full" v-bind:style="{width: download.downloaded + '%' }"></div></div>
 		</div>
 	</div>
-	<div class="state">
-		<div class="bar"><div class="full" v-bind:style="{width: download.downloaded + '%' }"></div></div>
-	</div>
+</div>
+<div v-else class="empty">
+	<i class="fas fa-ban"></i>
 </div>

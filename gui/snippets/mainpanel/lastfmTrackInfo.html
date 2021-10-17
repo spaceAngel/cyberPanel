@@ -1,4 +1,4 @@
-<div class="lastfmTrackInfo">
+<div class="lastfmTrackInfo" v-if="lastfmTrackInfo.artist && lastfmTrackInfo.name">
 	<div class="track">
 		<div v-if="lastfmTrackInfo.artist" class="artist"><% lastfmTrackInfo.artist.name %></div>
 		<div v-if="lastfmTrackInfo.name" class="name"><% lastfmTrackInfo.name %></div>
@@ -23,4 +23,7 @@
 	 		<i class="fas fa-compact-disc  fa-10x"></i>
 		</div>
 	</div>
+</div>
+<div v-else class="empty">
+	<i class="fas fa-ban"></i>
 </div>
