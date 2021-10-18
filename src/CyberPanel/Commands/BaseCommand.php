@@ -2,11 +2,15 @@
 
 namespace CyberPanel\Commands;
 
+use Ratchet\ConnectionInterface;
+
 abstract class BaseCommand implements Command {
 
 	protected $parameters;
 
 	protected $invokingCommand;
+
+	private ConnectionInterface $connection;
 
 	abstract public function run() : array;
 
@@ -29,5 +33,13 @@ abstract class BaseCommand implements Command {
 
 	public function getInvokingCommand() : string {
 		return $this->invokingCommand;
+	}
+
+	public function setConnection(ConnectionInterface $connection) : void {
+		$this->connection = $connection;
+	}
+
+	public function getConnection() : ConnectionInterface {
+		return $this->connection;
 	}
 }

@@ -41,10 +41,12 @@ class WsServer implements MessageComponentInterface {
 	 */
 	public function onMessage(ConnectionInterface $conn, $msg) {
 		$commands = CommandResolver::getInstance()->parse(
-			json_decode($msg)
+			json_decode($msg),
+			$conn
 		);
 
 		foreach ($commands as $command) {
+			$command->setConnection($conn);
 			$conn->send(
 				$command->buildResponse()
 			);
