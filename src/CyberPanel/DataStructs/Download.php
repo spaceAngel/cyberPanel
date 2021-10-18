@@ -10,6 +10,7 @@ class Download {
 	private int $downloaded;
 	private int $total;
 	private ?DateTime $estimatedEndTime;
+	private int $id;
 
 	public function getFilename() : string {
 		return $this->filename;
@@ -64,4 +65,13 @@ class Download {
 		}
 		return 1;
 	}
+
+	public function setId(int $id) : void {
+		$this->id = $id;
+	}
+
+	public function getId() : int {
+		return $this->id;
+	}
+
 }

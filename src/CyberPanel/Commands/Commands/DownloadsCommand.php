@@ -4,12 +4,13 @@ namespace CyberPanel\Commands\Commands;
 
 use CyberPanel\Commands\BaseCommand;
 use CyberPanel\Utils\Miscellaneous;
+use CyberPanel\Integration\DownloadManager;
 
 class DownloadsCommand extends BaseCommand{
 
 	public function run() : array {
 		$rslt = [];
-		foreach (StoreDownloadsCommand::getStoredDownloads() as $download) {
+		foreach (DownloadManager::getInstance()->getDownloads() as $download) {
 			$rslt[] = [
 				'filename' => $download->getFilename(),
 				'bytesReceived' => Miscellaneous::bytesToHuman($download->getDownloaded()),
