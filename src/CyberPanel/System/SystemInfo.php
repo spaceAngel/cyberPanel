@@ -9,6 +9,8 @@ use CyberPanel\DataStructs\System\MemoryInfo;
 use CyberPanel\Utils\Miscellaneous;
 use CyberPanel\DataStructs\System\Fan;
 use CyberPanel\DataStructs\System\Storage;
+use CyberPanel\Events\EventManager;
+use CyberPanel\Events\Events\Hardware\StorageCapacityEvent;
 
 class SystemInfo {
 
@@ -71,6 +73,7 @@ class SystemInfo {
 		$rslt->setSize($disk[2]);
 		$rslt->setUsed($disk[4]);
 		$rslt->setAvailable($disk[3]);
+		EventManager::getInstance()->event(new StorageCapacityEvent($rslt));
 		return $rslt;
 	}
 
