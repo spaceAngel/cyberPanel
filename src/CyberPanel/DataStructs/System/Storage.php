@@ -44,4 +44,8 @@ final class Storage {
 		$this->available = $available;
 	}
 
+	public function getAvailablePercent() : float {
+		return round($this->available * 100 / $this->size, 1);
+	}
+
 }
