@@ -12,6 +12,8 @@ use CyberPanel\Voice\Listeners\Hardware\GpuTemperatureWarnListener;
 use CyberPanel\Commands\CommandResolver;
 use CyberPanel\Voice\Commands\EnableSpeakerCommand;
 use CyberPanel\Voice\Listeners\Hardware\StorageCapacityWarnListener;
+use CyberPanel\Voice\Listeners\Integration\DownloadCompletedListener;
+use CyberPanel\Voice\Listeners\Integration\DownloadInterruptedListener;
 
 class VoiceSubmodule {
 
@@ -32,6 +34,9 @@ class VoiceSubmodule {
 		EventManager::getInstance()->registerListener(GpuTemperatureWarnListener::class);
 		EventManager::getInstance()->registerListener(CpuTemperatureWarnListener::class);
 		EventManager::getInstance()->registerListener(StorageCapacityWarnListener::class);
+
+		EventManager::getInstance()->registerListener(DownloadCompletedListener::class);
+		EventManager::getInstance()->registerListener(DownloadInterruptedListener::class);
 	}
 
 	protected static function initCommands() : void {
