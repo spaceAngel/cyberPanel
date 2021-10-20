@@ -5,6 +5,7 @@ namespace CyberPanel\Integration;
 use Ratchet\ConnectionInterface;
 use CyberPanel\Events\EventManager;
 use CyberPanel\Events\Events\DownloadManager\DownloadCompletedEvent;
+use CyberPanel\Events\Events\DownloadManager\DownloadInterruptedEvent;
 
 class DownloadManager {
 
@@ -28,12 +29,20 @@ class DownloadManager {
 	public function storeDownloads(
 		ConnectionInterface $connection,
 		array $downloads
-	) {
+	) : void {
 		if (!array_key_exists($connection->resourceId, $this->downloads)) {
 			$this->downloads[$connection->resourceId] = [];
 		}
 		$ids = [];
 		foreach ($downloads as $download) {
+			if (
+				$download->getIsInterrupted()
+				&& !$this->downloads[$connection->resourceId][$download->getId()]->getIsInterrupted()
+			) {
+				EventManager::getInstance()->event(
+					new DownloadInterruptedEvent($download)
+				);
+			}
 			$this->downloads[$connection->resourceId][$download->getId()] = $download;
 			$ids[] = $download->getId();
 		}

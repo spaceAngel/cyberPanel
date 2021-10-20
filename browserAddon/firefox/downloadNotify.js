@@ -15,13 +15,17 @@ var downloadNotify = {
 			var sendInfo = new Array();
 			browser.downloads.search({}).then(function(search) {
 				for (var download of search) {
-					if (download.state == 'in_progress') {
+					if (
+						download.state == 'in_progress'
+						|| download.state == 'interrupted'
+					) {
 						sendInfo.push({
 							id: download.id,
 							filename: download.filename,
 							bytesReceived: download.bytesReceived,
 							bytesTotal: download.totalBytes,
-							estimatedEndTime: download.estimatedEndTime
+							estimatedEndTime: download.estimatedEndTime,
+							interrupted: (download.state == 'interrupted')
 						});
 					}
 				}

@@ -11,6 +11,7 @@ class Download {
 	private int $total;
 	private ?DateTime $estimatedEndTime;
 	private int $id;
+	private bool $isInterupted = FALSE;
 
 	public function getFilename() : string {
 		return $this->filename;
@@ -72,6 +73,14 @@ class Download {
 
 	public function getId() : int {
 		return $this->id;
+	}
+
+	public function setIsInterrupted(bool $isInterrupted) : void {
+		$this->isInterupted = $isInterrupted;
+	}
+
+	public function getIsInterrupted() : bool {
+		return $this->isInterupted;
 	}
 
 }

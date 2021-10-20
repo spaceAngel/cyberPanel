@@ -18,6 +18,7 @@ class StoreDownloadsCommand extends BaseCommand{
 			$download->setTotal($parameter->bytesTotal);
 			$download->setDownloaded($parameter->bytesReceived);
 			$download->setId($parameter->id);
+			$download->setIsInterrupted((bool) $parameter->interrupted);
 			$download->setEstimatedEndTime(
 				new \DateTime($parameter->estimatedEndTime ?? NULL )
 			);
