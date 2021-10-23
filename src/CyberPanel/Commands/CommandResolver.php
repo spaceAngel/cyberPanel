@@ -18,6 +18,7 @@ use CyberPanel\Commands\Commands\OpenInBrowserCommand;
 use CyberPanel\Commands\Commands\NetworkCommand;
 use CyberPanel\Commands\Commands\FileManagerCommand;
 use CyberPanel\Commands\Commands\UpsStateCommand;
+use CyberPanel\Logging\Log;
 
 class CommandResolver {
 
@@ -66,6 +67,8 @@ class CommandResolver {
 					!empty($commandQuery->parameters) ? $commandQuery->parameters : []
 				);
 				$commands[] = $command;
+			} else {
+				Log::error('Unknown command %s', [$commandQuery->command]);
 			}
 		}
 		return $commands;
