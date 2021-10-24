@@ -62,9 +62,13 @@ class CommandResolver {
 				!empty($commandQuery->command)
 				&& array_key_exists($commandQuery->command, $this->commands)
 			) {
+				$parameters = $commandQuery->parameters;
+				if (is_object($parameters)) {
+					$parameters = get_object_vars($parameters);
+				}
 				$command = new $this->commands[$commandQuery->command](
 					$commandQuery->command,
-					!empty($commandQuery->parameters) ? $commandQuery->parameters : []
+					!empty($parameters) ? $parameters : []
 				);
 				$commands[] = $command;
 			} else {
