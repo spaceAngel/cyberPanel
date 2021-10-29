@@ -32,12 +32,15 @@ body {
 		height:    -moz-calc(100% - 190px);
 		height:         calc(100% - 190px);
 
-		.empty {
+		.empty, .error {
 			text-align: center;
 			font-size:350px;
 			vertical-align: middle;
 			color: @colorIconDisabled;
 			margin-top:20px;
+		}
+		.error {
+			color: darkred;
 		}
 
 		.swiper {
