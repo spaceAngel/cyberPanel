@@ -9,8 +9,10 @@ use CyberPanel\Utils\Miscellaneous;
 use CyberPanel\Events\EventManager;
 use CyberPanel\Events\Events\Hardware\CpuTemperatureEvent;
 use CyberPanel\Events\Events\Hardware\GpuTemperatureEvent;
+use CyberPanel\DataStructs\System\GpuSystemInfo;
 
 class SystemInfoCommand extends BaseCommand {
+
 	public function run() : array {
 		$gpu = SystemInfo::getInstance()->getGpuInfo();
 		$memory = SystemInfo::getInstance()->getMemory();
@@ -31,22 +33,29 @@ class SystemInfoCommand extends BaseCommand {
 			'fans' => $this->getFans(),
 			'processes' => SystemInfo::getInstance()->getProcessList(),
 			'locked' => Systeminfo::getInstance()->isLockedScreen(),
-			'gpu' => [
-				'load' => $gpu->getLoad(),
-				'memory' => [
-					'free' => $gpu->getMemoryFree(),
-					'total' => $gpu->getMemoryTotal(),
-				]
-			],
+			'gpu' => $this->getGpuInfo($gpu),
 		];
-
-		EventManager::getInstance()->event(
-			new CpuTemperatureEvent($rslt['temperatures']['cpu'])
-		);
-		EventManager::getInstance()->event(
-			new GpuTemperatureEvent($rslt['temperatures']['gpu'])
-		);
+		$this->fireEvents($rslt);
 		return $rslt;
+	}
+
+	protected function fireEvents(array $struct) : void {
+		EventManager::getInstance()->event(
+			new CpuTemperatureEvent($struct['temperatures']['cpu'])
+		);
+		EventManager::getInstance()->event(
+			new GpuTemperatureEvent($struct['temperatures']['gpu'])
+		);
+	}
+
+	protected function getGpuInfo(GpuSystemInfo $gpu) : array {
+		return [
+			'load' => $gpu->getLoad(),
+			'memory' => [
+				'free' => $gpu->getMemoryFree(),
+				'total' => $gpu->getMemoryTotal(),
+			]
+		];
 	}
 
 	protected function getFans() : array {
