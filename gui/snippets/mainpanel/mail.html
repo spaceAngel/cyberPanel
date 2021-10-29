@@ -1,0 +1,63 @@
+<div class="folders" v-if="!mail.errorOnConnect && mail.folders.length > 0 ">
+	<div class="folderlist">
+		<span class="folder" 
+			v-for="folder, key in mail.folders" 
+			v-bind:class="{active: mail.folder == key, unread: folder.unread > 0}" 
+			v-on:click="mail.selectFolder(key)"
+			v-bind:style="{marginLeft: (folder.nesting * 18) + 'px'}"
+		>
+			<% folder.name %>
+			<span v-if="folder.unread > 0">(<% folder.unread %>)</span>
+		</span>
+	</div>
+	<div class="capacity">
+		<div class="bar">
+			<div class="full"  v-bind:style="{width: mail.quota + '%' }"></div>
+		</div>
+	</div>
+</div>
+<div class="mailbox" v-if="!mail.errorOnConnect && mail.emails.length > 0 && mail.folders.length > 0">
+	<div class="emails">
+		<table>
+			<thead>
+				<tr>
+					<th class="subject">Subject</th>
+					<th class="sender">From</th>
+					<th class="date">Date</th>
+					<th class="size">Size</th>
+				</tr>
+			</thead>
+			<tr v-for="email in mail.emails.slice(mail.rangeMin - 1, mail.rangeMax)" v-bind:class="{unread: email.unread}">
+				<td class="subject">
+					<span class="stateIcon">
+						<i class="fas fa-paperclip" v-if="email.attachment"></i>
+					</span>
+					<span class="stateIcon">
+						<i class="fas fa-arrow-left" v-if="email.answered"></i>
+					</span>
+					
+					<span><% email.subject %></span>
+				</td>
+				<td class="sender"> <span><% email.from %></span></td>
+				<td class="date"> <span><% email.date %></span></td>
+				<td class="size"> <span><% email.size %></span></td>
+				
+			</tr>
+		</table>
+	</div>
+	<div class="panel">
+		<i class="fas fa-arrow-circle-left" onclick="mail.prevPage()"></i>
+		<span class="page">
+			<% mail.rangeMin %> - <% mail.rangeMax %> / <% mail.rangeTotal %>
+		</span>
+		<i class="fas fa-arrow-circle-right" onclick="mail.nextPage()"></i>
+	</div>
+</div>
+<div v-if="mail.emails.length == 0 || mail.errorOnConnect" v-bind:class="{mailbox: !mail.errorOnConnect}">
+	<div class="empty" v-if="!mail.errorOnConnect">
+		<i class="fas fa-ban"></i>
+	</div>
+	<div class="error" v-if="mail.errorOnConnect">
+		<i class="fas fa-exclamation-triangle"></i>
+	</div>
+</div>

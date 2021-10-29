@@ -52,3 +52,7 @@ mainpanel:
     - covid
     - hospitals
     - files
+mail:
+    host: imap.server.example
+    port: 993
+    username: user@server.com

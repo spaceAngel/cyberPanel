@@ -1,0 +1,108 @@
+#mailClient {
+
+	clear: both;
+	overflow: clip;
+	height: 100%;
+
+	.folders {
+		margin-top: 40px;
+		float: left;
+		width: 150px;
+		padding-left:10px;
+		overflow:hidden;
+		height: 100%;
+		.folder {
+			display: block;
+			font-size: 21px;
+			padding-top: 3px;
+			padding-bottom: 3px;
+			padding-left: 8px; 
+		}
+
+		.unread {
+			font-weight:bold;
+		}
+		
+		.folder.active {
+			background-color:@colorMain;
+			color:@colorFontReversed;
+			.borderRadius(8px);
+		}
+		.folderlist {
+			height: -webkit-calc(100% - 65px);
+			height:    -moz-calc(100% - 65px);
+			height:         calc(100% - 65px);
+			
+		}
+		.capacity {
+			height:60px;
+		}
+	}
+
+	.mailbox {
+		float: right;
+		width: -webkit-calc(100% - 185px);
+		width:    -moz-calc(100% - 185px);
+		width:         calc(100% - 185px);
+		height: 100%;
+
+		.emails {
+			clear: both;
+			height: -webkit-calc(100% - 55px);
+			height:    -moz-calc(100% - 55px);
+			height:         calc(100% - 55px);
+			overflow: scroll;
+
+			table {
+				table-layout:fixed;
+				width: 100%;
+
+				.unread {
+					font-weight:bold;
+				}
+
+				td {
+					overflow:hidden;;
+				}
+
+				.sender {width: 180px;}
+
+				.date {
+					width: 90px;
+					text-align: right;
+				}
+
+				.size {
+					width: 90px;
+					text-align: right;
+				}
+				
+				.stateIcon {
+					width: 20px;
+					display: inline-block;
+				}
+			}
+		}
+
+		.panel {
+			font-size: 22px;
+			clear: both;
+			height: 50px;
+			padding-top: 5px;
+			padding-left: 100px;
+			
+			.page {
+				font-weight: bold;
+				padding-left: 25px;
+				padding-right: 25px;
+				font-size: 22px;
+			}
+			
+			i {
+				display: inline-block;
+				font-size: 34px;
+				margin-top: 6px;
+			}
+		}
+	}
+}

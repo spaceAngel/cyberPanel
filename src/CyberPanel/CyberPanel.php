@@ -11,6 +11,7 @@ use CyberPanel\Logging\Log;
 use CyberPanel\Voice\VoiceSubmodule;
 use CyberPanel\Events\EventManager;
 use CyberPanel\Events\Events\Runtime\ApplicationStartedEvent;
+use CyberPanel\Integration\Mail\MailModule;
 
 class CyberPanel {
 
@@ -26,9 +27,10 @@ class CyberPanel {
 
 	private function __construct() {
 		$this->init();
-		VoiceSubmodule::init();
-		$this->handleInfoSwitches();
 		$this->checkForLogingSettings();
+		VoiceSubmodule::init();
+		MailModule::init($this->getPort());
+		$this->handleInfoSwitches();
 		EventManager::getInstance()->event(new ApplicationStartedEvent());
 		Log::info('Starting CyberPanel version %s', [$this->getVersion()]);
 		if ($this->isRunningAsDaemon()) {
