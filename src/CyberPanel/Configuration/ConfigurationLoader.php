@@ -8,6 +8,13 @@ use CyberPanel\Macros\Macro;
 use CyberPanel\Macros\MacroParser;
 
 class ConfigurationLoader {
+
+	protected static $subLoaders = [];
+
+	public static function registerSubLoader(string $sectionName, $loader) {
+		self::$subLoaders[$sectionName] = $loader;
+	}
+
 	public static function load(
 		Configuration $configuration,
 		string $fileName = 'config.yml'
@@ -25,6 +32,22 @@ class ConfigurationLoader {
 		$configuration->setMainPanels($yaml['mainpanel']);
 		if (!empty($yaml['ups'])) {
 			self::configureUps($yaml['ups'], $configuration);
+		}
+		self::loadSubConfigurations($yaml, $configuration);
+
+	}
+
+	private static function loadSubConfigurations(
+		array $yaml,
+		Configuration $configuration
+	) : void {
+		foreach (self::$subLoaders as $configurationKey => $subLoader) {
+			if (array_key_exists($configurationKey, $yaml)) {
+				$configuration->setSubSection(
+					$configurationKey,
+					$subLoader::load($yaml[$configurationKey])
+				);
+			}
 		}
 	}
 

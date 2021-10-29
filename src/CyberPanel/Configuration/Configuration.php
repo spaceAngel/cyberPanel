@@ -23,9 +23,21 @@ class Configuration {
 
 	private array $mainPanels = [];
 
+	private array $subConfigurations = [];
+
 	private function __construct() {
 		$this->systemLimits  = new Limits();
 		$this->ups = new Ups();
+	}
+
+	public function setSubSection(string $key, object $subSection) : void {
+		$this->subConfigurations[$key] = $subSection;
+	}
+
+	public function getSubSection(string $key) {
+		if (array_key_exists($key, $this->subConfigurations)) {
+			return $this->subConfigurations[$key];
+		}
 	}
 
 	public static function getInstance(): self {
