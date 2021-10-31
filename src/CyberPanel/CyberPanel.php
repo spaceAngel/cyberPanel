@@ -11,8 +11,7 @@ use CyberPanel\Logging\Log;
 use CyberPanel\Voice\VoiceSubmodule;
 use CyberPanel\Events\EventManager;
 use CyberPanel\Events\Events\Runtime\ApplicationStartedEvent;
-use CyberPanel\Integration\Mail\MailModule;
-use CyberPanel\Integration\DownloadManager\DownloadManagerModule;
+use CyberPanel\Integration\ModuleLoader;
 
 class CyberPanel {
 
@@ -26,9 +25,6 @@ class CyberPanel {
 		$this->init();
 		$this->handleInfoSwitches();
 		VoiceSubmodule::init();
-		DownloadManagerModule::init();
-		MailModule::init();
-
 		EventManager::getInstance()->event(new ApplicationStartedEvent());
 		Log::info('Starting CyberPanel version %s', [$this->getVersion()]);
 		if (Environment::getInstance()->getRunningWithDeamonizeSwitch()) {
@@ -37,10 +33,12 @@ class CyberPanel {
 	}
 
 	public static function run() : self {
+		ModuleLoader::loadModules();
 		if (empty(self::$instance)) {
 			self::$instance = new self();
 			if (0 !== pcntl_fork()) {
 				self::$instance->runSocketServer();
+
 			} else {
 				self::$instance->runWebServer();
 			}
