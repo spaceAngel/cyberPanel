@@ -7,13 +7,14 @@ use CyberPanel\Integration\Mail\Commands\StoreMailsCommand;
 use CyberPanel\Integration\Mail\Commands\GetMailsCommand;
 use CyberPanel\Configuration\ConfigurationLoader as ConfLoader;
 use \CyberPanel\Integration\Mail\Configuration\ConfigurationLoader;
+use CyberPanel\Environment;
 
 class MailModule {
 
 	private function __construct() {
 	}
 
-	public static function init(int $port) : void {
+	public static function init() : void {
 		CommandResolver::getInstance()->registerCommand(
 			'mail.storemails', StoreMailsCommand::class
 		);
@@ -26,7 +27,9 @@ class MailModule {
 			ConfigurationLoader::class
 		);
 
-		self::detachChecker($port);
+		self::detachChecker(
+			Environment::getInstance()->getPort()
+		);
 	}
 
 	private static function detachChecker(int $port) : void {

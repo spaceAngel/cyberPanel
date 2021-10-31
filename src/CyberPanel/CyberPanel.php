@@ -16,26 +16,22 @@ use CyberPanel\Integration\DownloadManager\DownloadManagerModule;
 
 class CyberPanel {
 
-	const DEFAULT_PORT = 8081;
-
 	private static $instance;
 
 	private $socketServer;
 
 	private $webServer;
 
-	private $options;
-
 	private function __construct() {
 		$this->init();
-		$this->checkForLogingSettings();
+		$this->handleInfoSwitches();
 		VoiceSubmodule::init();
 		DownloadManagerModule::init();
-		MailModule::init($this->getPort());
-		$this->handleInfoSwitches();
+		MailModule::init();
+
 		EventManager::getInstance()->event(new ApplicationStartedEvent());
 		Log::info('Starting CyberPanel version %s', [$this->getVersion()]);
-		if ($this->isRunningAsDaemon()) {
+		if (Environment::getInstance()->getRunningWithDeamonizeSwitch()) {
 			$this->daemonize();
 		}
 	}
@@ -53,23 +49,24 @@ class CyberPanel {
 	}
 
 	private function checkForLogingSettings() {
-		if ($this->isRunningWithSwitch('v', 'verbose')) {
+		if (Environment::getInstance()->getRunningWithVerboseSwitch()) {
 			Log::enableConsoleOutput();
 		}
 	}
 
 	private function handleInfoSwitches() {
-		if ($this->isRunningWithSwitch('V', 'version')) {
+		if (Environment::getInstance()->getRunningWithVersionSwitch()) {
 			$this->println($this->getVersion());
 			exit();
 		}
-		if ($this->isRunningWithSwitch('h', 'help')) {
+		if (Environment::getInstance()->getRunningWithHelpSwitch()) {
 			echo $this->getHelp();
 			exit();
 		}
 	}
 
 	private function runSocketServer() {
+		$port = Environment::getInstance()->getPort();
 		try {
 			$this->socketServer = IoServer::factory(
 				new HttpServer(
@@ -77,12 +74,16 @@ class CyberPanel {
 						new CyberpanelSocketServer()
 					)
 				),
-				$this->getPort()
+				$port
 			);
-			Log::info('Starting socket server on port %s', [$this->getPort()]);
+			Log::info(
+				'Starting socket server on port %s', [$port]
+			);
 			$this->socketServer->run();
 		} catch (\RuntimeException $e) {
-			Log::error('Cannot run socket server. Port %s is already in use.', [$this->getPort()]);
+			Log::error(
+				'Cannot run socket server. Port %s is already in use.', [$port]
+			);
 		}
 
 	}
@@ -93,36 +94,15 @@ class CyberPanel {
 		$this->webServer->run();
 	}
 
-	private function getPort() : int {
-		if (array_key_exists('p', $this->options)) {
-			return (int)$this->options['p'];
-		} elseif (array_key_exists('port', $this->options)) {
-			return (int)$this->options['port'];
-		}
-		return self::DEFAULT_PORT;
-	}
-
-	private function isRunningAsDaemon() : bool {
-		return array_key_exists('d', $this->options)
-		|| array_key_exists('daemonized', $this->options);
-	}
-
 	private function init() : void {
-		$this->options = getopt(
-			'p::d::v::h::V::',
-			['port::', 'daemonise', 'version', 'help', 'verbose']
-		);
+		Environment::getInstance()->loadEnvironmentVariables();
+		$this->checkForLogingSettings();
 	}
 
 	private function daemonize() {
 		if (0 !== pcntl_fork()) {
 			exit;
 		}
-	}
-
-	private function isRunningWithSwitch(string $short, string $long) : bool {
-		return array_key_exists($short, $this->options)
-		|| array_key_exists($long, $this->options);
 	}
 
 	public static function getVersion() : string {
