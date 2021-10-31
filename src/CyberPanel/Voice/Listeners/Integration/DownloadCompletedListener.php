@@ -5,7 +5,7 @@ namespace CyberPanel\Voice\Listeners\Integration;
 use CyberPanel\Events\ListenerInterface;
 use CyberPanel\Events\Event;
 use CyberPanel\Voice\Speaker;
-use CyberPanel\Events\Events\DownloadManager\DownloadCompletedEvent;
+use CyberPanel\Integration\DownloadManager\Events\DownloadCompletedEvent;
 
 class DownloadCompletedListener implements ListenerInterface{
 

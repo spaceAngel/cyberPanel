@@ -1,10 +1,10 @@
 <?php
 
-namespace CyberPanel\Commands\Commands;
+namespace CyberPanel\Integration\DownloadManager\Commands;
 
 use CyberPanel\Commands\BaseCommand;
 use CyberPanel\DataStructs\Download;
-use CyberPanel\Integration\DownloadManager;
+use CyberPanel\Integration\DownloadManager\DownloadManager;
 
 class StoreDownloadsCommand extends BaseCommand{
 

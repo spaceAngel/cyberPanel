@@ -1,6 +1,6 @@
 <?php
 
-namespace CyberPanel\Events\Events\DownloadManager;
+namespace CyberPanel\Integration\DownloadManager\Events;
 
 use CyberPanel\Events\Event;
 use CyberPanel\DataStructs\Download;

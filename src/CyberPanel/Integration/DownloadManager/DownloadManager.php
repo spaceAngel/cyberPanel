@@ -1,11 +1,11 @@
 <?php
 
-namespace CyberPanel\Integration;
+namespace CyberPanel\Integration\DownloadManager;
 
 use Ratchet\ConnectionInterface;
 use CyberPanel\Events\EventManager;
-use CyberPanel\Events\Events\DownloadManager\DownloadCompletedEvent;
-use CyberPanel\Events\Events\DownloadManager\DownloadInterruptedEvent;
+use CyberPanel\Integration\DownloadManager\Events\DownloadInterruptedEvent;
+use CyberPanel\Integration\DownloadManager\Events\DownloadCompletedEvent;
 
 class DownloadManager {
 

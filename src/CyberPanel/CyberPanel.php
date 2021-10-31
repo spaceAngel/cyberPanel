@@ -12,6 +12,7 @@ use CyberPanel\Voice\VoiceSubmodule;
 use CyberPanel\Events\EventManager;
 use CyberPanel\Events\Events\Runtime\ApplicationStartedEvent;
 use CyberPanel\Integration\Mail\MailModule;
+use CyberPanel\Integration\DownloadManager\DownloadManagerModule;
 
 class CyberPanel {
 
@@ -29,6 +30,7 @@ class CyberPanel {
 		$this->init();
 		$this->checkForLogingSettings();
 		VoiceSubmodule::init();
+		DownloadManagerModule::init();
 		MailModule::init($this->getPort());
 		$this->handleInfoSwitches();
 		EventManager::getInstance()->event(new ApplicationStartedEvent());
