@@ -9,11 +9,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-phpcs');
 	grunt.loadNpmTasks('grunt-phpstan');
 
-
-	
 	var pkg = grunt.file.readJSON('package.json');
 	grunt.log.write(pkg.libs);
-	
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		uglify: {
@@ -30,23 +28,23 @@ module.exports = function(grunt) {
 			options: {
 			},
 			all: {
-				src: ["gui/css/*"],
-				dest: "build/css/app.min.less"
+				src: ['gui/css/*'],
+				dest: 'build/css/app.min.less'
 			},
 
 			libs: {
 				src: pkg.libs.css,
-				dest: "build/css/libs.min.css"
+				dest: 'build/css/libs.min.css'
 			},
 		},
-	
+
 		bake: {
 			bake: {
 				files: {
-					"build/index.html": "gui/index.html",
+					'build/index.html': 'gui/index.html',
 				}
-			}	
-		},	
+			}
+		},
 		less: {
 			app: {
 				files: {
@@ -54,40 +52,40 @@ module.exports = function(grunt) {
 				}
 			},
 		},
-		
+
 		copy: {
 			images: {
 				expand: true,
 				cwd: 'gui/images',
-				src: "*",
+				src: '*',
 				dest: 'build/images'
 			},
 			fa: {
 				expand: true,
 				cwd: 'node_modules/@fortawesome/fontawesome-free/webfonts',
-				src: "*",
+				src: '*',
 				dest: 'build/webfonts'
 			},
 			fonts: {
 				expand: true,
 				cwd: 'gui/fonts',
-				src: "*",
+				src: '*',
 				dest: 'build/fonts'
 			},
 			sounds: {
 				expand: true,
 				cwd: 'gui/sounds',
-				src: "*",
+				src: '*',
 				dest: 'build/sounds'
 			},
 			errorpages: {
 				expand: true,
 				cwd: 'gui/errors',
-				src: "*",
+				src: '*',
 				dest: 'build/errors'
-			}, 
+			},
 		},
-			
+
 		watch: {
 			scripts: {
 				files: ['gui/**/*'],
@@ -97,11 +95,10 @@ module.exports = function(grunt) {
 					livereload: true
 				},
 				livereload: {
-				
 				}
 			},
 		},
-		
+
 		phpmd: {
 			application: {
 				dir: 'src'
@@ -123,16 +120,14 @@ module.exports = function(grunt) {
 		},
 		phpstan: {
 			options: {
-				level: "max",
-				bin: "vendor/bin/phpstan"
+				level: 'max',
+				bin: 'vendor/bin/phpstan'
 			},
 			php: {
-				src: ["src/**/*.php"]
+				src: ['src/**/*.php']
 			}
 		}
 	});
-	
 	grunt.registerTask('default', ['uglify', 'concat_css', 'less', 'bake', 'copy']);
-	grunt.registerTask('codecheck', [ 'phpcs', 'phpmd', 'phpstan']);
-	
+	grunt.registerTask('codecheck', [ 'phpcs', 'phpmd']);
 }
