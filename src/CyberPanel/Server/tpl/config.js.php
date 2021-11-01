@@ -12,9 +12,17 @@ foreach (Configuration::getInstance()->getMainPanels() as $panel) {
 	$mainpanel[] = sprintf('"%s"', $panel);
 }
 
+$publicTransportDepartures = 'names[]=' . implode(
+	'&names[]=',
+	Configuration::getInstance()->getSubSection('departures')->getDepartures()
+);
+
 return '
 var config = {
 	lastfmApiKey: "' . Configuration::getInstance()->getApiKey('lastfm') . '",
+	keys: {
+		golemio: "' . Configuration::getInstance()->getApiKey('golemio') . '"
+	},
 	panes: [' . implode(',', $mainpanel). '],
 	sidebar: [' . implode(',', $sidebar). '],
 	hwLimits: {
@@ -28,6 +36,7 @@ var config = {
 		},
 		memory: ' . Configuration::getInstance()->getSystemLimits()->getMemory() . ',
 		storage: ' . Configuration::getInstance()->getSystemLimits()->getStorage() . '
-	}
+	},
+	publicTransportDepartures: "' . $publicTransportDepartures .'"
 };
 ';

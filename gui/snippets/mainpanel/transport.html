@@ -1,0 +1,28 @@
+<div v-for="departure in transport.departures" class="departure">
+	<template v-if="Date.parse(departure.arrival_timestamp.predicted) > Date.now()">
+		<div class="type">
+			<i class="fas fa-subway" v-if="departure.route.type==1"></i>
+			<i class="fas fa-bus" v-if="departure.route.type==3"></i>
+			<i class="fas fa-tram" v-if="departure.route.type==0"></i>
+		</div>
+		<div class="name" v-html="departure.route.short_name"></div>
+		<div class="meta">
+			<div class="route">
+				<span v-html="transport.stops.get(departure.stop.id)"></span>
+				&gt;&gt;
+				<span v-html="departure.trip.headsign"></span>
+			</div>
+			<div class="time">
+				<span>
+					<% (new Date(departure.arrival_timestamp.scheduled)).toLocaleTimeString().substr(0, 5)%>
+				</span>
+				<span class="delay" v-if="departure.delay.seconds > 0">
+					<% transport.timeToString(departure.delay.seconds * 1000) %>
+				</span>
+			</div>
+		</div>
+		<div class="timer">
+			<span> <% transport.timeDiff(departure.arrival_timestamp.predicted) %></span>
+		</div>
+	</template>
+</div>

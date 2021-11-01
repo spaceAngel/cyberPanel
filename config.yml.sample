@@ -1,5 +1,6 @@
 keys:
     lastfm: <samplekey>
+    golemio: <samplekey>
 systemLimits:
 systemLimits:
     cpu:
@@ -52,7 +53,12 @@ mainpanel:
     - covid
     - hospitals
     - files
+    - transport
+
 mail:
     host: imap.server.example
     port: 993
     username: user@server.com
+departures:
+    - Muzeum
+    - Můstek

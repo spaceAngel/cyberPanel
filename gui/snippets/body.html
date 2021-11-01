@@ -32,6 +32,8 @@
 					<span class="notification" v-if="!mail.errorOnConnect && mail.unread > 0" v-html="mail.unread"></span>
 					<span class="notification alert" v-if="mail.errorOnConnect">!</span>
 				</i>
+				
+				<i v-if="pane == 'transport'" class="fas fa-bus-alt fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
 			</template>
 		</div>
 	</div>
@@ -51,6 +53,7 @@
 			<div v-if="pane == 'files'" v-show="currentPanel == key"><!--(bake mainpanel/files.html)--></div>
 			<div v-if="pane == 'upsstatus'" v-show="currentPanel == key" id="upsStatus" class="upsStatus"><!--(bake mainpanel/upsStatus.html)--></div>
 			<div v-if="pane == 'mail'" v-show="currentPanel == key" id="mailClient" class="mailClient"><!--(bake mainpanel/mail.html)--></div>
+			<div v-if="pane == 'transport'" v-show="currentPanel == key" id="transport" class="transport"><!--(bake mainpanel/transport.html)--></div>
 		</template>
 	</div>
 	<!--(bake media.html)-->
