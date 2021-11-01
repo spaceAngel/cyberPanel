@@ -14,7 +14,7 @@ foreach (Configuration::getInstance()->getMainPanels() as $panel) {
 
 return '
 var config = {
-	lastfmApiKey: "' . Configuration::getInstance()->getLastFmApiKey() . '",
+	lastfmApiKey: "' . Configuration::getInstance()->getApiKey('lastfm') . '",
 	panes: [' . implode(',', $mainpanel). '],
 	sidebar: [' . implode(',', $sidebar). '],
 	hwLimits: {

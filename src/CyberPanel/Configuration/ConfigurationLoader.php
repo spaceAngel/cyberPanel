@@ -26,15 +26,26 @@ class ConfigurationLoader {
 			);
 		}
 		self::configureHwLimits($yaml['systemLimits'], $configuration);
-		$configuration->setLastFmApiKey($yaml['keys']['lastfm']);
 		$configuration->setClients($yaml['clients']);
 		$configuration->setSidebarWidgets($yaml['sidebar']);
 		$configuration->setMainPanels($yaml['mainpanel']);
+		self::loadApiKeys($yaml, $configuration);
 		if (!empty($yaml['ups'])) {
 			self::configureUps($yaml['ups'], $configuration);
 		}
 		self::loadSubConfigurations($yaml, $configuration);
 
+	}
+
+	private static function loadApiKeys(
+		array $yaml,
+		Configuration $configuration
+	) : void {
+		if (array_key_exists('keys', $yaml)) {
+			foreach ($yaml['keys'] as $name => $key) {
+				Configuration::getInstance()->setApiKey($name, $key);
+			}
+		}
 	}
 
 	private static function loadSubConfigurations(

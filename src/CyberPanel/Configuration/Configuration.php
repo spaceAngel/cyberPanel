@@ -13,8 +13,6 @@ class Configuration {
 
 	private $systemLimits;
 
-	private string $lastFmApiKey;
-
 	private array $clients;
 
 	private $ups;
@@ -25,9 +23,22 @@ class Configuration {
 
 	private array $subConfigurations = [];
 
+	private array $apiKeys = [];
+
 	private function __construct() {
 		$this->systemLimits  = new Limits();
 		$this->ups = new Ups();
+	}
+
+	public function setApiKey(string $name, string $key) : void {
+		$this->apiKeys[$name] = $key;
+	}
+
+	public function getApiKey(string $name) : ?string {
+		if (array_key_exists($name, $this->apiKeys)) {
+			return $this->apiKeys[$name];
+		}
+		return NULL;
 	}
 
 	public function setSubSection(string $key, object $subSection) : void {
@@ -50,14 +61,6 @@ class Configuration {
 
 	public function getSystemLimits() : Limits {
 		return $this->systemLimits;
-	}
-
-	public function getLastFmApiKey() : string {
-		return $this->lastFmApiKey;
-	}
-
-	public function setLastFmApiKey(string $apiKey) : void {
-		$this->lastFmApiKey = $apiKey;
 	}
 
 	public function setClients(array $clients) : void {
