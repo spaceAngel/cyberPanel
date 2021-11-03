@@ -4,6 +4,7 @@ namespace CyberPanel\Configuration;
 
 use CyberPanel\Configuration\HwLimits\Limits;
 use CyberPanel\Configuration\Misc\Ups;
+use CyberPanel\Configuration\Misc\GeoLocation;
 
 class Configuration {
 
@@ -25,9 +26,16 @@ class Configuration {
 
 	private array $apiKeys = [];
 
+	private GeoLocation $geoLocation;
+
 	private function __construct() {
 		$this->systemLimits  = new Limits();
 		$this->ups = new Ups();
+		$this->geoLocation = new GeoLocation();
+	}
+
+	public function getGeoLocation() : GeoLocation {
+		return $this->geoLocation;
 	}
 
 	public function setApiKey(string $name, string $key) : void {

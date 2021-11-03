@@ -37,6 +37,10 @@ var config = {
 		memory: ' . Configuration::getInstance()->getSystemLimits()->getMemory() . ',
 		storage: ' . Configuration::getInstance()->getSystemLimits()->getStorage() . '
 	},
-	publicTransportDepartures: "' . $publicTransportDepartures .'"
+	publicTransportDepartures: "' . $publicTransportDepartures .'",
+	geolocation: {
+		latitude: "' . Configuration::getInstance()->getGeoLocation()->getLatitude() . '",
+		longitude: "' . Configuration::getInstance()->getGeoLocation()->getLongitude() . '"
+	}
 };
 ';

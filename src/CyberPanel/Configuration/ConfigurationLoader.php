@@ -33,8 +33,19 @@ class ConfigurationLoader {
 		if (!empty($yaml['ups'])) {
 			self::configureUps($yaml['ups'], $configuration);
 		}
+		if (!empty($yaml['geolocation'])) {
+			self::configureGeoLocation($yaml['geolocation'], $configuration);
+		}
 		self::loadSubConfigurations($yaml, $configuration);
 
+	}
+
+	private static function configureGeolocation(
+		array $yaml,
+		Configuration $configuration
+	) : void {
+		$configuration->getGeoLocation()->setLatitude($yaml['latitude']);
+		$configuration->getGeoLocation()->setLongitude($yaml['longitude']);
 	}
 
 	private static function loadApiKeys(

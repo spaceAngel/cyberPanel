@@ -54,7 +54,9 @@ mainpanel:
     - hospitals
     - files
     - transport
-
+geolocation:
+    latitude: 50.1212121
+    longitude: 14.1213132
 mail:
     host: imap.server.example
     port: 993
