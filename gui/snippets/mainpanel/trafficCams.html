@@ -1,0 +1,8 @@
+<div v-for="cam in trafficCams.cams" class="cam">
+	<div class="metadata">
+		<span><% cam.properties.name %></span> <br/>
+		<span><% (new Date(cam.properties.updated_at)).toLocaleTimeString() %></span>
+	</div>
+	<img v-bind:src="cam.properties.image.data" />
+	
+</div>

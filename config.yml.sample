@@ -54,6 +54,7 @@ mainpanel:
     - hospitals
     - files
     - transport
+    - trafficcams
 geolocation:
     latitude: 50.1212121
     longitude: 14.1213132

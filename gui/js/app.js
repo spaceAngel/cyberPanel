@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	covidWidget.init();
 	mail.init();
 	transport.init();
+	trafficCams.init();
 	upsStatus.init();
 	speaker.init();
 });
