@@ -5,7 +5,8 @@
 		defaultDataStruct, mediaWidget, mainPanelWidget,
 		downloadsWidget, covidWidget,
 		lockScreenImage, fileManager, speaker,
-		upsStatus, speakerm, mail, transport
+		upsStatus, speakerm, mail,
+		transport, meteo
 */
 var cyberPanel;
 var mixins = [];
@@ -75,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	mail.init();
 	transport.init();
 	trafficCams.init();
+	meteo.init();
 	upsStatus.init();
 	speaker.init();
 });

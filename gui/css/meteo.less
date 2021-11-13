@@ -1,0 +1,55 @@
+.meteo {
+	.inner {
+		width: 900px;
+		clear:both;
+		margin: 50px auto 0px auto;
+		font-size: 30px;
+		
+		.wind, .temperature, .humidity {
+			float:left;
+			width: 32%;
+			.symbol, .data {
+				float: left;
+			}
+			.symbol {
+				padding-top: 25px;
+				margin-right: 20px;
+			}
+			
+			.data div {
+				padding-top: 10px;
+			}
+		}
+		.temperature .data i {
+			display: inline-block;
+			width:60px;
+		}
+		
+		.wind .data{
+			div {
+				float:left;
+			}
+			
+			.small {
+				font-size:80%;
+			}
+
+			i {
+				float:left;
+				margin-top:40px;
+				font-size: 40px;
+			}
+		}
+		.humidity .data {
+			padding-top: 35px;
+		}
+		.station {
+			clear:both;
+			.w50 {
+				margin-top: 40px;
+				float:left;
+				width: 32%;
+			}
+		}
+	}
+}

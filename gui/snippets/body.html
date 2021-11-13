@@ -35,6 +35,7 @@
 				
 				<i v-if="pane == 'transport'" class="fas fa-bus-alt fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
 				<i v-if="pane == 'trafficcams'" class="fas fa-traffic-light fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+				<i v-if="pane == 'meteo'" class="fas fa-cloud-sun-rain fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
 			</template>
 		</div>
 	</div>
@@ -56,6 +57,7 @@
 			<div v-if="pane == 'mail'" v-show="currentPanel == key" id="mailClient" class="mailClient"><!--(bake mainpanel/mail.html)--></div>
 			<div v-if="pane == 'transport'" v-show="currentPanel == key" id="transport" class="transport"><!--(bake mainpanel/transport.html)--></div>
 			<div v-if="pane == 'trafficcams'" v-show="currentPanel == key" id="trafficCams" class="trafficCams"><!--(bake mainpanel/trafficCams.html)--></div>
+			<div v-if="pane == 'meteo'" v-show="currentPanel == key" id="meteo" class="meteo"><!--(bake mainpanel/meteo.html)--></div>
 		</template>
 	</div>
 	<!--(bake media.html)-->

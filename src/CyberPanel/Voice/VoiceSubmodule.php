@@ -21,6 +21,7 @@ class VoiceSubmodule {
 	}
 
 	public static function init() : void {
+		return;
 		self::initListeners();
 		self::initCommands();
 	}
