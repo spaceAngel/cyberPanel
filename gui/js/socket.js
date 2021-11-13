@@ -28,6 +28,9 @@ var socket = {
 	},
 
 	send: async function(command, parameters) {
+		if (socket.conn.readyState != 1) {
+			return;
+		}
 		if (!Array.isArray(parameters)) {
 			parameters = Array(parameters);
 		}
@@ -41,6 +44,11 @@ var socket = {
 	},
 
 	sendMultiple: async function(commands) {
+		if (socket.conn.readyState != 1) {
+			return;
+		}
+		console.log(commands);
+
 		socket.conn.send(
 			JSON.stringify(commands)
 		);
