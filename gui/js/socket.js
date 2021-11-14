@@ -47,7 +47,6 @@ var socket = {
 		if (socket.conn.readyState != 1) {
 			return;
 		}
-		console.log(commands);
 
 		socket.conn.send(
 			JSON.stringify(commands)
