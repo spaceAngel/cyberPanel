@@ -3,7 +3,7 @@
 namespace CyberPanel\System;
 
 use CyberPanel\System\ShellCommands\Network as NetworkCommands;
-
+use CyberPanel\DataStructs\System\NetworkTraffic;
 
 class Network {
 
@@ -37,6 +37,15 @@ class Network {
 
 	public function getMac() : string {
 		return Executer::execAndGetResponse(NetworkCommands::CMD_MAC);
+	}
+
+	public function getTraffic() : NetworkTraffic {
+		$data = Executer::execAndGetResponse(NetworkCommands::CMD_TRAFFIC);
+		$data = explode(' ', $data);
+		$traffic = new NetworkTraffic();
+		$traffic->setDownload($data[0]);
+		$traffic->setUpload($data[1]);
+		return $traffic;
 	}
 
 }

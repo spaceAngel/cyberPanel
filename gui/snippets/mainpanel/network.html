@@ -62,5 +62,24 @@
 			</div>
 		</div>
 		
+		<div class="row">
+			<div class="symbol">
+				<i class="fas fa-download"></i>
+			</div>
+			<div class="info">
+				<div class="label">Download</div>
+				<div class="value" v-html="networkWidget.traffic.download  + '/s'"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="symbol">
+				<i class="fas fa-upload"></i>
+			</div>
+			<div class="info">
+				<div class="label">upload</div>
+				<div class="value" v-html="networkWidget.traffic.upload + '/s'"></div>
+			</div>
+		</div>
 	</div>
 </div>

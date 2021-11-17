@@ -10,6 +10,10 @@ var networkWidget = {
 		gateway: '',
 		dns: ''
 	},
+	traffic: {
+		download: 0,
+		upload: 0
+	},
 
 	handle: function(data) {
 		if (data.ip != null) {
@@ -18,6 +22,10 @@ var networkWidget = {
 			networkWidget.pings = data.pings.replaceAll('\n', '<br/>');
 			networkWidget.disconnected = data.disconnected;
 			networkWidget.time = data.time;
+			networkWidget.traffic = {
+				download: data.traffic.download,
+				upload: data.traffic.upload
+			};
 		}
 	}
 };

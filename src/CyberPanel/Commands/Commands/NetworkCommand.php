@@ -6,6 +6,7 @@ use CyberPanel\Commands\BaseCommand;
 use CyberPanel\System\Executer;
 use CyberPanel\System\ShellCommands\Applications;
 use CyberPanel\System\Network;
+use CyberPanel\Utils\Miscellaneous;
 
 class NetworkCommand extends BaseCommand {
 
@@ -64,12 +65,20 @@ class NetworkCommand extends BaseCommand {
 		} elseif (count($parsed) >= 2) {
 			$time = (float)$parsed[1];
 		}
+		$traffic = Network::getInstance()->getTraffic();
 		return [
 			'pings' => implode('', $output),
 			'disconnected' => $lastTouch > self::TIMEOUT_MARK_AS_DISCONNECT,
 			'time' => !empty($time) ? $time : 9999,
+			'traffic' => [
+				'download' => Miscellaneous::bytesToHuman($traffic->getDownload() * 1000),
+				'upload' => Miscellaneous::bytesToHuman($traffic->getUpload() * 1000),
+			]
 		];
+	}
 
+	protected function isOfflineByLastTouch() : bool {
+		return microtime(TRUE) - filemtime(self::$file) > self::TIMEOUT_MARK_AS_DISCONNECT;
 	}
 
 }

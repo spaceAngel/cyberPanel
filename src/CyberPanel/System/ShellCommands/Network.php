@@ -14,6 +14,9 @@ interface Network {
 	const CMD_IP_DNS = 'systemd-resolve --status |grep "Current DNS" | grep -Eo "([0-9]*\.){3}[0-9]*"';
 
 	const CMD_MAC = "cat /sys/class/net/$(ip route show default | awk '/default/ {print $5}')/address";
+
+	const CMD_TRAFFIC = "ifstat -T 0.1 1 | tail -n 1| awk '{print $(NF-1), $(NF)}'";
 	// phpcs:enable
+
 
 }
