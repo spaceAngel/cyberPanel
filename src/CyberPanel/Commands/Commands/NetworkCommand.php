@@ -37,10 +37,11 @@ class NetworkCommand extends BaseCommand {
 	}
 
 	protected function handleIps() : array {
+		$isOffline = $this->isOfflineByLastTouch();
 		return [
 			'ip' => [
 				'local' => Network::getInstance()->getLocalIp(),
-				'public' => Network::getInstance()->getPublicIp(),
+				'public' => (!$isOffline) ? Network::getInstance()->getPublicIp() : NULL,
 				'gateway' => Network::getInstance()->getGatewayIp(),
 				'dns' => Network::getInstance()->getDnsIp(),
 				'mac' => Network::getInstance()->getMac(),

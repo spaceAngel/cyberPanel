@@ -7,7 +7,7 @@ interface Network {
 	//phpcs:disable Generic.Files.LineLength
 	const CMD_IP_LOCAL = "ip route get 1.1.1.1 | grep -oP 'src \K\S+'";
 
-	const CMD_IP_PUBLIC = 'curl -4 ipinfo.io/ip --silent';
+	const CMD_IP_PUBLIC = 'curl -4 ipinfo.io/ip --silent -m 1';
 
 	const CMD_IP_GATEWAY = "route -n | grep 'UG[ \t]' | awk '{print $2}'";
 
