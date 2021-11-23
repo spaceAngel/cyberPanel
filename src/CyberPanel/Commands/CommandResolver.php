@@ -11,7 +11,6 @@ use CyberPanel\Commands\Commands\MediaCommand;
 use CyberPanel\Commands\Commands\LockScreenImageCommand;
 use CyberPanel\Commands\Commands\HwInfoCommand;
 use CyberPanel\Commands\Commands\KeyPressCommand;
-use CyberPanel\Commands\Commands\CovidCommand;
 use CyberPanel\Commands\Commands\OpenInBrowserCommand;
 use CyberPanel\Commands\Commands\NetworkCommand;
 use CyberPanel\Commands\Commands\FileManagerCommand;
@@ -34,7 +33,6 @@ class CommandResolver {
 		$this->registerCommand('media', MediaCommand::class);
 		$this->registerCommand('lockscreenimage', LockScreenImageCommand::class);
 		$this->registerCommand('keypress', KeyPressCommand::class);
-		$this->registerCommand('covid', CovidCommand::class);
 		$this->registerCommand('openbrowser', OpenInBrowserCommand::class);
 		$this->registerCommand('network', NetworkCommand::class);
 		$this->registerCommand('files', FileManagerCommand::class);

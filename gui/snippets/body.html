@@ -19,10 +19,10 @@
 					<span class="notification" v-if="downloads.length > 0"><% downloads.length %></span>
 				</i>
 				<i v-if="pane == 'music'" class="fas fa-music fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-				<i v-if="pane == 'covid'" class="fas fa-viruses fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key" data-tabId="covidNews">
-					<span class="notification" v-if="covidWidget.unread > 0" v-html="covidWidget.unread"></span>
+				<i v-if="pane == 'covid.news'" class="grouped fas fa-newspaper fa-2x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key" data-tabId="covidNews">
+					<i class="fas fa-viruses"></i>
+					<span class="notification" v-if="covidNewsWidget.unread > 0" v-html="covidNewsWidget.unread"></span>
 				</i>
-				<i v-if="pane == 'hospitals'" class="fas fa-hospital-user fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
 				<i v-if="pane == 'network'" class="fas fa-globe fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
 					<span class="notification alert" v-if="networkWidget.disconnected || networkWidget.time > 500">!</span>
 				</i>
@@ -49,8 +49,7 @@
 			<div v-if="pane == 'numkeyboard'" v-show="currentPanel == key"><!--(bake mainpanel/keyboard.html)--></div>
 			<div v-if="pane == 'downloads'" v-show="currentPanel == key" class="downloads"><!--(bake mainpanel/downloads.html)--></div>
 			<div v-if="pane == 'music'" v-show="currentPanel == key"><!--(bake mainpanel/lastfmTrackInfo.html)--></div>
-			<div v-if="pane == 'covid'" v-show="currentPanel == key" class="covid" id="covid"><!--(bake mainpanel/covid.html)--></div>
-			<div v-if="pane == 'hospitals'" v-show="currentPanel == key" id="covidHospitals"><!--(bake mainpanel/covidHospitals.html)--></div>
+			<div v-if="pane == 'covid.news'" v-show="currentPanel == key" class="covidNews" id="covidNews"><!--(bake mainpanel/covid/news.html)--></div>
 			<div v-if="pane == 'network'" v-show="currentPanel == key"><!--(bake mainpanel/network.html)--></div>
 			<div v-if="pane == 'files'" v-show="currentPanel == key"><!--(bake mainpanel/files.html)--></div>
 			<div v-if="pane == 'upsstatus'" v-show="currentPanel == key" id="upsStatus" class="upsStatus"><!--(bake mainpanel/upsStatus.html)--></div>

@@ -55,6 +55,7 @@ mainpanel:
     - files
     - transport
     - trafficcams
+    - covid.news
 geolocation:
     latitude: 50.1212121
     longitude: 14.1213132

@@ -1,6 +1,6 @@
 <?php
 
-namespace CyberPanel\Covid\NewsParsers;
+namespace CyberPanel\Integration\Covid\Parsers;
 
 use \DOMDocument;
 use CyberPanel\Exceptions\RemoteContentNotDownloadedException;
@@ -8,7 +8,7 @@ use CyberPanel\Logging\Log;
 use CyberPanel\Utils\WebDownloader;
 use CyberPanel\Utils\DateTime;
 
-class IdnesOnlineNews implements Parser {
+class IdnesOnlineNews {
 
 	const URL_IDNES = 'https://www.idnes.cz/koronavirus/online';
 
@@ -51,6 +51,7 @@ class IdnesOnlineNews implements Parser {
 		return [
 			'time' => $time,
 			'content' => trim($new->textContent),
+			'md5' => md5($html),
 			'html' => $html,
 			'flag' => $flag,
 			'microtime' => DateTime::humanToMicrotime($time),

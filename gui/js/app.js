@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	mainPanelWidget.init('mainSwipingPanel');
 	lastFmTrackInfo.init();
-	covidWidget.init();
+	covid.init();
 	mail.init();
 	transport.init();
 	trafficCams.init();
