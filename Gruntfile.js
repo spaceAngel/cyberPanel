@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 			options: {
 			},
 			all: {
-				src: ['gui/css/*'],
+				src: ['gui/css/**/*.less' ],
 				dest: 'build/css/app.min.less'
 			},
 
