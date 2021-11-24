@@ -3,6 +3,6 @@
 		<span><% cam.properties.name %></span> <br/>
 		<span><% (new Date(cam.properties.updated_at)).toLocaleTimeString() %></span>
 	</div>
-	<img v-bind:src="cam.properties.image.data" />
+	<img v-bind:src="cam.properties.image.url" />
 	
 </div>
