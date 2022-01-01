@@ -33,9 +33,9 @@ class CyberPanel {
 	}
 
 	public static function run() : self {
-		ModuleLoader::loadModules();
 		if (empty(self::$instance)) {
 			self::$instance = new self();
+			ModuleLoader::loadModules();
 			if (0 !== pcntl_fork()) {
 				self::$instance->runSocketServer();
 
