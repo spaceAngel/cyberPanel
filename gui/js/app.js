@@ -6,7 +6,7 @@
 		downloadsWidget, covidWidget,
 		lockScreenImage, fileManager, speaker,
 		upsStatus, speakerm, mail,
-		transport, meteo
+		transport, meteo, icuMonitor
 */
 var cyberPanel;
 var mixins = [];
@@ -79,4 +79,5 @@ document.addEventListener('DOMContentLoaded', function() {
 	meteo.init();
 	upsStatus.init();
 	speaker.init();
+	icuMonitor.init();
 });

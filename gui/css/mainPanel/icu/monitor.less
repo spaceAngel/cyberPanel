@@ -1,0 +1,53 @@
+.icuMonitor {
+	.spo2 {
+		color: blue;
+	}
+		
+	.respiratory {
+		color:yellow;
+	}
+	.pulse {
+		color: darkred;
+	}
+	
+	.nbp {
+		color:darkorange;
+	}
+	
+	.row {
+		margin-left:auto;
+		margin-right:auto;
+		width:100%;
+		text-align:center;
+		
+		.vitalFunction {
+			display: inline-block;
+			font-size: 101px;
+
+			
+			.date {
+				font-size:38%;
+				vertical-align:top;
+				margin-left:30px;
+			}
+			
+			div {
+				float:right;
+				margin-right:20px;
+				font-size: 40%;
+				padding-top:10px;
+				margin-left: 10px;
+				text-align: right;
+				.spo2 {
+					vertical-align: bottom;
+				}
+			}
+		}
+	}
+	.row:first-of-type {
+		margin-top: 70px;
+		.vitalFunction {
+			width:200px;	
+		}
+	}
+}

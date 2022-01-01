@@ -15,3 +15,7 @@ composer.phar
  
 yarn.lock
 yarn-error.log
+
+#pyenv
+.pydevproject
+*__pycache__*

@@ -1,0 +1,43 @@
+<div v-if="icuMonitor.data">
+	<div class="row">
+		<div class="vitalFunction spo2">
+			<span v-if="icuMonitor.data.spo2.saturation"><% icuMonitor.data.spo2.saturation %></span>
+			<span v-else>?</span>
+		</div>
+	
+		<div class="vitalFunction pulse" >
+			<span v-if="icuMonitor.data.ecg.pulse"><% icuMonitor.data.ecg.pulse %></span>
+			<span v-else-if="icuMonitor.data.spo2.pulse"><% icuMonitor.data.spo2.pulse %></span>
+			<span v-else>?</span>
+			<div>
+				<span v-if="icuMonitor.data.ecg.pulse"><% icuMonitor.data.ecg.pulse %></span>
+				<span v-else>?</span>
+				<br/>		
+				<span class="spo2" v-if="icuMonitor.data.spo2.pulse"><% icuMonitor.data.spo2.pulse %></span>
+				<span class="spo2" v-else>?</span>
+			</div>
+		</div>
+		
+		<div class="vitalFunction respiratory">
+			<span v-if="icuMonitor.data.respiratoryRate"><% icuMonitor.data.respiratoryRate %></span>
+			<span v-else>?</span>
+		</div>
+	</div>
+	
+	
+	<div class="row nbp">
+		<div class="vitalFunction">
+			<span v-if="icuMonitor.data.nbp.sys"><% icuMonitor.data.nbp.sys %></span><span v-else>?</span>
+			/
+			<span v-if="icuMonitor.data.nbp.dias"><% icuMonitor.data.nbp.dias %></span><span v-else>?</span>
+			(<span v-if="icuMonitor.data.nbp.mean"><% icuMonitor.data.nbp.mean %></span><span v-else>?</span>)
+			
+		
+			<div class="date">
+				<span v-if="icuMonitor.data.nbp.time"><% icuMonitor.data.nbp.time.human %></span><span v-else>?</span>
+				<br/>
+				<span v-if="icuMonitor.data.nbp.inflating"><% icuMonitor.data.nbp.inflating %></span>
+			</div>
+		</div>
+	</div>
+</div>

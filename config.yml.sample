@@ -66,3 +66,5 @@ mail:
 departures:
     - Muzeum
     - Můstek
+icuMonitor:
+    ip: 192.168.1.90
