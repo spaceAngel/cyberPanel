@@ -16,6 +16,7 @@ use CyberPanel\Commands\Commands\NetworkCommand;
 use CyberPanel\Commands\Commands\FileManagerCommand;
 use CyberPanel\Commands\Commands\UpsStateCommand;
 use CyberPanel\Logging\Log;
+use CyberPanel\Commands\Commands\StorageCommand;
 
 class CommandResolver {
 
@@ -37,6 +38,7 @@ class CommandResolver {
 		$this->registerCommand('network', NetworkCommand::class);
 		$this->registerCommand('files', FileManagerCommand::class);
 		$this->registerCommand('upsstatus', UpsStateCommand::class);
+		$this->registerCommand('storage', StorageCommand::class);
 	}
 
 	public static function getInstance() : self {
