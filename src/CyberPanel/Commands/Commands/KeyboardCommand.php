@@ -3,22 +3,15 @@
 namespace CyberPanel\Commands\Commands;
 
 use CyberPanel\Commands\BaseCommand;
-use CyberPanel\System\Executer;
-use CyberPanel\System\ShellCommands\Keyboard;
+use CyberPanel\Storage;
+use CyberPanel\System\SystemDataCollector;
 
 class KeyboardCommand extends BaseCommand {
+
 	public function run() : array {
-		return $this->getKeyboardLeds();
+		return (array)Storage::getInstance()->get(
+			SystemDataCollector::STORAGEKEY_KEYBOARD
+		);
 	}
 
-	private function getKeyboardLeds() : array {
-		$leds = explode('|', Executer::execAndGetResponse(Keyboard::CMD_LEDS));
-		$rslt = [];
-		foreach ($leds as $led) {
-			$led = explode(':', $led);
-			$rslt[$led[0]] = $led[1];
-		}
-
-		return $rslt;
-	}
 }

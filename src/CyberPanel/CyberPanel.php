@@ -12,6 +12,7 @@ use CyberPanel\Voice\VoiceSubmodule;
 use CyberPanel\Events\EventManager;
 use CyberPanel\Events\Events\Runtime\ApplicationStartedEvent;
 use CyberPanel\Integration\ModuleLoader;
+use CyberPanel\System\SystemDataCollector;
 
 class CyberPanel {
 
@@ -30,6 +31,7 @@ class CyberPanel {
 		if (Environment::getInstance()->getRunningWithDeamonizeSwitch()) {
 			$this->daemonize();
 		}
+		SystemDataCollector::getInstance()->runCollector();
 	}
 
 	public static function run() : self {
