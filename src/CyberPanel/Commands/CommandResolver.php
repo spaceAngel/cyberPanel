@@ -58,7 +58,7 @@ class CommandResolver {
 				!empty($commandQuery->command)
 				&& array_key_exists($commandQuery->command, $this->commands)
 			) {
-				$parameters = $commandQuery->parameters;
+				$parameters = $commandQuery->parameters ?? [];
 				if (is_object($parameters)) {
 					$parameters = get_object_vars($parameters);
 				}
