@@ -23,6 +23,8 @@ class VoiceSubmodule {
 	public static function init() : void {
 		self::initListeners();
 		self::initCommands();
+		//init speaker
+		Speaker::getInstance();
 	}
 
 	protected static function initListeners() : void {

@@ -19,13 +19,15 @@ class Speaker {
 
 	protected string $voice = 'cs+f2';
 
+	protected $enabledFile;
+
 	protected array $textTransformers = [
 		'cs+f2' => CzechTransformer::class
 	];
 
-	protected bool $enabled = TRUE;
-
 	private function __construct() {
+		$this->enabledFile = '/tmp/enabled_' . uniqid();
+		$this->setEnabled(TRUE);
 	}
 
 	protected function createPipeIfNotExists() : void {
@@ -60,12 +62,12 @@ class Speaker {
 		$this->gain = $gain;
 	}
 
-	public function setEnabled(bool $enabled) : void {
-		$this->enabled = $enabled;
+	public function setEnabled(bool $enabled = TRUE) : void {
+		file_put_contents($this->enabledFile, $enabled);
 	}
 
 	public function getEnabled() : bool {
-		return $this->enabled;
+		return (bool)file_get_contents($this->enabledFile);
 	}
 
 	public static function getInstance() : self {
@@ -76,7 +78,7 @@ class Speaker {
 	}
 
 	public function say(string $message, bool $always = FALSE) : void {
-		if (!$this->enabled) {
+		if (!$this->getEnabled()) {
 			return;
 		}
 		$message = $this->transform($message, $this->voice);

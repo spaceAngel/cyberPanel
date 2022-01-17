@@ -13,10 +13,14 @@ class EnableSpeakerCommand extends BaseCommand {
 	}
 
 	public function run() : array {
-		if ($this->parameters[0] !== NULL) {
-			Speaker::getInstance()->setEnabled($this->parameters[0]);
+		if (
+			count($this->parameters) > 0
+		) {
+			Speaker::getInstance()->setEnabled((bool)$this->parameters[0]);
 		}
+
 		return ['enabled' => Speaker::getInstance()->getEnabled()];
+
 	}
 
 }
