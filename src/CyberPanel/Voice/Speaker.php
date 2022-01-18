@@ -39,7 +39,10 @@ class Speaker {
 
 		}
 		if (!$isPipeRunning) {
-			if (!empty($this->pipefile)) {
+			if (
+				!empty($this->pipefile)
+				&& file_exists($this->pipefile)
+			) {
 				unlink($this->pipefile);
 			}
 			$this->createPipe();
