@@ -2,7 +2,7 @@
 
 namespace CyberPanel\Macros;
 
-use CyberPanel\System\Executer;
+use CyberPanel\System\ExternalScriptsRunner;
 
 class MacroManager {
 
@@ -32,7 +32,9 @@ class MacroManager {
 	public function runMacro(string $macroHash) : void {
 		$macro = $this->macros[$macroHash];
 		if ($macro->getCommand()) {
-			Executer::exec($macro->getCommand());
+			ExternalScriptsRunner::getInstance()->execCommand(
+				'nohup ' . $macro->getCommand() . ' & disown'
+			);
 		}
 	}
 

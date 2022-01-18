@@ -13,6 +13,7 @@ use CyberPanel\Events\EventManager;
 use CyberPanel\Events\Events\Runtime\ApplicationStartedEvent;
 use CyberPanel\Integration\ModuleLoader;
 use CyberPanel\System\SystemDataCollector;
+use CyberPanel\System\ExternalScriptsRunner;
 
 class CyberPanel {
 
@@ -39,6 +40,7 @@ class CyberPanel {
 			self::$instance = new self();
 			ModuleLoader::loadModules();
 			if (0 !== pcntl_fork()) {
+				ExternalScriptsRunner::getInstance()->runExecuter();
 				self::$instance->runSocketServer();
 
 			} else {
