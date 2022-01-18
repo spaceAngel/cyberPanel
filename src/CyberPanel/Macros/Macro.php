@@ -10,6 +10,8 @@ class Macro {
 
 	private $command;
 
+	private string $position = 'left';
+
 	private bool $isDelimiter = FALSE;
 
 	private ?string $iconImage = NULL;
@@ -61,5 +63,14 @@ class Macro {
 
 	public function getIconImage() : ?string {
 		return $this->iconImage;
+	}
+
+	public function setPosition(string $position) : self {
+		$this->position = $position;
+		return $this;
+	}
+
+	public function getPosition() : string {
+		return $this->position;
 	}
 }

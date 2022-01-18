@@ -24,6 +24,7 @@ class MacroParser {
 			if (array_key_exists('caption', $data)) $macro->setCaption($data['caption']);
 			if (array_key_exists('command', $data)) $macro->setCommand($data['command']);
 			if (array_key_exists('icon', $data)) $macro->setIcon($data['icon']);
+			if (array_key_exists('position', $data)) $macro->setPosition($data['position']);
 			if (empty($macro->getIcon())) {
 				$this->loadIcon($macro);
 			}

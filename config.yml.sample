@@ -17,6 +17,7 @@ macros:
    - caption: firefox
      icon: fa-firefox
      command: firefox
+     position: right
    - caption: chrome
      icon: fa-chrome
      command: chromium
