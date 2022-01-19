@@ -14,6 +14,8 @@ class Macro {
 
 	private bool $isDelimiter = FALSE;
 
+	private bool $isSpace = FALSE;
+
 	private ?string $iconImage = NULL;
 
 	public function getIcon() {
@@ -72,5 +74,14 @@ class Macro {
 
 	public function getPosition() : string {
 		return $this->position;
+	}
+
+	public function getIsSpace() : bool {
+		return $this->isSpace();
+	}
+
+	public function setIsSpace(bool $isSpace = TRUE) : self {
+		$this->isSpace = $isSpace;
+		return $this;
 	}
 }

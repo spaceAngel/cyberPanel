@@ -20,6 +20,8 @@ class MacroParser {
 		$macro = new Macro();
 		if (array_key_exists('delimiter', $data)) {
 			$macro->setIsDelimiter();
+		} elseif (array_key_exists('space', $data)) {
+			$macro->setIsSpace();
 		} else {
 			if (array_key_exists('caption', $data)) $macro->setCaption($data['caption']);
 			if (array_key_exists('command', $data)) $macro->setCommand($data['command']);
