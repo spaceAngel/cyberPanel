@@ -7,7 +7,25 @@
 	.caption {
 		margin-top:3px;
 		display:inline-block;
-		font-size:21px;
-		
+		font-size:21px;		
+	}
+	
+	.notification {
+		float: right;
+		position: relative;
+		z-index: 999;
+		margin-bottom: -30px;
+		background-color: @colorFontReversed;
+		font-size: 20px;
+		font-weight: bold;
+		width: 26px;
+		text-align: center;
+		padding: 1px;
+		.borderRadius(8px);
+		border: 2px solid @colorFontMain;
+	}
+	
+	.notification:empty {
+		display:none;
 	}
 }

@@ -18,6 +18,8 @@ class Macro {
 
 	private ?string $iconImage = NULL;
 
+	private ?string $notification = NULL;
+
 	public function getIcon() {
 		return $this->icon;
 	}
@@ -83,5 +85,14 @@ class Macro {
 	public function setIsSpace(bool $isSpace = TRUE) : self {
 		$this->isSpace = $isSpace;
 		return $this;
+	}
+
+	public function setNotification(string $notification) : self {
+		$this->notification = $notification;
+		return $this;
+	}
+
+	public function getNotification() : ?string {
+		return $this->notification;
 	}
 }

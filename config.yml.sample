@@ -30,6 +30,7 @@ macros:
      command: audacious
    - caption: email
      icon: fa-envelope
+     notification: "mail && mail.unread > 0 ? mail.unread : '';"
    - caption: eclipse
      icon: fa-code
 clients:

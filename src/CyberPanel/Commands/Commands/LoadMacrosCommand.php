@@ -16,6 +16,7 @@ class LoadMacrosCommand extends BaseCommand {
 				'hash' => $macro->getHash(),
 				'isDelimiter' => $macro->getIsDelimiter(),
 				'position' => $macro->getPosition(),
+				'notification' => $macro->getNotification(),
 			];
 		}
 		return [ 'macros' => $macros];
