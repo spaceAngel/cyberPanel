@@ -1,6 +1,6 @@
 <?php
 
-namespace CyberPanel\Commands\Commands;
+namespace CyberPanel\Macros\Commands;
 
 use CyberPanel\Commands\BaseCommand;
 use CyberPanel\Macros\MacroManager;

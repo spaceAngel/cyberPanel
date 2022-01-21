@@ -4,8 +4,6 @@ namespace CyberPanel\Commands;
 
 use CyberPanel\Commands\Commands\DateTimeCommand;
 use CyberPanel\Commands\Commands\SystemInfoCommand;
-use CyberPanel\Commands\Commands\LoadMacrosCommand;
-use CyberPanel\Commands\Commands\RunMacroCommand;
 use CyberPanel\Commands\Commands\KeyboardCommand;
 use CyberPanel\Commands\Commands\MediaCommand;
 use CyberPanel\Commands\Commands\LockScreenImageCommand;
@@ -17,6 +15,8 @@ use CyberPanel\Commands\Commands\FileManagerCommand;
 use CyberPanel\Commands\Commands\UpsStateCommand;
 use CyberPanel\Logging\Log;
 use CyberPanel\Commands\Commands\StorageCommand;
+use CyberPanel\Macros\Commands\LoadMacrosCommand;
+use CyberPanel\Macros\Commands\RunMacroCommand;
 
 class CommandResolver {
 
