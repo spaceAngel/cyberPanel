@@ -13,8 +13,6 @@ use CyberPanel\Utils\DateTime;
 use CyberPanel\Utils\Miscellaneous;
 use CyberPanel\Utils\Traits\HasSocketClient;
 
-use \WebSocket\ConnectionException;
-
 class SystemDataCollector {
 
 	public const STORAGEKEY_SYSTEM = 'systen';
@@ -150,13 +148,7 @@ class SystemDataCollector {
 				]
 			];
 		}
-		try {
-			$this->getSocketClient()->text(
-				json_encode($request)
-			);
-		} catch (ConnectionException $e) { // failed connection -> rebuild Socket Client
-			$this->builSocketClient();
-		}
+		$this->sendToSocketServer($request);
 	}
 
 	protected function getGpuInfo(GpuSystemInfo $gpu) : array {

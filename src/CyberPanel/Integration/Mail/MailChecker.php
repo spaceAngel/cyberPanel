@@ -7,7 +7,6 @@ use CyberPanel\Configuration\Configuration;
 use CyberPanel\System\Executer;
 use CyberPanel\Logging\Log;
 use CyberPanel\Utils\Traits\HasSocketClient;
-use \WebSocket\ConnectionException;
 
 class MailChecker {
 
@@ -44,18 +43,12 @@ class MailChecker {
 			} catch (\UnexpectedValueException $ex) {
 				$data = ['errorOnConnect' => TRUE];
 			}
-			try {
-				$this->getSocketClient()->text(
-					json_encode(
-						[
-							'command' => 'mail.storemails',
-							'parameters' => $data
-						]
-					)
-				);
-			} catch (ConnectionException $e) { // failed connection -> rebuild Socket Client
-				$this->builSocketClient();
-			}
+			$this->sendToSocketServer(
+				[
+					'command' => 'mail.storemails',
+					'parameters' => $data
+				]
+			);
 			sleep(50);
 		}
 	}
