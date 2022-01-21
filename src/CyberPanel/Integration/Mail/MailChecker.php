@@ -2,14 +2,16 @@
 
 namespace CyberPanel\Integration\Mail;
 
-use PhpImap\Mailbox;
 use CyberPanel\Integration\Mail\Client\Client;
-use PhpImap\Exceptions\ConnectionException;
 use CyberPanel\Configuration\Configuration;
 use CyberPanel\System\Executer;
 use CyberPanel\Logging\Log;
+use CyberPanel\Utils\Traits\HasSocketClient;
+use \WebSocket\ConnectionException;
 
 class MailChecker {
+
+	use HasSocketClient;
 
 	protected const CMD_PASSWORD = '
 		kdialog --password "Please type password for %s" \
@@ -18,6 +20,7 @@ class MailChecker {
 	private static self $instance;
 
 	private function __construct() {
+		$this->builSocketClient();
 	}
 
 	public static function getInstance() : self {
@@ -27,8 +30,7 @@ class MailChecker {
 		return self::$instance;
 	}
 
-	public function run(int $port) : void {
-		$client = new \WebSocket\Client("ws://127.0.0.1:" . $port);
+	public function run() : void {
 		while (TRUE) {
 			try {
 				if (empty($mailbox)) {
@@ -42,18 +44,20 @@ class MailChecker {
 			} catch (\UnexpectedValueException $ex) {
 				$data = ['errorOnConnect' => TRUE];
 			}
-			$client->text(
-				json_encode(
-					[
-						'command' => 'mail.storemails',
-						'parameters' => $data
-					]
-				)
-			);
+			try {
+				$this->getSocketClient()->text(
+					json_encode(
+						[
+							'command' => 'mail.storemails',
+							'parameters' => $data
+						]
+					)
+				);
+			} catch (ConnectionException $e) { // failed connection -> rebuild Socket Client
+				$this->builSocketClient();
+			}
 			sleep(50);
 		}
-
-		$client->close();
 	}
 
 	protected function getMailBox() : Client {

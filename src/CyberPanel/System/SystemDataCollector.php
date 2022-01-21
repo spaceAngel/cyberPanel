@@ -11,8 +11,9 @@ use CyberPanel\Events\Events\Hardware\CpuTemperatureEvent;
 
 use CyberPanel\Utils\DateTime;
 use CyberPanel\Utils\Miscellaneous;
+use CyberPanel\Utils\Traits\HasSocketClient;
 
-use WebSocket\Client;
+use \WebSocket\ConnectionException;
 
 class SystemDataCollector {
 
@@ -26,10 +27,10 @@ class SystemDataCollector {
 
 	protected static self $instance;
 
-	protected Client $client;
+	use HasSocketClient;
 
 	protected function __construct() {
-		$this->client = new \WebSocket\Client("ws://127.0.0.1:8081" );
+		$this->builSocketClient();
 	}
 
 	public static function getInstance() : self {
@@ -49,6 +50,7 @@ class SystemDataCollector {
 	protected function runLoop() : void {
 		$tickerHwInfo = 0;
 		$tickerUpsStatus = 0;
+
 		while (TRUE) {
 			$data = [
 				self::STORAGEKEY_SYSTEM => $this->collectSystemMetrics(),
@@ -66,7 +68,6 @@ class SystemDataCollector {
 
 			$tickerHwInfo++;
 			$tickerUpsStatus++;
-
 			$this->sentToServer($data);
 		}
 	}
@@ -149,9 +150,13 @@ class SystemDataCollector {
 				]
 			];
 		}
-		$this->client->text(
-			json_encode($request)
-		);
+		try {
+			$this->getSocketClient()->text(
+				json_encode($request)
+			);
+		} catch (ConnectionException $e) { // failed connection -> rebuild Socket Client
+			$this->builSocketClient();
+		}
 	}
 
 	protected function getGpuInfo(GpuSystemInfo $gpu) : array {

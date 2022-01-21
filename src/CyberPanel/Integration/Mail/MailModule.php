@@ -7,7 +7,6 @@ use CyberPanel\Integration\Mail\Commands\StoreMailsCommand;
 use CyberPanel\Integration\Mail\Commands\GetMailsCommand;
 use CyberPanel\Configuration\ConfigurationLoader as ConfLoader;
 use \CyberPanel\Integration\Mail\Configuration\ConfigurationLoader;
-use CyberPanel\Environment;
 
 class MailModule {
 
@@ -27,15 +26,13 @@ class MailModule {
 			ConfigurationLoader::class
 		);
 
-		self::detachChecker(
-			Environment::getInstance()->getPort()
-		);
+		self::detachChecker();
 	}
 
-	private static function detachChecker(int $port) : void {
+	private static function detachChecker() : void {
 		if (0 !== pcntl_fork()) {
 		} else {
-			MailChecker::getInstance()->run($port);
+			MailChecker::getInstance()->run();
 		}
 	}
 
