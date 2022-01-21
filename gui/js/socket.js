@@ -56,6 +56,7 @@ var socket = {
 	handleDisconnect: function() {
 		setTimeout(function() {
 			socket.open();
+			setTimeout( function() {socket.send('loadmacros', 123);},2000);
 		}, 700);
 	},
 

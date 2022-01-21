@@ -66,7 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	}, 1000);
 
 	socket.registerHandler('loadmacros', macrosWidget.handle);
-	setInterval( function() {socket.send('loadmacros', 123);},20000);
+	setTimeout(
+		function() {socket.send('loadmacros', 123);},
+		2000
+	);
 
 	lockScreenImage.init();
 
