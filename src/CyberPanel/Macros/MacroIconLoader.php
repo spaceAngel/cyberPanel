@@ -8,12 +8,12 @@ class MacroIconLoader {
 
 	protected static $dirs = [
 		'/usr/share/icons/hicolor/64x64/apps/',
-		'/var/lib/app-info/icons/ubuntu-focal-universe/64x64/'
+		'/usr/share/icons/hicolor/48x48/apps/',
+		'/var/lib/app-info/icons/ubuntu-focal-universe/64x64/',
 	];
 
 	protected static $modified = [
 		'krusader' => 'krusader_user',
-		'eclipse' => 'redeclipse_redeclipse',
 	];
 
 	protected static $customIcons = [
@@ -42,7 +42,6 @@ class MacroIconLoader {
 		string $folder,
 		string $basename
 	) : ?string {
-
 		foreach (self::getFileNames($basename) as $filename) {
 			$path = sprintf('%s/%s.png', $folder, $filename);
 			$binary = Files::loadBinary($path);
@@ -82,7 +81,8 @@ class MacroIconLoader {
 				array_keys(self::$modified),
 				array_values(self::$modified),
 				$basename,
-			)
+			),
+			'icon',
 		];
 	}
 }
