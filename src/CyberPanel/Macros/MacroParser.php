@@ -23,6 +23,12 @@ class MacroParser {
 		} elseif (array_key_exists('space', $data)) {
 			$macro->setIsSpace();
 		} else {
+			if (array_key_exists('library', $data)) {
+				$data = array_merge(
+					Librarian::getInstance()->getMacroFromLibrary($data['library']),
+					$data
+				);
+			}
 			if (array_key_exists('caption', $data)) $macro->setCaption($data['caption']);
 			if (array_key_exists('command', $data)) $macro->setCommand($data['command']);
 			if (array_key_exists('icon', $data)) $macro->setIcon($data['icon']);

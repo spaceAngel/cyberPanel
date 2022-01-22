@@ -33,6 +33,7 @@ macros:
      notification: "mail && mail.unread > 0 ? mail.unread : '';"
    - caption: eclipse
      icon: fa-code
+   - library: generic.nuke
 clients:
     - 192.168.0.2
 sidebar:
