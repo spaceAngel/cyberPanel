@@ -44,7 +44,7 @@
 
 	<div class="box swiper" id="mainSwipingPanel">
 		<template v-for="pane, key in config.panes">
-			<div v-if="pane == 'macros'" v-show="currentPanel == key"><!--(bake mainpanel/macros.html)--></div>
+			<div v-if="pane == 'macros'" class="macrogrid" v-show="currentPanel == key"><!--(bake mainpanel/macros.html)--></div>
 			<div v-if="pane == 'processes'" v-show="currentPanel == key"><!--(bake mainpanel/processGrid.html)--></div>
 			<div v-if="pane == 'sysinfo'" v-show="currentPanel == key" class="sysinfo"><!--(bake mainpanel/sysinfo.html)--></div>
 			<div v-if="pane == 'fans'" v-show="currentPanel == key" class="fans"><!--(bake mainpanel/fans.html)--></div>
