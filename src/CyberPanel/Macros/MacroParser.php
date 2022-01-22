@@ -2,6 +2,8 @@
 
 namespace CyberPanel\Macros;
 
+use CyberPanel\Utils\Files;
+
 class MacroParser {
 
 	private static self $instance;
@@ -31,13 +33,10 @@ class MacroParser {
 			}
 			if (array_key_exists('caption', $data)) $macro->setCaption($data['caption']);
 			if (array_key_exists('command', $data)) $macro->setCommand($data['command']);
-			if (array_key_exists('icon', $data)) $macro->setIcon($data['icon']);
+			$this->handleIconResolving($macro, $data);
 			if (array_key_exists('position', $data)) $macro->setPosition($data['position']);
 			if (array_key_exists('notification', $data)) {
 				$macro->setNotification($data['notification']);
-			}
-			if (empty($macro->getIcon())) {
-				$this->loadIcon($macro);
 			}
 		}
 
@@ -50,5 +49,21 @@ class MacroParser {
 			$macro->setIconImage($iconBinary);
 		}
 
+	}
+
+	protected function handleIconResolving(Macro $macro, array $data) : void {
+		if (array_key_exists('icon', $data)) {
+			if (file_exists($data['icon'])) {
+				$macro->setIconImage(
+					Files::loadBinary($data['icon'])
+				);
+			} else {
+				$macro->setIcon($data['icon']);
+			}
+		}
+
+		if (empty($macro->getIcon()) && empty($macro->getIconImage())) {
+			$this->loadIcon($macro);
+		}
 	}
 }
