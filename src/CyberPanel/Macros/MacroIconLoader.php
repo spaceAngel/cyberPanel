@@ -2,6 +2,8 @@
 
 namespace CyberPanel\Macros;
 
+use CyberPanel\Utils\Files;
+
 class MacroIconLoader {
 
 	protected static $dirs = [
@@ -43,7 +45,7 @@ class MacroIconLoader {
 
 		foreach (self::getFileNames($basename) as $filename) {
 			$path = sprintf('%s/%s.png', $folder, $filename);
-			$binary = self::loadBinary($path);
+			$binary = Files::loadBinary($path);
 			if (!empty($binary)) {
 				return $binary;
 			}
@@ -51,7 +53,7 @@ class MacroIconLoader {
 
 		foreach (self::$customIcons as $icon) {
 			$path = sprintf('%s/%s', $folder, $icon);
-			$binary = self::loadBinary($path);
+			$binary = Files::loadBinary($path);
 			if (!empty($binary)) {
 				return $binary;
 			}
@@ -63,25 +65,11 @@ class MacroIconLoader {
 		foreach (self::$dirs as $dir) {
 			foreach (self::getFileNames($basename) as $filename) {
 				$path = sprintf('%s/%s.png', $dir, $filename);
-				$binary = self::loadBinary($path);
+				$binary = Files::loadBinary($path);
 				if (!empty($binary)) {
 					return $binary;
 				}
 			}
-		}
-		return NULL;
-	}
-
-	protected static function loadBinary(string $path) : ?string {
-		if (file_exists($path)) {
-			$binary = file_get_contents($path);
-			$binary = base64_encode($binary);
-			$pathinfo = pathinfo($path);
-			return sprintf(
-				'%s;base64,%s',
-				$pathinfo['extension'],
-				$binary
-			);
 		}
 		return NULL;
 	}
