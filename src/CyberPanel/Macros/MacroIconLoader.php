@@ -10,11 +10,10 @@ class MacroIconLoader {
 		'/usr/share/icons/hicolor/64x64/apps/',
 		'/usr/share/icons/hicolor/48x48/apps/',
 		'/var/lib/app-info/icons/ubuntu-focal-universe/64x64/',
+		'/var/lib/app-info/icons/ubuntu-focal-main/64x64',
 	];
 
-	protected static $modified = [
-		'krusader' => 'krusader_user',
-	];
+	protected static $modified = [];
 
 	protected static $customIcons = [
 		'icon.xpm'		//e.g. eclipse
@@ -35,7 +34,10 @@ class MacroIconLoader {
 		if (!empty($binary)) {
 			return $binary;
 		}
+	}
 
+	public static function registerCommandIconMapping(string $cmd, string $icoName) {
+		self::$modified[$cmd] = $icoName;
 	}
 
 	protected static function loadIconFromFolder(
