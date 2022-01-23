@@ -9,9 +9,15 @@ class Files {
 			$binary = file_get_contents($path);
 			$binary = base64_encode($binary);
 			$pathinfo = pathinfo($path);
-			if ($pathinfo['extension'] == 'xpm') {
-				$binary = self::convertFromXpm($path);
-				$pathinfo['extension'] = 'png';
+			switch ($pathinfo['extension']) {
+				case 'xpm':
+					$binary = self::convertFromXpm($path);
+					$pathinfo['extension'] = 'png';
+					break;
+				case 'svg':
+					$binary = base64_encode(file_get_contents($path));
+					$pathinfo['extension'] = 'image/svg+xml';
+					break;
 			}
 			return sprintf(
 				'%s;base64,%s',
