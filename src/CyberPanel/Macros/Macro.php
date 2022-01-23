@@ -20,6 +20,8 @@ class Macro {
 
 	private ?string $notification = NULL;
 
+	private $checkEnabledFunction = NULL;
+
 	public function getIcon() {
 		return $this->icon;
 	}
@@ -94,5 +96,14 @@ class Macro {
 
 	public function getNotification() : ?string {
 		return $this->notification;
+	}
+
+	public function setCheckEnabledFunction(callable $checkEnabledFunction) : self {
+		$this->checkEnabledFunction = $checkEnabledFunction;
+		return $this;
+	}
+
+	public function getCheckEnabledFunction() : ?callable {
+		return $this->checkEnabledFunction;
 	}
 }

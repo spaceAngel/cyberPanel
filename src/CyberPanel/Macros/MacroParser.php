@@ -38,6 +38,9 @@ class MacroParser {
 			if (array_key_exists('notification', $data)) {
 				$macro->setNotification($data['notification']);
 			}
+			if (array_key_exists('checkEnabledFunction', $data)) {
+				$macro->setCheckEnabledFunction($data['checkEnabledFunction']);
+			}
 		}
 
 		return $macro;

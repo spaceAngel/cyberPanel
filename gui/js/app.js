@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		function() {socket.send('loadmacros', 123);},
 		2000
 	);
+	macrosWidget.init();
 
 	lockScreenImage.init();
 

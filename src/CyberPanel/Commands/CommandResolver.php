@@ -17,6 +17,8 @@ use CyberPanel\Logging\Log;
 use CyberPanel\Commands\Commands\StorageCommand;
 use CyberPanel\Macros\Commands\LoadMacrosCommand;
 use CyberPanel\Macros\Commands\RunMacroCommand;
+use Symfony\Component\Console\Event\ConsoleCommandEvent;
+use CyberPanel\Macros\Commands\MacrosEnabledListCommand;
 
 class CommandResolver {
 
@@ -28,8 +30,6 @@ class CommandResolver {
 		$this->registerCommand('datetime', DateTimeCommand::class);
 		$this->registerCommand('systeminfo', SystemInfoCommand::class);
 		$this->registerCommand('hwinfo', HwInfoCommand::class);
-		$this->registerCommand('loadmacros', LoadMacrosCommand::class);
-		$this->registerCommand('macro', RunMacroCommand::class);
 		$this->registerCommand('keyboard', KeyboardCommand::class);
 		$this->registerCommand('media', MediaCommand::class);
 		$this->registerCommand('lockscreenimage', LockScreenImageCommand::class);
@@ -39,6 +39,9 @@ class CommandResolver {
 		$this->registerCommand('files', FileManagerCommand::class);
 		$this->registerCommand('upsstatus', UpsStateCommand::class);
 		$this->registerCommand('storage', StorageCommand::class);
+		$this->registerCommand('loadmacros', LoadMacrosCommand::class);
+		$this->registerCommand('macro', RunMacroCommand::class);
+		$this->registerCommand('macros.enabled', MacrosEnabledListCommand::class);
 	}
 
 	public static function getInstance() : self {
