@@ -1,8 +1,10 @@
 <?php
 
-namespace CyberPanel\System;
+namespace CyberPanel\Macros;
 
-class ExternalScriptsRunner {
+use CyberPanel\System\Executer;
+
+class MacroHandlingService {
 
 	protected string $pipefile;
 
