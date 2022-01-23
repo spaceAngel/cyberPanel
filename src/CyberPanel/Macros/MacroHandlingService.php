@@ -6,6 +6,8 @@ use CyberPanel\System\Executer;
 
 class MacroHandlingService {
 
+	protected const TICK_INTERVAL = 0.4;
+
 	protected string $pipefile;
 
 	protected static self $instance;
@@ -35,7 +37,7 @@ class MacroHandlingService {
 					'/bin/bash < ' . $this->pipefile . '; rm ' . $this->pipefile
 				);
 			}
-			sleep(1);
+			sleep(self::TICK_INTERVAL);
 		}
 	}
 
