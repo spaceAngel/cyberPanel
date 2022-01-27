@@ -36,8 +36,17 @@ class MacroIconLoader {
 		}
 	}
 
-	public static function registerCommandIconMapping(string $cmd, string $icoName) {
+	public static function registerCommandIconMapping(
+		string $cmd,
+		string $icoName
+	) : void {
 		self::$modified[$cmd] = $icoName;
+	}
+
+	public static function registerCommandIconMappings(array $mappings) : void {
+		foreach ($mappings as $cmd => $mapping) {
+			self::registerCommandIconMapping($cmd, $mapping);
+		}
 	}
 
 	protected static function loadIconFromFolder(
