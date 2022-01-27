@@ -7,9 +7,10 @@
 		v-if="!macro.isDelimiter" 
 		v-bind:style="'float:' +macro.position"
 	>
+		<img v-if="macro.subIconImage" v-bind:src="'data:' +macro.subIconImage" class="subIcon"/>
 		<span v-if="macro.notification" class="notification"><% eval(macro.notification)%></span>
 		<i class="fa fa-4x" v-bind:class="[macro.icon]" v-if="macro.icon"></i> 
-		<img v-if="macro.iconImage" v-bind:src="'data:' +macro.iconImage" style="border-color:1px solid blue;"/>
+		<img v-if="macro.iconImage" v-bind:src="'data:' +macro.iconImage" class="mainIcon"/>
 		<br/>
 		<span data-templatePlaceholder="caption" class="caption"><% macro.caption %></span>
 	</div>

@@ -18,6 +18,8 @@ class Macro {
 
 	private ?string $iconImage = NULL;
 
+	private ?string $subIconImage = NULL;
+
 	private ?string $notification = NULL;
 
 	private $checkEnabledFunction = NULL;
@@ -69,6 +71,15 @@ class Macro {
 
 	public function getIconImage() : ?string {
 		return $this->iconImage;
+	}
+
+	public function setSubIconImage(string $subIconImage) : self {
+		$this->subIconImage = $subIconImage;
+		return $this;
+	}
+
+	public function getSubIconImage() : ?string {
+		return $this->subIconImage;
 	}
 
 	public function setPosition(string $position) : self {

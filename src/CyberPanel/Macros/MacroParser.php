@@ -51,7 +51,6 @@ class MacroParser {
 		if (!empty($iconBinary)) {
 			$macro->setIconImage($iconBinary);
 		}
-
 	}
 
 	protected function handleIconResolving(Macro $macro, array $data) : void {
@@ -67,6 +66,12 @@ class MacroParser {
 
 		if (empty($macro->getIcon()) && empty($macro->getIconImage())) {
 			$this->loadIcon($macro);
+		}
+
+		if (array_key_exists('subIcon', $data)) {
+			$macro->setSubIconImage(
+				Files::loadBinary($data['subIcon'])
+			);
 		}
 	}
 }
