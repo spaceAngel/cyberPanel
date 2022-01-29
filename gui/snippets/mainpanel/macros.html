@@ -3,9 +3,10 @@
 		class="icon"
 		v-bind:class="{disabled: macrosWidget.enableStates != null && macrosWidget.enableStates[macro.hash] != true}" 
 		data-hash="" 
-		v-on:click="runMacro(macro.hash)" 
+		v-on:click="runMacro(macro.hash);gui.bounce('icon_' + macro.hash)" 
 		v-if="!macro.isDelimiter" 
 		v-bind:style="'float:' +macro.position"
+		v-bind:id="'icon_' + macro.hash"
 	>
 		<img v-if="macro.subIconImage" v-bind:src="'data:' +macro.subIconImage" class="subIcon"/>
 		<span v-if="macro.notification" class="notification"><% eval(macro.notification)%></span>
