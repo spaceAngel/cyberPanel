@@ -16,16 +16,13 @@ var networkWidget = {
 	},
 
 	handle: function(data) {
-		if (data.ip != null) {
-			networkWidget.ip = data.ip;
-		} else {
-			networkWidget.pings = data.pings.replaceAll('\n', '<br/>');
-			networkWidget.disconnected = data.disconnected;
-			networkWidget.time = data.time;
-			networkWidget.traffic = {
-				download: data.traffic.download,
-				upload: data.traffic.upload
-			};
-		}
+		networkWidget.ip = data.ip;
+		networkWidget.pings = data.pings.replaceAll('\n', '<br/>');
+		networkWidget.disconnected = data.disconnected;
+		networkWidget.time = data.time;
+		networkWidget.traffic = {
+			download: data.traffic.download,
+			upload: data.traffic.upload
+		};
 	}
 };

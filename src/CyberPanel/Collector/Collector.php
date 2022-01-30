@@ -8,6 +8,7 @@ use CyberPanel\Collector\Collectors\UpsCollector;
 use CyberPanel\Collector\Collectors\KeyboardCollector;
 use CyberPanel\Collector\Collectors\SystemStateCollector;
 use CyberPanel\Collector\Collectors\HwCollector;
+use CyberPanel\Collector\Collectors\NetworkCollector;
 
 class Collector {
 
@@ -22,6 +23,7 @@ class Collector {
 		$this->registerCollector(KeyboardCollector::class);
 		$this->registerCollector(SystemStateCollector::class);
 		$this->registerCollector(HwCollector::class);
+		$this->registerCollector(NetworkCollector::class);
 	}
 
 	public static function getInstance() : self {

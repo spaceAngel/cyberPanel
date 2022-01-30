@@ -56,9 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		]);
 	}, 30000);
 
-	setTimeout( function() {socket.send('network', 123);}, 1000);
-	setInterval( function() {socket.send('network', 123);}, 20 * 1000);
-
 	setTimeout( function() {
 		socket.sendMultiple([
 			{command:'hwinfo', parameters:[]},
