@@ -1,6 +1,6 @@
 <?php
 
-namespace CyberPanel\System;
+namespace CyberPanel\Collector;
 
 use CyberPanel\DataStructs\System\GpuSystemInfo;
 use CyberPanel\System\ShellCommands\Keyboard;
@@ -12,8 +12,11 @@ use CyberPanel\Events\Events\Hardware\CpuTemperatureEvent;
 use CyberPanel\Utils\DateTime;
 use CyberPanel\Utils\Miscellaneous;
 use CyberPanel\Utils\Traits\HasSocketClient;
+use CyberPanel\System\Ups;
+use CyberPanel\System\Executer;
+use CyberPanel\System\SystemInfo;
 
-class SystemDataCollector {
+class Collector {
 
 	public const STORAGEKEY_SYSTEM = 'systen';
 	public const STORAGEKEY_KEYBOARD = 'keyboard';

@@ -4,13 +4,13 @@ namespace CyberPanel\Commands\Commands;
 
 use CyberPanel\Commands\BaseCommand;
 use CyberPanel\Storage;
-use CyberPanel\System\SystemDataCollector;
+use CyberPanel\Collector\Collector;
 
 class KeyboardCommand extends BaseCommand {
 
 	public function run() : array {
 		return (array)Storage::getInstance()->get(
-			SystemDataCollector::STORAGEKEY_KEYBOARD
+			Collector::STORAGEKEY_KEYBOARD
 		);
 	}
 
