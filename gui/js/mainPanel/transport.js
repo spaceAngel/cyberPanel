@@ -10,7 +10,7 @@ var transport = {
 			transport.updateData();
 			setInterval(
 				function() {
-					transport.updateData()
+					transport.updateData();
 				}, 60000
 			);
 		}

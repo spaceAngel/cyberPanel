@@ -1,27 +1,17 @@
-/* global NoSleep */
+/* global NoSleep, stayAwakeModule */
 var environment = {
 
 	noSleep: stayAwakeModule.init(),
 	wakeLock: null,
 
 	noSleepEnable: function() {
-	 stayAwakeModule.setEnabled();return;
-
-		navigator.getWakeLock("screen").then(function(wakeLock) {
-			environment.wakeLock = wakeLock.createRequest();
- 			return;
-		});
-
-		environment.noSleep.enable();
+		stayAwakeModule.setEnabled();
+		return;
 	},
 
 	noSleepDisable: function() {
-		stayAwakeModule.setDisabled();return;
-		if (environment.wakeLock !== null) {
-			environment.wakeLock.cancel();
-		} else {
-			environment.noSleep.disable();
-		}
+		stayAwakeModule.setDisabled();
+		return;
 	},
 
 	fullscreenDisable: function() {

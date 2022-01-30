@@ -6,7 +6,7 @@ var upsStatus = {
 		if (document.getElementById('upsStatus')) {
 			socket.registerHandler('upsstatus',  upsStatus.handle);
 			setInterval(function() {
-				socket.send('upsstatus', 123)
+				socket.send('upsstatus', 123);
 			}, 1000);
 		}
 	},
@@ -14,4 +14,4 @@ var upsStatus = {
 	handle: function(data) {
 		upsStatus.data = data;
 	}
-}
+};

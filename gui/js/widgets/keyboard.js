@@ -1,6 +1,6 @@
 /* global cyberPanel */
 var keyboardWidget = {
-	
+
 	states: {
 		numlock: 'off',
 		capslock: 'off',

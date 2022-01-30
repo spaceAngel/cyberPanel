@@ -1,3 +1,4 @@
+/* global cyberPanel, config axios */
 var lastFmTrackInfo = {
 	init: async function() {
 		cyberPanel.$watch('media.currentsong.name', async function(newval) {
@@ -25,24 +26,22 @@ var lastFmTrackInfo = {
 			});
 		});
 	},
-	
+
 	handleFallback: function() {
 		cyberPanel.lastfmTrackInfo = {
 			album: {title: cyberPanel.media.currentsong.album},
 			artist: cyberPanel.media.currentsong.artist,
 			name: cyberPanel.media.currentsong.title
-		}		
+		};
 	},
-	
+
 	buildUrl: function(action, params) {
 		params.method = action;
-		params.api_key = config.lastfmApiKey; 
+		params.api_key = config.lastfmApiKey;
 		var query = new URLSearchParams(params).toString();
 		var url = 'http://ws.audioscrobbler.com/2.0/?format=json&' + query;
 		return url;
 	}
-	
-	
-}
 
+};
 

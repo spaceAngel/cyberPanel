@@ -1,3 +1,4 @@
+/* global cyberPanel */
 var socket = {
 	conn: null,
 
@@ -11,7 +12,7 @@ var socket = {
 			setTimeout(function() {
 				if (cyberPanel.disconnected) {
 					if (cyberPanel.noSleep) {
-						cyberPanel.toggleNoSleep()
+						cyberPanel.toggleNoSleep();
 					}
 					if (cyberPanel.fullScreen) {
 						cyberPanel.toggleFullScreen();
@@ -21,7 +22,7 @@ var socket = {
 		});
 		socket.conn.onclose = function() {
 			socket.handleDisconnect();
-		}
+		};
 		socket.conn.sendmessage = async function(msg) {
 			this.send(msg);
 		};

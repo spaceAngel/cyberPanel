@@ -5,8 +5,8 @@
 		defaultDataStruct, mediaWidget, mainPanelWidget,
 		downloadsWidget, covidWidget,
 		lockScreenImage, fileManager, speaker,
-		upsStatus, speakerm, mail,
-		transport, meteo, icuMonitor
+		upsStatus, speaker, mail,
+		transport, meteo, icuMonitor, lastFmTrackInfo, covid, trafficCams
 */
 var cyberPanel;
 var mixins = [];

@@ -20,7 +20,7 @@ var mail = {
 		if (document.getElementById('mailClient')) {
 			socket.registerHandler('mail.getmails',  mail.handle);
 			setTimeout(function() {
-				mail.loadEmails()
+				mail.loadEmails();
 			}, 5000);
 		}
 	},

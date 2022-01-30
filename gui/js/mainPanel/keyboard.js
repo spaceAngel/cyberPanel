@@ -1,4 +1,4 @@
-/* global cyberPanel, mixins, environment, sound */
+/* global socket, cyberPanel, mixins, environment, sound */
 mixins.push({
 	methods: {
 		keyPress: function(event) {
