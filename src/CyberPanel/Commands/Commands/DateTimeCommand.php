@@ -2,19 +2,16 @@
 
 namespace CyberPanel\Commands\Commands;
 
+
+use CyberPanel\Collector\Collectors\DateTimeCollector;
 use CyberPanel\Commands\BaseCommand;
-use CyberPanel\Utils\DateTime;
+use CyberPanel\Storage;
 
 class DateTimeCommand extends BaseCommand{
 
 	public function run() : array {
-		return [
-			'time' => date('H:i:s'),
-			'date' => date('l d.m.Y'),
-			'holiday' => DateTime::getHoliday(
-				(int)date('m'),
-				(int)date('d')
-			),
-		];
+		return (array)Storage::getInstance()->get(
+			DateTimeCollector::getStorageVariableName()
+		);
 	}
 }

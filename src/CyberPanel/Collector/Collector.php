@@ -9,6 +9,7 @@ use CyberPanel\Collector\Collectors\KeyboardCollector;
 use CyberPanel\Collector\Collectors\SystemStateCollector;
 use CyberPanel\Collector\Collectors\HwCollector;
 use CyberPanel\Collector\Collectors\NetworkCollector;
+use CyberPanel\Collector\Collectors\DateTimeCollector;
 
 class Collector {
 
@@ -24,6 +25,7 @@ class Collector {
 		$this->registerCollector(SystemStateCollector::class);
 		$this->registerCollector(HwCollector::class);
 		$this->registerCollector(NetworkCollector::class);
+		$this->registerCollector(DateTimeCollector::class);
 	}
 
 	public static function getInstance() : self {
