@@ -32,13 +32,13 @@ class CyberPanel {
 		if (Environment::getInstance()->getRunningWithDeamonizeSwitch()) {
 			$this->daemonize();
 		}
-		Collector::getInstance()->runCollector();
 	}
 
 	public static function run() : self {
 		if (empty(self::$instance)) {
 			self::$instance = new self();
 			ModuleLoader::loadModules();
+			Collector::getInstance()->runCollector();
 			if (0 !== pcntl_fork()) {
 				MacroHandlingService::getInstance()->runExecuter();
 				self::$instance->runSocketServer();
