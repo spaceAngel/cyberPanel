@@ -81,4 +81,5 @@ document.addEventListener('DOMContentLoaded', function() {
 	upsStatus.init();
 	speaker.init();
 	icuMonitor.init();
+	clipboard.init();
 });

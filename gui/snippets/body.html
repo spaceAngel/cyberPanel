@@ -38,6 +38,7 @@
 				<i v-if="pane == 'meteo'" class="fas fa-cloud-sun-rain fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
 				
 				<i v-if="pane == 'icu.monitor'" class="fas fa-heartbeat fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
+				<i v-if="pane == 'clipboard'" class="fas fa-paste fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
 			</template>
 		</div>
 	</div>
@@ -60,6 +61,7 @@
 			<div v-if="pane == 'trafficcams'" v-show="currentPanel == key" id="trafficCams" class="trafficCams"><!--(bake mainpanel/trafficCams.html)--></div>
 			<div v-if="pane == 'meteo'" v-show="currentPanel == key" id="meteo" class="meteo"><!--(bake mainpanel/meteo.html)--></div>
 			<div v-if="pane == 'icu.monitor'" v-show="currentPanel == key" id="icuMonitor" class="icuMonitor"><!--(bake mainpanel/icu/monitor.html)--></div>
+			<div v-if="pane == 'clipboard'" v-show="currentPanel == key" id="clipboard" class="clipboard"><!--(bake mainpanel/clipboard.html)--></div>
 		</template>
 	</div>
 	<!--(bake media.html)-->
