@@ -1,33 +1,20 @@
 <?php
 
-namespace CyberPanel\Commands\Commands;
+namespace CyberPanel\Integration\Media\Commands;
 
 use CyberPanel\Commands\BaseCommand;
-use CyberPanel\System\Media;
+use CyberPanel\Integration\Media\System\Media;
+use CyberPanel\Storage;
+use CyberPanel\Integration\Media\MediaCollector;
 
 class MediaCommand extends BaseCommand {
+
 	public function run() : array {
 		if (!empty($this->parameters)) {
 			$this->handleCommand($this->parameters[0]);
 		}
 
-		$id3 = Media::getInstance()->getCurrentSong();
-		$media = Media::getInstance();
-		return [
-			'volume' => $media->getVolume(),
-			'muted' => $media->getMuted(),
-			'currentsong' => [
-				'name' => $id3->getName(),
-				'title' => $id3->getTitle(),
-				'artist' => $id3->getArtist(),
-				'album' => $id3->getAlbum(),
-			],
-			'length' => $id3->getLength(),
-			'position' => $media->getPosition(),
-			'playing' => $media->getCurrentPlayer() ? $media->isPlayerPlaying(
-				$media->getCurrentPlayer()
-			) : FALSE
-		];
+		return Media::getInstance()->getCurrentMediaState();
 	}
 
 	/**

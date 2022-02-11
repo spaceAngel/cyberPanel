@@ -1,8 +1,8 @@
 <?php
 
-namespace CyberPanel\System\ShellCommands;
+namespace CyberPanel\Integration\Media\System;
 
-interface Media {
+interface ShellCommands {
 
 	// phpcs:disable Generic.Files.LineLength
 	const CMD_VOLUME = "pacmd list-sinks|grep -A 15 '* index'| awk '/volume: front/{ print $5 }' | sed 's/[%|,]//g'";

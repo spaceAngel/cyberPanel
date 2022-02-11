@@ -5,7 +5,6 @@ namespace CyberPanel\Commands;
 use CyberPanel\Commands\Commands\DateTimeCommand;
 use CyberPanel\Commands\Commands\SystemInfoCommand;
 use CyberPanel\Commands\Commands\KeyboardCommand;
-use CyberPanel\Commands\Commands\MediaCommand;
 use CyberPanel\Commands\Commands\LockScreenImageCommand;
 use CyberPanel\Commands\Commands\HwInfoCommand;
 use CyberPanel\Commands\Commands\KeyPressCommand;
@@ -17,7 +16,6 @@ use CyberPanel\Logging\Log;
 use CyberPanel\Commands\Commands\StorageCommand;
 use CyberPanel\Macros\Commands\LoadMacrosCommand;
 use CyberPanel\Macros\Commands\RunMacroCommand;
-use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use CyberPanel\Macros\Commands\MacrosEnabledListCommand;
 
 class CommandResolver {
@@ -31,7 +29,6 @@ class CommandResolver {
 		$this->registerCommand('systeminfo', SystemInfoCommand::class);
 		$this->registerCommand('hwinfo', HwInfoCommand::class);
 		$this->registerCommand('keyboard', KeyboardCommand::class);
-		$this->registerCommand('media', MediaCommand::class);
 		$this->registerCommand('lockscreenimage', LockScreenImageCommand::class);
 		$this->registerCommand('keypress', KeyPressCommand::class);
 		$this->registerCommand('openbrowser', OpenInBrowserCommand::class);

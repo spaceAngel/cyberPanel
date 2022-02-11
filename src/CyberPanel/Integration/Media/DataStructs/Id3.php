@@ -1,7 +1,7 @@
 <?php
 
 
-namespace CyberPanel\DataStructs;
+namespace CyberPanel\Integration\Media\DataStructs;
 
 class Id3 {
 

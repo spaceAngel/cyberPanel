@@ -1,9 +1,10 @@
 <?php
 
-namespace CyberPanel\System;
+namespace CyberPanel\Integration\Media\System;
 
-use CyberPanel\DataStructs\Id3;
-use CyberPanel\System\ShellCommands\Media as Commands;
+use CyberPanel\Integration\Media\DataStructs\Id3;
+use CyberPanel\Integration\Media\System\ShellCommands as Commands;
+use CyberPanel\System\Executer;
 
 class Media {
 
@@ -17,6 +18,26 @@ class Media {
 			self::$instance = new self();
 		}
 		return self::$instance;
+	}
+
+	public function getCurrentMediaState() : array {
+		$id3 = $this->getCurrentSong();
+
+		return [
+			'volume' => $this->getVolume(),
+			'muted' => $this->getMuted(),
+			'currentsong' => [
+				'name' => $id3->getName(),
+				'title' => $id3->getTitle(),
+				'artist' => $id3->getArtist(),
+				'album' => $id3->getAlbum(),
+			],
+			'length' => $id3->getLength(),
+			'position' => $this->getPosition(),
+			'playing' => $this->getCurrentPlayer() ? $this->isPlayerPlaying(
+				$this->getCurrentPlayer()
+			) : FALSE
+		];
 	}
 
 	public function getCurrentPlayer() : ?string {
