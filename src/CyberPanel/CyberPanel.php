@@ -27,7 +27,6 @@ class CyberPanel {
 		$this->init();
 		$this->handleInfoSwitches();
 		VoiceSubmodule::init();
-		EventManager::getInstance()->event(new ApplicationStartedEvent());
 		Log::info('Starting CyberPanel version %s', [$this->getVersion()]);
 		if (Environment::getInstance()->getRunningWithDeamonizeSwitch()) {
 			$this->daemonize();
@@ -38,6 +37,7 @@ class CyberPanel {
 		if (empty(self::$instance)) {
 			self::$instance = new self();
 			ModuleLoader::loadModules();
+			EventManager::getInstance()->event(new ApplicationStartedEvent());
 			Collector::getInstance()->runCollector();
 			if (0 !== pcntl_fork()) {
 				MacroHandlingService::getInstance()->runExecuter();
