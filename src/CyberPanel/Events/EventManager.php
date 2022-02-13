@@ -29,6 +29,12 @@ class EventManager {
 		}
 	}
 
+	public function registerListeners(array $listeners) : void {
+		foreach ($listeners as $listener) {
+			$this->registerListener($listener);
+		}
+	}
+
 	public function event(Event $event): void {
 		$this->propagateEventToListeners(get_class($event), $event);
 		$eventReflection = new \ReflectionClass(get_class($event));
