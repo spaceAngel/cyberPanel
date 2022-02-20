@@ -6,7 +6,7 @@
 		downloadsWidget, covidWidget,
 		lockScreenImage, fileManager, speaker,
 		upsStatus, speaker, mail,
-		transport, meteo, icuMonitor, lastFmTrackInfo, covid, trafficCams
+		transport, meteo, icuMonitor, lastFmTrackInfo, covid, trafficCams, newsWidget
 */
 var cyberPanel;
 var mixins = [];
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	mainPanelWidget.init('mainSwipingPanel');
 	lastFmTrackInfo.init();
-	covid.init();
+	newsWidget.init();
 	mail.init();
 	transport.init();
 	trafficCams.init();

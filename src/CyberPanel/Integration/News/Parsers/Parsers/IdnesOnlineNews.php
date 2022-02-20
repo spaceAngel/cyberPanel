@@ -1,23 +1,22 @@
 <?php
 
-namespace CyberPanel\Integration\Covid\Parsers;
+namespace CyberPanel\Integration\News\Parsers\Parsers;
 
 use \DOMDocument;
 use CyberPanel\Exceptions\RemoteContentNotDownloadedException;
 use CyberPanel\Logging\Log;
 use CyberPanel\Utils\WebDownloader;
 use CyberPanel\Utils\DateTime;
+use CyberPanel\Integration\News\Parsers\ParserInterface;
 
-class IdnesOnlineNews {
+class IdnesOnlineNews implements ParserInterface {
 
-	const URL_IDNES = 'https://www.idnes.cz/koronavirus/online';
-
-	public function getNews() : array {
+	public function getNews(string $url) : array {
 		$dom = new DOMDocument('1.0', 'UTF-8');
 		try {
-			$html = WebDownloader::download(self::URL_IDNES);
+			$html = WebDownloader::download($url);
 		} catch (RemoteContentNotDownloadedException $e) {
-			Log::error('Error during contacting IdnesNews on URL: %s', [self::URL_IDNES]);
+			Log::error('Error during contacting IdnesNews on URL: %s', [$url]);
 			return [];
 		}
 		$dom->loadHTML('<?xml encoding="UTF-8">' . $html, LIBXML_NOERROR);

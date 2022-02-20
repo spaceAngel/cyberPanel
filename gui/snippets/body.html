@@ -19,9 +19,8 @@
 					<span class="notification" v-if="downloads.length > 0"><% downloads.length %></span>
 				</i>
 				<i v-if="pane == 'music'" class="fas fa-music fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key"></i>
-				<i v-if="pane == 'covid.news'" class="grouped fas fa-newspaper fa-2x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key" data-tabId="covidNews">
-					<i class="fas fa-viruses"></i>
-					<span class="notification" v-if="covidNewsWidget.unread > 0" v-html="covidNewsWidget.unread"></span>
+				<i v-if="pane == 'news'" class="fas fa-newspaper fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key" data-tabId="news">
+					<span class="notification" v-if="newsWidget.unread > 0" v-html="newsWidget.unread"></span>
 				</i>
 				<i v-if="pane == 'network'" class="fas fa-globe fa-3x" v-bind:class="{active: currentPanel == key}" v-on:click="currentPanel = key">
 					<span class="notification alert" v-if="networkWidget.disconnected || networkWidget.time > 500">!</span>
@@ -52,7 +51,7 @@
 			<div v-if="pane == 'numkeyboard'" v-show="currentPanel == key"><!--(bake mainpanel/keyboard.html)--></div>
 			<div v-if="pane == 'downloads'" v-show="currentPanel == key" class="downloads"><!--(bake mainpanel/downloads.html)--></div>
 			<div v-if="pane == 'music'" v-show="currentPanel == key"><!--(bake mainpanel/lastfmTrackInfo.html)--></div>
-			<div v-if="pane == 'covid.news'" v-show="currentPanel == key" class="covidNews" id="covidNews"><!--(bake mainpanel/covid/news.html)--></div>
+			<div v-if="pane == 'news'" v-show="currentPanel == key" class="news" id="news"><!--(bake mainpanel/covid/news.html)--></div>
 			<div v-if="pane == 'network'" v-show="currentPanel == key"><!--(bake mainpanel/network.html)--></div>
 			<div v-if="pane == 'files'" v-show="currentPanel == key"><!--(bake mainpanel/files.html)--></div>
 			<div v-if="pane == 'upsstatus'" v-show="currentPanel == key" id="upsStatus" class="upsStatus"><!--(bake mainpanel/upsStatus.html)--></div>

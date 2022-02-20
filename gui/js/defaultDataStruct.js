@@ -58,6 +58,7 @@ var defaultDataStruct = {
 	},
 	downloads:[],
 	macros: [],
+	news: [],
 	covid: {
 		news: [],
 		stats: {

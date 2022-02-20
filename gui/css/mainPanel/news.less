@@ -1,4 +1,4 @@
-.covidNews {
+.news {
 	.new {
 		clear:both;
 		border-bottom: 1px dotted @colorBorder;
@@ -20,13 +20,19 @@
 			width:    -moz-calc(100% - 140px);
 			width:         calc(100% - 140px);
 			margin-bottom: 10px;
+
+			.onlyText {
+				padding-top: 20px;
+			}
+
 			.newCaption {
 				font-style:bold;
 			}
+
 			div, p {
 				display: inline-block;
 			}
-			
+
 			.hidden {
 				display: none;
 			}
@@ -36,7 +42,7 @@
 				max-width:    -moz-calc(100% - 20px);
 				max-width:         calc(100% - 20px);
 			}
-			
+
 			.o-art {
 				img {
 					width: 200px;
@@ -44,18 +50,20 @@
 					display: block;
 					margin-top: 10px;
 				}
+
 				.cell {
 					width: -webkit-calc(100% - 220px);
 					width:    -moz-calc(100% - 220px);
 					width:         calc(100% - 220px);
 					float: left;
 					padding-left: 20px;
-					
+
 					h3 {
 						margin: 0px;
 					}
 				}
 			}
+
 			a {
 				display: inline-block;
 				background-color: @colorMain;
@@ -65,10 +73,21 @@
 				.borderRadius(8px);
 				padding: 4px;
 			}
+
 			.avatar {
 				display: none;
 			}
+
+			li {
+				list-style-type: none;
+				a {
+					border:0px solid black;
+					padding:0px;
+					background-color: @colorBackgroundBox;
+				} 
+			}
 		}
+
 		.important {
 			border-right: 1px dotted red;
 		}
