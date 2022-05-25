@@ -13,7 +13,7 @@
   "devDependencies": {
     "coffeescript": "^2.5.1",
     "eslint": "^6.8.0",
-    "grunt": "^1.4.0",
+    "grunt": "^1.5.3",
     "grunt-bake": "^1.9.0",
     "grunt-concat-css": "^0.3.2",
     "grunt-contrib-copy": "^1.0.0",
