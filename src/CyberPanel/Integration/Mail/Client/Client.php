@@ -66,7 +66,7 @@ class Client {
 		foreach ($emails as $i => $email) {
 			$key = str_pad($email->udate, 20, '0', STR_PAD_LEFT) . str_pad($i, 4, '0');
 			$rslt[$key] = [
-				'subject' => $email->subject,
+				'subject' => $email->subject ?? '',
 				'from' => Decorator::from($email->from),
 				'size' => Decorator::size($email->size),
 				'date' => Decorator::date($email->udate),
